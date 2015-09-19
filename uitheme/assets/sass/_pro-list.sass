@@ -1,0 +1,145 @@
+.product-wrap
+	clear: both
+	display: table
+	margin-top: $gap*3.5
+
+.prod-type
+	width: 210px
+	float: left
+
+.prod-title
+	font-family: $font-J-I
+	font-size: $f24
+	padding-bottom: $gap
+	margin-bottom: $gap*1.7
+	border-bottom: $black solid 2px
+
+.type-list
+	margin-bottom: $gap*2.5
+	font-family: $font-J
+	letter-spacing: 2px
+	clear: both
+	.type-item
+		margin-bottom: $gap*1.6
+	.type-num
+		float: right
+
+.price-filer
+	small
+		color: $gray-9
+		font-size: $f14
+#filter
+	height: 1px
+	width: 188px
+	border-bottom: $black $bd1
+	position: relative
+	margin-bottom: $gap
+	.filter-dot
+		width: 10px
+		height: 10px
+		+border-radius(100%)
+		background-color: $black
+		position: absolute
+		top: -3px
+		left: 10px
+		cursor: pointer
+#slider-range
+	margin-bottom: $gap
+
+.price-sort
+	float: right
+	margin-bottom: $gap
+
+.prod-all
+	float: right
+	width: 689px
+	.pro-item
+		margin-right: $gap
+	a:nth-child(3n) .pro-item
+		margin-right: 0
+
+.pro-item
+	width: 223px
+	margin-right: $gap*2.3
+	float: left
+	font-size: $f12
+	text-align: center
+
+.proi-img
+	margin-bottom: 7px
+	width: 233px
+	height: 233*1.43px
+
+.proi-en
+	font-family: $font-R
+	border-bottom: $black $bd1
+	padding-bottom: $gap/4
+	margin-bottom: $gap/4
+	width: 210px
+	@extend %marginLRAuto
+
+.proi-zh
+	font-family: $font-C
+
+.price
+	padding-top: 15px
+	font-family: $font-C-I
+	font-size: $f20
+
+.numSelect
+	border: $black $bd1
+	width: 145px
+	height: 25px
+	font-size: $f14
+	line-height: 25px
+	position: relative
+	cursor: pointer
+	overflow: hidden
+	&:after
+		@extend %elementAB,%triangle
+		right: 8px
+		top: 8px
+	.beSelect
+		padding: 0px $gap
+	.num
+		border: $black $bd1
+		width: 145px
+		position: absolute
+		top: 25px
+		left: -1px
+		z-index: 10
+		li
+			height: 25px
+			padding: 0px $gap
+			background-color: $white
+			&:hover
+				background-color: $black
+				color: $white
+
+.prod-page
+	width: 100%
+	clear: both
+	text-align: center
+	padding-top: $gap*3.5
+	padding-bottom: $gap*4
+	li
+		+inline-block
+		margin: 0px $gap
+		padding-bottom: $gap
+	.page
+		font-family: $font-J-I
+		font-size: $f24
+		&.active
+			border-bottom: $black $bd1
+
+
+
+
+
+
+
+
+
+
+
+

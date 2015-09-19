@@ -1,0 +1,5 @@
+=iconSpriteHW($main,$list)
+  @each $name in $list
+    .#{$main}-#{$name}
+      width: image-width("/#{$main}/#{$name}.png")
+      height: image-height("/#{$main}/#{$name}.png")

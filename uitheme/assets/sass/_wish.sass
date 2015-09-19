@@ -1,0 +1,53 @@
+.product-wrap
+	width: $inner-wrap
+	@extend %marginLRAuto
+
+.wish-list
+	width: 945px
+	float: left
+
+.wh-tb
+	th
+		font-family: $font-J
+		text-align: center
+		border-bottom: $black $bd1
+		padding-bottom: $gap
+		margin-bottom: $gap
+		font-size: $f20
+		letter-spacing: $f32
+	td
+		padding-bottom: $gap/2
+		border-bottom: $gray-9 $bd1
+		font-size: $f12
+		line-height: $f24
+	tr:first-child td
+		padding-top: $gap
+
+.subtotal-wrap
+	width: 221px
+	float: right
+	position: relative
+	.subt
+		border: $black $bd1
+		width: 200px
+		height: 210px
+		margin-bottom: $gap*4.9
+		position: relative
+		background-color: $white
+		&:after
+			@extend %elementAB,%deco-border
+	.btn-white
+		margin-bottom: $gap/2
+	.ui-s-subtotal
+		@extend %marginLRAuto
+		margin-top: $gap*2
+	.ord-price
+		position: absolute
+		text-align: center
+		bottom: $gap*2
+		width: 100%
+		font-family: $font-C-I
+		font-size: $f18
+
+.ord
+	width: 690px

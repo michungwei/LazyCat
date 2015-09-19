@@ -1,0 +1,37 @@
+#banner
+	width: image-width("banner-12.png")
+	max-width: 1264px
+	height: image-height("banner-12.png")
+	@extend %marginLRAuto
+	position: relative
+	overflow: hidden
+
+div.banner-list
+	position: absolute
+	z-index: 1
+	width: image-width("banner-12.png")
+	height: image-height("banner-12.png")
+
+.banner-page
+	position: absolute
+	z-index: 2
+	bottom: 30px
+	left: (image-width("banner-12.png")-101)/2
+	li.bang-item
+		cursor: pointer
+		border: $white $bd1
+		background-color: $white
+		height: 10px
+		width: 10px
+		+inline-block
+		margin: 0 $gap/4
+		border-radius: 50%
+		&.active
+			background-color: $black
+
+#subbanner
+	@extend #banner
+	height: image-height("subbanner-15.png")
+	@extend %marginLRAuto
+	&.small
+		height: 127px

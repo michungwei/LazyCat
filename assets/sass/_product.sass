@@ -1,0 +1,54 @@
+.productImg
+	width: 502px
+	position: relative
+	float: left
+	.proImg
+		width: 451px
+		@extend %marginLRAuto
+		img
+			width: 451px
+			height: 451*1.43px
+	.arrow-left,.arrow-right
+		$top: image-height("ui-s/arrow-left.png")/2
+		top: image-height("product-04.png")/2-$top
+
+.proImg-ist
+	text-align: center
+	.prol-item
+		+inline-block
+		border: $white $bd1
+		cursor: pointer
+		img
+			width: 89px
+			height: 89*1.43px
+		&.active
+			border-color: $gray-9
+
+.productInfo
+	width: 363px
+	float: right
+	margin-left: 80px
+	text-align: center
+	h2
+		font-family: $font-J-I
+		font-size: $f20
+		letter-spacing: 3px
+		margin-bottom: $gap
+	.price
+		margin-bottom: $gap*1.5
+	.numSelect
+		@extend %marginLRAuto
+		margin-bottom: $gap*1.5
+	[class*="btn-white"]
+		width: 100%
+		margin-bottom: $gap/2
+	[class*="proC-"]
+		margin-top: $gap*4
+		line-height: $f32
+		font-size: $f14
+	.social
+		margin-top: $gap*4
+.recently-title
+	@extend .hot-title
+	&:before
+		content: "RECENTLY POST"

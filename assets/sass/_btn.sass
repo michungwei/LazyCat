@@ -1,0 +1,62 @@
+div.btn-left
+	@extend .ui-s-arrow-left-c
+	position: absolute
+	z-index: 2
+	top: (image-height("banner-12.png")/2)-(image-height("ui-s/arrow-left-c.png")/2)
+	left: 51px
+	cursor: pointer
+
+div.btn-right
+	@extend .ui-s-arrow-right-c
+	@extend .btn-left
+	right: 51px
+	left: auto
+
+.arrow-left
+	@extend .ui-s-arrow-left
+	position: absolute
+	z-index: 2
+	top: 114px
+	left: 0px
+	cursor: pointer
+
+.arrow-right
+	@extend .ui-s-arrow-right
+	@extend .arrow-left
+	right: 0px
+	left: auto
+
+.btn-white
+	width: 100%
+	background-color: $white
+	border: $bd1 $black
+	height: 40px
+	font-family: $font-J
+	font-size: $f16
+
+.btn-block
+	width: 100%
+	background-color: $black
+	border: none
+	color: $white
+	height: 27px
+	font-family: $font-C
+	font-size: $f14
+	letter-spacing: 8px
+
+.btn-white-add
+	@extend .btn-white
+	width: 243px
+	height: 38px
+	line-height: 38px
+	font-family: $font-J-I
+	font-size: 15px
+	letter-spacing: 4px
+	img
+		position: relative
+		top: 2px
+
+.btn-del
+	background: $alpha
+	border: none
+	font-size: 25px

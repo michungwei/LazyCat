@@ -1,0 +1,54 @@
+.sign-info
+	@extend .company-info
+	width: 737px
+
+.bdrdash
+	border-right: $black dashed 1px
+
+.signin
+	float: left
+	width: 341px
+	height: 588px
+	padding-right: $gap*3
+	margin-right: $gap
+
+.signup
+	float: left
+
+.sign-tb
+	td
+		height: 51px
+	tr
+		height: 43px
+		font-size: $f14
+		td:nth-child(1)
+			text-align: right
+		& > td:nth-child(2)
+			padding-left: $gap*2.8
+			& > input
+				padding-left: $gap
+				width: 243px
+				height: 27px
+				margin: $gap 0
+				border: $black $bd1
+	tr:nth-child(4) td
+		text-align: right
+		label
+			padding-right: $gap*1.7
+			margin-right: $gap*1.7
+			+inline-block
+			position: relative
+			&:after
+				@extend %elementAB
+				width: 1px
+				height: 27px
+				right: 0
+				top: -6px
+				background-color: $black
+
+.sep-mr
+	margin-right: $gap*7
+
+.mem-title
+	font-size: $f18
+

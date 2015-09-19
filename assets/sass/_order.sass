@@ -1,0 +1,145 @@
+.orderContent
+	@extend #nav
+	overflow: visible
+	display: table
+	.form
+		margin-top: $gap*2
+
+.bigW
+	font-family: $font-J-I
+	font-size: $f40
+	padding-right: $gap*2.9
+.orderStep
+	+clearfix
+	@extend #nav
+
+[class*="step"]
+	background-image: image-url("step.png")
+	background-repeat: no-repeat
+	background-position: 0 0
+	height: 45px
+	width: 230px
+	float: left
+	margin-right: $gap*2
+	&.active
+		background-position-y: -45px
+
+.step2
+	background-position-x: -245px
+	width: 245px
+
+.step3
+	background-position-x: -500px
+	width: 245px
+
+.order-form
+	float: left
+	width: 590px
+	margin-right: 55px
+
+.checkout-type
+	+background(linear-gradient(to right, $pink-light, $pink))
+	height: 64px
+	+clearfix
+	position: relative
+	width: 100%
+	&:before
+		@extend %elementAB
+		content: "or"
+		font-family: $font-J-I
+		font-size: $f18
+		line-height: 64px
+		left: (590-20px)/2
+
+
+.chk-type
+	width: 244px
+	height: 39-$gap/2
+	margin-top: $gap*1.2
+	margin-left: $gap*1.2
+	margin-right: $gap*5
+	padding-left: 12px
+	padding-top: $gap/2
+	border: $black $bd1
+	float: left
+	background-color: $white
+	line-height: $f20
+	font-family: $font-J-I,$font-zh
+	font-size: $f12
+	.en
+		font-size: 18px
+		letter-spacing: 2px
+		font-weight: 300
+
+	&.active
+		background-color: $black
+		color: $white
+	&:last-child
+		margin-right: $gap*1.2
+		margin-left: 0
+		float: right
+
+.field-grop
+	display: block
+	width: 100%
+	margin-bottom: $gap*3
+	font-family: $font-C
+	select
+		width: 100%
+		margin-top: $gap
+	input
+		width: 580px
+		padding-left: $gap
+		height: 28px
+		margin-top: $gap
+		color: $gray-9
+
+label.half
+	width: 280px
+	float: left
+	&:first-child
+		padding-right: $gap*1.4
+
+.order-list
+	float: right
+	width: 290px
+
+.your-order
+	width: 260px
+	border: $bd1 $black
+	position: relative
+	background-color: $white
+	padding: $gap
+	margin-bottom: $gap*3
+	&:after
+		@extend %deco-border,%elementAB
+
+.youo-title
+	@extend .ui-s-yourod
+	@extend %marginLRAuto
+
+.tab-list
+	font-size: $f12
+	margin-top: $gap
+	margin-bottom: $gap*3.6
+	@extend %marginLRAuto
+	thead
+		border-bottom: $bd1 $black
+	tfoot
+		border-top: $bd1 $black
+	td
+		height: 24px
+
+.chk-title
+	font-size: $f14
+	color: $black
+	margin-bottom: $gap
+
+.chk-way
+	width: 200px
+	font-size: $f12
+	color: $gray-9
+	margin-bottom: $gap*1.4
+	@extend %marginLRAuto
+	&:last-child
+		margin-bottom: $gap*5

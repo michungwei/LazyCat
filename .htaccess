@@ -1,0 +1,37 @@
+RewriteEngine On
+# secure htaccess file
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^.*(.css|.js|.gif|.png|.jpg|.jpeg)$
+
+
+RewriteRule product-list_([0-9]*).html$ product-list.php?type_id=$1
+RewriteRule product-list_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*).html$ product-list.php?type_id=$1&serial_id=$2&max_value_price=$3&min_value_price=$4&order=$5&page=$6
+RewriteRule product-new_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*).html$ product-new.php?type_id=$1&max_value_price=$2&min_value_price=$3&order=$4&page=$5
+RewriteRule product_([0-9]*)_([0-9]*).html$ product.php?type_id=$1&pro_id=$2
+RewriteRule lookbook-detail_([0-9]*).html$ lookbook-detail.php?lookbook_id=$1
+RewriteRule memberCenter_([0-9]*).html$ memberCenter.php?member_id=$1
+
+RewriteRule ^([a-zA-Z0-9\-\_]*).html$ $1.php
+
+
+
+
+
+
+
+
+
+
+# RewriteRule news_([0-9]*).html$ news.php?id=$1
+# RewriteRule board_detail_([0-9]*)_([0-9]*).html$ board_detail.php?id=$1&next=$2
+
+
+
+RewriteRule online_([0-9]*).html$ online.php?online_id=$1
+RewriteRule class_([0-9]*)_([0-9]*).html$ class.php?type_id=$1&id=$2
+RewriteRule member_message2_([0-9]*).html$ member_message2.php?msg_id=$1
+RewriteRule get_mp3_([0-9]*).html$ get_mp3.php?id=$1
+RewriteRule send_content_([0-9]*)_([0-9]*)_([0-9]*).html$ send_content.php?share_type=$1&type_id=$2&id=$3
+
+

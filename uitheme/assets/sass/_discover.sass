@@ -1,0 +1,56 @@
+.discover
+	margin-top: 30px
+	width: 1006px
+	@extend %marginLRAuto
+	text-align: center
+	.title
+		margin-bottom: 56px
+		h2
+			@extend %open-title
+			padding-bottom: $gap
+			border-bottom: $black $bd1
+		p
+			width: 460px
+			margin-top: $gap*2
+			text-align: left
+			font-family: "Roboto",arial,sans-serif
+			font-size: $f14
+			line-height: $f24
+			@extend %marginLRAuto
+
+.dis-List
+	clear: both
+	display: table
+	a:nth-child(3n) .dis-item
+		margin-right: 0
+.dis-item
+	width: 301px
+	float: left
+	margin-right: $gap*5
+	margin-bottom: $gap*6
+
+.disi-img
+	border: $black $bd1
+	height: 261px
+	position: relative
+	background-color: $white
+	margin-bottom: $gap*2.5
+	&:before
+		@extend %elementAB
+		z-index: -1
+		width: 301px
+		height: 261px
+		border: $black 2px solid
+		top: 13px
+		left: -13px
+.disi-name
+	text-align: left
+.disi-h3
+	font-size: $f28
+	font-family: "Judson-I",arial,sans-serif
+	text-transform: uppercase
+.disi-p
+	margin-top: $gap
+	font-size: $f16
+	font-family: 蘋果儷中黑 , DFHei , 微軟正黑體 , 'Microsoft JhengHei', 'Apple LiGothic Medium', 黑體-繁, 'Heiti TC Light' Arial, sans-serif
+

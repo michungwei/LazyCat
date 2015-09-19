@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>UXThemes</title>
+	<link href="assets/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="assets/scripts/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="assets/scripts/demo.js"></script>
+</head>
+<body>
+	<div id="nav">
+		<h1 class="logo"></h1>
+		<ul class="menu">
+			<li class="menu-item menu-news"><a href="index.html">what's news</a></li>
+			<li class="menu-item menu-bag"><a href="product-list.html">bags</a></li>
+			<li class="menu-item menu-access"><a href="product-list.html">accessories</a></li>
+			<li class="menu-item menu-other"><a href="product-list.html">others</a></li>
+			<li class="menu-item menu-look"><a href="index.html">lookbook</a></li>
+			<li class="menu-item menu-wish"><a href="wishlist.html">wishlist</a></li>
+		</ul>
+		<ul class="submenu">
+			<li class="sub-item menu-signin"><a href="sign.html">sign</a></li>
+			<li class="sub-item"><label class="search active" for="search"><input type="text" value='' id="search" /></label></li>
+			<li class="sub-item"><a href="order-step1.html"><span class="ui-s-bag">0</span></a></li>
+		</ul>
+	</div>
+	<div id="gps">
+		<a href="index.html">home</a>
+		<span> / </span><a href="Car.html">shopping car</a>
+	</div>
+	<div class="orderStep">
+		<div class="step1"></div>
+		<div class="step2 active"></div>
+		<div class="step3"></div>
+	</div>
+	<div class="orderContent">
+		<div class="order-form">
+			<div class="checkout-type">
+				<div class="chk-type active">
+					<span class="en">SIGN IN TO CHEACK OUT</span><br/>
+					會員登入
+				</div>
+				<div class="chk-type">
+					<span class="en">
+					CREATE AN ACCOUNT</span><br/>
+					加入免費會員方便快速結帳
+				</div>
+			</div>
+			<form action="" class="form">
+				<fieldset>
+					<lable for="ConSelect" class="field-grop">
+						<p class="fieldTitle">Country <span class="req">*</span></p>
+						<select name="ConSelect" id="ConSelect">
+							<option value="Norway">Norway</option>
+							<option value="Norway">Norway</option>
+							<option value="Norway">Norway</option>
+							<option value="Norway">Norway</option>
+						</select>
+					</lable>
+					<lable for="FirName" class="field-grop half">
+						<p class="fieldTitle">First Name <span class="req">*</span></p>
+						<input id="FirName" type="text" />
+					</lable>
+					<lable for="LasName" class="field-grop half">
+						<p class="fieldTitle">Last Name <span class="req">*</span></p>
+						<input id="LasName" type="text" />
+					</lable>
+					<lable for="comName" class="field-grop">
+						<p class="fieldTitle">Company Name</p>
+						<input id="comName" type="text" />
+					</lable>
+					<lable for="address" class="field-grop">
+						<p class="fieldTitle">Address <span class="req">*</span></p>
+						<input id="address" type="text" value="Street address" />
+						<input id="aprtment" type="text" value="Aprtment, suite, unit etc.(optional)" />
+					</lable>
+					<lable for="address" class="field-grop">
+						<p class="fieldTitle">Address<span class="req">*</span></p>
+						<input id="address" type="text" value="Street address" />
+						<input id="aprtment" type="text" value="Aprtment, suite, unit etc.(optional)" />
+					</lable>
+					<lable for="Postcode" class="field-grop">
+						<p class="fieldTitle">Postcode / Zip <span class="req">*</span></p>
+						<input id="Postcode" type="text" value="Postcode / Zip" />
+					</lable>
+					<lable for="Town" class="field-grop">
+						<p class="fieldTitle">Town / City <span class="req">*</span></p>
+						<input id="Town" type="text" value="Town / City" />
+					</lable>
+				</fieldset>
+			</form>
+		</div>
+		<div class="order-list">
+			<div class="your-order">
+				<div class="youo-title"></div>
+				<table class="tab-list">
+					<thead>
+						<td width="200" align="left">PRODUCT</td>
+						<td align="right">PRICE</td>
+					</thead>
+					<tr>
+						<td>水彩花朵輕柔雪紡肩綁帶上衣*1</td>
+						<td>490</td>
+					</tr>
+					<tr>
+						<td>水彩花朵輕柔雪紡肩綁帶上衣*1</td>
+						<td>490</td>
+					</tr>
+					<tr>
+						<td>水彩花朵輕柔雪紡肩綁帶上衣*1</td>
+						<td>490</td>
+					</tr>
+					<tr>
+						<td>水彩花朵輕柔雪紡肩綁帶上衣*1</td>
+						<td>490</td>
+					</tr>
+					<tr>
+						<td>水彩花朵輕柔雪紡肩綁帶上衣*1</td>
+						<td>490</td>
+					</tr>
+					<tr>
+						<td>水彩花朵輕柔雪紡肩綁帶上衣*1</td>
+						<td>490</td>
+					</tr>
+					<tfoot>
+						<td>TOTAL</td>
+						<td>4770</td>
+					</tfoot>
+				</table>
+				<div class="chk-way">
+					<h4 class="chk-title">Cheque Payment / 支票付款</h4>
+					<p>Please send your cheque to Store Name, Store, Street, Store Town, Store State / County, store Postcode.</p>
+				</div>
+				<div class="chk-way">
+					<h4 class="chk-title">Cheque Payment / 支票付款</h4>
+				</div>
+			</div>
+			<button class="btn-white">PLACE ODER</button>
+		</div>
+	</div>
+	<div id="footer">
+		<div class="footer-header">
+			<h2 class="footer-title">FOLLOW US</h2>
+			<ul class="social">
+				<li class="soc-item"><a class="ui-s-ig" href="###"></a></li>
+				<li class="soc-item "><a class="ui-s-fb" href="###"></a></li>
+			</ul>
+			<div class="so-cial-tag">#selfie #nofilter @TagsForLikes #TagsForLikes #webstagram #follow4follow #selfie #nofilter @TagsForLikes #TagsForLikes #webstagram #follow4follow #selfie #nofilter @TagsForLikes #TagsForLikes #webstagram #follow4follow</div>
+		</div>
+		<div class="footer-bottom">
+			<div class="foob-outer">
+				<ul class="company">
+					<li class="com-item"><a href="about.html">ABOUT</a></li>
+					<li class="com-item"><a href="blog.html">BLOG</a></li>
+					<li class="com-item"><a href="about.html">CONTACT</a></li>
+				</ul>
+				<span class="copy">Copyright 2014 &copy; UXThemes. Powerd by WooCommerce</span>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

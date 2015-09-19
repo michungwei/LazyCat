@@ -1,0 +1,50 @@
+.map
+	width: $max-wrap
+	@extend %marginLRAuto
+
+.company-info
+	width: $inner-wrap
+	@extend %marginLRAuto
+	margin-top: $gap*6
+	clear: both
+	display: table
+
+.about
+	float: left
+	& > .title
+		width: image-width('ui-s/about.png')
+		margin-bottom: $gap*3.6
+		@extend .ui-s-about
+		@extend %marginLRAuto
+	.abo-info
+		padding: $gap*3 $gap*2
+		width: 452px
+		font-size: $f12
+		line-height: $f20
+		border: $bd1 $black
+		position: relative
+		background-color: $white
+		&:after
+			@extend %deco-border,%elementAB
+
+.contact
+	float: right
+	& > .title
+		width: image-width('ui-s/contact.png')
+		margin-bottom: $gap*3.6
+		@extend .ui-s-contact
+		@extend %marginLRAuto
+	.cont-form
+		width: 393px
+
+		input,textarea
+			width: 391-$gap
+			border: $black $bd1
+			margin-bottom: $gap*2
+			padding-left: $gap
+			height: 34px
+			font-size: $f12
+		textarea
+			height: 158px
+		button
+			letter-spacing: 3px
