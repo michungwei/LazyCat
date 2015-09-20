@@ -26,13 +26,13 @@ if($actiontype == "insert"){
 	$mobile_national_number = post("mobile_national_number", 1);
 	$address = post("address", 1);
 	
-	$sResult = isNull($account, "帳號", 1, 15);
+	$sResult = isNull($account, "帳號", 2, 100);
 	if($sResult){$sResult = isNull($password, "密碼", 6, 35);}
 	if($sResult){$sResult = isNull($name, "姓名", 2, 30);}
 	if($sResult){$sResult = isEmail2($email, "電子郵件");}
 	if($sResult){$sResult = isNull($birthday, "生日", 1, 15);}
 	if($sResult){$sResult = isNull($mobile, "手機", 1, 20);}
-	//if($sResult){$sResult = isNull($address, "地址", 1, 255);}
+	if($sResult){$sResult = isNull($address, "地址", 1, 255);}
 	
 	if($sResult){	
 		try{

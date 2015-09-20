@@ -45,14 +45,21 @@ $(document).ready(function() {
 		$('#join_member_btn').click(function() {
 			$('#join_member_form').submit();
 		});
+		$('#address_Country').change(function(){
+			if($(this).val() != '台灣')
+				$('#address_City').hide();
+			else
+				$('#address_City').show();	
+		});
 		//$('#join_member_table').tooltip();
 		$("#join_member_form").validate({
 			rules: {
 				acc: {
 					required: true,
-					minlength: 8,
+					/*minlength: 8,
 					maxlength: 12,
-					acctounRule: true,
+					acctounRule: true,*/
+					email: true,
 					chkAcc: true
 				},
 				pwd: {
@@ -75,6 +82,9 @@ $(document).ready(function() {
 					email: true,
 					chkEmail: true
 				},
+				sex: {
+					required : true,
+				},
 				ymd_year : {
 					required : true,
 				},
@@ -87,13 +97,23 @@ $(document).ready(function() {
 				mobile: {
 					required: true
 					//isMobile: true
+				},
+				address:{
+					required: true			
+				},
+				address_city:{
+					required: true
+				},
+				address_code:{
+					required: true
 				}
 			},
 			messages: {
 				acc: {
 					required: "請輸入帳號",
-					minlength: "帳號字數請勿少於8各字元",
-					maxlength: "帳號字數請勿超過12各字元"
+					/*minlength: "帳號字數請勿少於8各字元",
+					maxlength: "帳號字數請勿超過12各字元"*/
+					email: "請填寫正確的Email格式"
 				},
 				pwd: {
 					required: "請填寫密碼",
@@ -113,6 +133,9 @@ $(document).ready(function() {
 					required: "請輸入您的email",
 					email: "請填寫正確的Email格式"
 				},
+				sex : {
+					required: "請選擇性別"
+				},
 				ymd_year : { 
 					required : "請輸入年"
 				},
@@ -124,6 +147,15 @@ $(document).ready(function() {
 				},
 				mobile: {
 					required: "請輸入手機號碼"
+				},
+				address:{
+					required: "請輸入收件地址"			
+				},
+				address_city:{
+					required: "請選擇縣市"
+				},
+				address_code:{
+					required: "請輸入郵遞區號"
 				}
 			},
 
@@ -137,13 +169,13 @@ $(document).ready(function() {
 				_item.account = $('#acc').val();
 				_item.password = $('#pwd').val();
 				_item.name = $('#name').val();
-				_item.email = $('#email').val();
+				_item.email = $('#acc').val();
+				_item.sex = $('#sex').val();
 				_item.birthday = $('#ymd_year').val()+padLeft($('#ymd_month').val(), 2)+padLeft($('#ymd_day').val(), 2);
 				_item.mobile_national_number = $('#mobile_national_number').val();
 				_item.mobile = $('#mobile').val();
-				_item.address = "";
-				//_item.address = $('#address').val();
-				//console.log(_item.account);
+				_item.address = '('+ $('#address_code').val() +')' + $('#address_country').val() + $('#address_city').val() + $('#address').val();
+				console.log(_item.address);
 				setTimeout(
 					function() {
 						if (myMember.insert(_item, 'insert')) {

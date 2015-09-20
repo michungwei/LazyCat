@@ -5,6 +5,7 @@ class CoderMemberItem{
 	public $password = "";
 	public $name = "";
 	public $email = "";
+	public $sex = "";
 	public $birthday = "";
 	public $mobile = "";
 	public $mobile_national_number = "";
@@ -29,6 +30,7 @@ class CoderMember{
 			$data["member_password"]=md5($member -> password);
 			$data["member_name"] = $member -> name;
 			$data["member_email"] = $member -> email;
+			$data["member_sex"] = $member -> sex;
 			$data["member_birthday"] = $member -> birthday;
 			$data["member_address"] = $member -> address;
 			$data["member_mobile_nation"] = $member -> mobile_national_number;

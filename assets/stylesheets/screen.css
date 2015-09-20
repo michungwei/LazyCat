@@ -1084,22 +1084,25 @@ label.half:first-child {
 	float:left;
 	width:341px;
 	/*height:588px;*/
-	height:700px;/*bill modify 20141015*/
+	height:900px;/*bill modify 20141015*/
 	padding-right:30px;
 	margin-right:10px
 }
 .signup {
-	float:left
+	float:right;
+	max-width:400px;
 }
 .sign-tb td {
 	height:51px
+
 }
 .sign-tb tr {
 	height:43px;
 	font-size:0.875em
 }
 .sign-tb tr td:nth-child(1) {
-	text-align:right
+	text-align:right;
+	width:70px;
 }
 .sign-tb tr>td:nth-child(2) {
 	padding-left:28px
