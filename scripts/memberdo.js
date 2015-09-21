@@ -208,22 +208,28 @@ $(document).ready(function() {
 			rules: {
 				account: {
 					required: true,
-					minlength: 8
+					email: true
 				},
 				password: {
 					required: true,
 					minlength: 8
+				},
+				checkword: {
+					required: true
 				}				
 			},
 			messages: {
 				account: {
 					required: '請填寫您的登入帳號',
-					minlength: "帳號字數請勿少於8各字元"
+					email: "請填寫正確的Email格式"
 				},
 				password:{
 					required: '請填寫您的登入密碼',
 					minlength: "密碼字數請勿少於8各字元"
-				}
+				},
+				checkword: {
+					required: '請輸入驗證碼'
+				}				
 			},
 
 			showErrors: showErrors,
@@ -237,6 +243,8 @@ $(document).ready(function() {
 				var _item = new Object();
 				_item.account = $('#account').val();
 				_item.password = $('#password').val();
+				_item.checkCode = $('#checkword').val();
+				//console.log(_item);
 				setTimeout(
 					function() {
 						if(myMember.MemberLogin(_item)){

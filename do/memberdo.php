@@ -270,10 +270,17 @@ if($actiontype == "MemberLogin"){
 	$member_id = "";
 	$acc = post("acc", 1);
 	$pwd = post("pwd", 1);
+	$checkCode = post("checkCode", 1);
+	//echo "<script>console.log( 'php: ".$checkCode."');</script>";
 	//$uid=isset($_SESSION["session_uid"]) ? $_SESSION["session_uid"] : '';
 	$sResult = isNull($acc, "帳號", 1, 30);
 	if($sResult){$sResult = isNull($pwd, "密碼", 1, 35);}
 	//if ($sResult){$sResult=isNull($uid,"FBID", 1, 30);}
+	if($_SESSION['check_word'] != $checkCode || empty($checkCode))
+	{
+		$str_message = "驗證碼輸入錯誤";
+		$sResult = false;
+	}
 	if($sResult){	
 		try{
 			$myMember = new CoderMember();
@@ -480,5 +487,26 @@ if($actiontype=="UnsetFB"){ //清除FB SESSION
 	echo json_encode($re);
 }
 $db->close();
+
+/*public function CheckCode($check)
+{
+	if(!isset($_SESSION)){  
+    	session_start();  
+    }  //判斷session是否已啟動  
+  
+	if((!empty($_SESSION['check_word'])) && (!empty($check)))
+	{  //判斷此兩個變數是否為空  
+      
+	    if($_SESSION['check_word'] == $check){         
+	          $_SESSION['check_word'] = ''; //比對正確後，清空將check_word值  
+	          return true;
+	     }else{  
+	         return false;
+	     }  
+  
+	}  
+	return false;
+}*/
+
 
 ?>

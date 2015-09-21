@@ -56,6 +56,11 @@ $(document).ready(function(e) {
 });
 </script>
 <!--bill add 20141018-->
+<script>  
+    function refresh_code(){   
+        document.getElementById("imgcode").src="captcha.php";   
+    }   
+</script>
 </head>
 <body>
 <?php include_once($inc_path."page/_menu.php"); ?>
@@ -91,6 +96,14 @@ $(document).ready(function(e) {
                             <input name="remember" type="checkbox" id="remember" value="1" />
                             記住帳號</label>
                         </span><span> <a href="javascript:;" class="for_pwd">忘記密碼</a></span></td>
+                </tr>
+                <tr>
+                    <td>請輸入右圖驗證碼</td>
+                    <td><img id="imgcode" src="captcha.php" onclick="refresh_code()" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input name="checkword" type="text" id="checkword" /></td>
                 </tr>
                 <tr>
                     <td></td>

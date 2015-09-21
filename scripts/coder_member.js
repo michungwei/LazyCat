@@ -134,6 +134,7 @@ coderMember.prototype = {
 			data : { 
 					acc : member.account, 
 					pwd : member.password, 
+					checkCode: member.checkCode,
 					actiontype : "MemberLogin" 
 			},
 			dataType : "json",
