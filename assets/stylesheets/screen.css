@@ -404,6 +404,9 @@ span.ui-s-bag {
 	text-decoration:underline;
 	cursor: pointer;
 }
+.agreeContent p{
+	line-height: 200%;
+}
 #footer {
 	padding-top:140px;
 	width:100%
@@ -757,6 +760,9 @@ div.banner-list {
 #slider-range {
 	margin-bottom:10px
 }
+.member-sort {
+	width:auto;
+}
 .price-sort {
 	float:right;
 	margin-bottom:10px
@@ -804,6 +810,41 @@ div.banner-list {
 	font-family:"Cabin-I", Arial, sans-serif;
 	font-size:1.25em
 }
+.memberSelect {
+	width:auto;
+	height:25px;
+	font-size:0.875em;
+	line-height:25px;
+	position:relative;
+	cursor:pointer;
+	overflow:hidden;
+}
+.memberSelect:after {
+	right:8px;
+	top:8px
+}
+.memberSelect .beSelect {
+	padding:0px 10px
+}
+.memberSelectItem {
+	border:#000 1px solid;
+	width:145px;
+	position:absolute;
+	top:50px;
+	left:-1px;
+	z-index:100;
+	display: none;
+}
+.memberSelectItem li {
+	line-height: 25px;
+	height:25px;
+	padding:0px 10px;
+	background-color:#fff
+}
+.memberSelectItem li:hover {
+	background-color:#000;
+	color:#fff
+}
 .numSelect {
 	border:#000 1px solid;
 	width:145px;
@@ -812,7 +853,8 @@ div.banner-list {
 	line-height:25px;
 	position:relative;
 	cursor:pointer;
-	overflow:hidden
+	overflow:hidden;
+	z-index:100;
 }
 .numSelect:after {
 	right:8px;
