@@ -53,7 +53,16 @@ $(document).ready(function(e) {
 			scrolling:false
 		});
 	});
+    $("#agreement").click(function(){
+        $.colorbox({
+           href :   "agreement.php", //在燈箱中要顯示的html字段
+           iframe : true,
+           width : 700, //燈箱中間區塊的寬度
+           height : 600, //燈箱中間區塊的高度
+        });
+    });
 });
+
 </script>
 <!--bill add 20141018-->
 <script>  
@@ -104,6 +113,10 @@ $(document).ready(function(e) {
                 <tr>
                     <td></td>
                     <td><input name="checkword" type="text" id="checkword" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>我已經詳細閱讀並同意<span id="agreement">LAZYCAT服務條款</span></td>
                 </tr>
                 <tr>
                     <td></td>

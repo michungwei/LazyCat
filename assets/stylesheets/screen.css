@@ -400,6 +400,10 @@ span.ui-s-bag {
 	color:#fff;
 	text-align:center
 }
+#agreement{
+	text-decoration:underline;
+	cursor: pointer;
+}
 #footer {
 	padding-top:140px;
 	width:100%
