@@ -82,7 +82,8 @@ if(!isLogin()){
                     <input name="recipient_address" type="text" id="recipient_address" value="<?php echo $row_member["member_address"]; ?>" />
                 </lable>
             </fieldset>
-            <div>back</div>
+			<input type ="button" onclick="history.back()" value="back"></input>
+            <!--<div href="javascript: history.go(-1)">back</div>-->
         </div>
         <div class="order-list">
             <div class="your-order">
@@ -133,7 +134,7 @@ if(!isLogin()){
 				}
 				?>
             </div>
-            <input type="button" class="btn-white" style="cursor: pointer;" id="order_pay_btn" value="PLACE ODER">
+            <input type="button" class="btn-white" style="cursor: pointer;" id="order_pay_btn" value="確認訂單">
         </div>
     </form>
 </div>
