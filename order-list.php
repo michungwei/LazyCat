@@ -96,7 +96,7 @@ $(document).ready(function(e) {
                         /*if($row["order_payment_state"] == 0)  
                         {*/
                     ?>
-                    <a color="red" href=<?php echo "goPay.php?sno=".$row['order_sno']."&member_id=".$member_id; ?>>
+                    <a color="red" href=<?php echo "goPay.php?sno=".$row['order_sno']."&member_id=".$member_id."&payType=".$row["order_payment_type"]; ?>>
                         (前往付款)
                     </a>
                     <?        

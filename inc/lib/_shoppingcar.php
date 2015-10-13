@@ -3,6 +3,7 @@
  * cully create 20120926
  * 購物車模組
  */
+
 class shoppingCar
 {
 	/**
@@ -30,7 +31,7 @@ class shoppingCar
 	/**
 	 *運費門檻
 	 */	
-	var $freightlimit=0;
+	var $freightlimit=1000;
 	/**
 	 *折扣金額
 	 */	
@@ -59,7 +60,6 @@ class shoppingCar
 	 *是否用SESSION儲存
 	 */		 
 	var $session;	
-	
 	/**
 	 *建構式
 	 *將SESSION的值指定到car變數	 
@@ -304,7 +304,7 @@ class shoppingCar
 	 *重新計算購物中的總數和金額
 	 *儲存到變數num和total中
 	 */		
-	function calculate($memberid=0)
+	function calculate($transportType = 0, $checkFreight = false)
 	{
 		$car=$this->car;
 		$this->num=0;
@@ -314,8 +314,32 @@ class shoppingCar
 			$this->total+=$car[$i]->amount*$car[$i]->sell_price;
 		}
 		$this -> setNum($this -> num);
+
 		$total = $this->total - $this->discount;
 
+		if($checkFreight)
+		{
+			if($transportType < 3 && $total > $this->freightlimit)
+			{
+				$this->freightprice = 0;
+			}
+			else if($transportType == 1)
+				$this->freightprice = 80;
+			else if($transportType == 2)
+				$this->freightprice = 100;
+			else if($transportType == 3 && !$this->chkHaveBag())
+				$this->freightprice = 200;
+			else if($transportType == 3 && $this->chkHaveBag())
+				$this->freightprice = 580;
+			else if($transportType == 4 && !$this->chkHaveBag())
+				$this->freightprice = 450;
+			else if($transportType == 4 && $this->chkHaveBag())
+				$this->freightprice = 610;
+		}
+		//$this->freightprice = 500;
+		$this->total = $total + $this->freightprice;
+
+		return $this->freightprice;
 		//取得運費
 		/*$rowfreight=getTableFreightCache();
 		$this->freightprice=getFreight($rowfreight,'freightprice');
@@ -354,8 +378,7 @@ class shoppingCar
 				$this->disbonus=$memberbonus;
 			}
 		}*/
-	}
-	
+	}	
 	/**
 	 *將訂單明細的$rows儲存到car中
 	 *@param 訂單明細的$row
@@ -369,6 +392,14 @@ class shoppingCar
 			$this->car=$car;
 		}
 	}	
+	function chkHaveBag(){
+		$car=$this->car;
+		for($i=0;$i<count($car);$i++){
+			if($car[$i]->product_type_id == 1)
+				return true;
+		}
+		return false;
+	}
 }
 
 
@@ -381,7 +412,8 @@ class shoppingItem{
 		$subtotal = 0,
 		$product_name_en = "",
 		$product_name_tw = "",
-		$pic = "";
+		$pic = "",
+		$product_type_id = 0;
 		//$serial_id = 0,
 		//$type_id = 0;
 		
@@ -424,6 +456,7 @@ class shoppingItem{
 			$this->product_name_en=$row['product_name_en'];
 			$this->product_name_tw=$row['product_name_tw'];
 			$this->pic=$row['product_pic1'];
+			$this->product_type_id=$row['product_type_id'];
 		}
 	}
 }

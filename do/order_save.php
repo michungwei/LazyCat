@@ -6,6 +6,7 @@ include_once($inc_path."lib/coder_order.php");
 include_once('../inc/_func_smtp.php');
 
 $sResult = 0;
+$freightlimit = 1000;
 $message = "";
 
 $recipient_name = post("recipient_name", 1);
@@ -28,10 +29,10 @@ if($sResult){
 	$db -> connect();
 	
 	$car = new shoppingCar();
-	$car -> calculate();
-	$total = $car -> total;
 	$carItem = $car -> getCarFromDB();
 	$u = count($carItem);
+	$car -> calculate($recipient_wayOption,true);
+	$total = $car -> total;
 	
 	if(!isLogin()){
 		script("請先登入會員!", "sign.html");
@@ -106,6 +107,7 @@ if($sResult){
 		
 		$_SESSION["order_sno"] = $order_sno;
 		$_SESSION["total_price"] = $total_price;
+		$_SESSION["isGoPay"] = false;
 		
 	}catch(Exception $ex){
 		//$sResule = 0;

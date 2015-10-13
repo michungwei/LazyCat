@@ -237,5 +237,32 @@ $(document).ready(function(e) {
 			$('#recipient_optionElse').show();
 		}
 	});
+
+	$('input[name="recipient_wayOption"]').change(function() {
+		var isHaveBag = $('input[name="haveBag"]').val();
+		var totalPrice = $('input[name="totalPrice"]').val();
+		var freightLimit = 1000;
+		var freight = 0;
+		//console.log(totalPrice + "   " + freightLimit);
+		if(this.value < 3 && totalPrice > 1000 )
+		{
+			freight = 0;
+		}
+		else if(this.value == 1)
+			freight = 80;
+		else if(this.value == 2)
+			freight = 100;
+		else if(this.value == 3 && !isHaveBag)
+			freight = 200;
+		else if(this.value == 3 && isHaveBag)
+			freight = 580;
+		else if(this.value == 4 && !isHaveBag)
+			freight = 460;
+		else if(this.value == 4 && isHaveBag)
+			freight = 610;
+		totalPrice = parseInt(totalPrice) + freight;
+		$('.freight').replaceWith("<td class='freight'>"+freight+"</td>");
+		$('.total').replaceWith("<td class='total'>"+totalPrice+"</td>");
+	});
 	
 });

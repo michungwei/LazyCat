@@ -12,6 +12,7 @@ if(isLogin()){
 	script("請先登入會員!", "sign.html");	
 }
 $sno = get("sno", 1);
+$payType = get("payType", 1);
 
 $db = new Database($HS, $ID, $PW, $DB);
 $db -> connect();
@@ -22,7 +23,16 @@ $sql = "SELECT *
         ORDER BY order_create_time ASC";
 $row = $db -> query_first($sql);
 
-echo "order_sno = ".$row["order_sno"];
-echo "order_pay = ".$row["order_total_price"];
+$_SESSION["order_sno"] = $row["order_sno"];
+$_SESSION["total_price"] = $row["order_total_price"];
+$_SESSION["isGoPay"] = true;
 
+if($payType == 1)
+	header("location:do/payment.html");
+else if($payType == 2)
+	header("location:do/paymentatm.html");
+else if($payType == 3)
+	header("location:do/paymentcs.html");
+else if($payType == 4)
+	header("location:do/paymentmmk.html");
 ?>

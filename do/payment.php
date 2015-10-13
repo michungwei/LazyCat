@@ -14,7 +14,7 @@ $u = count($product);
 if(!isLogin()){
 	script("請先登入會員!", "sign.html");
 }else{
-	if($u == 0){
+	if($u == 0 && !$_SESSION["isGoPay"]){
 		script("您目前未購買任何商品,請繼續購物!!", "product-list.html");
 	}
 	$memberid = $_SESSION["session_id"];
