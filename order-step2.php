@@ -82,7 +82,32 @@ if(!isLogin()){
                     <input name="recipient_address" type="text" id="recipient_address" value="<?php echo $row_member["member_address"]; ?>" />
                 </lable>
             </fieldset>
-			<input type ="button" onclick="history.back()" value="back"></input>
+			<p class="fieldTitle mb10"> 運送方式 <span class="req">*</span></p>
+			<select class="mb10" name="recipient_way" id="recipient_way" value="<?php echo $row_member["member_address"]; ?>">
+				<option value="1" selected>台灣</option>
+				<option value="2">海外</option>
+			</select>
+			<div class="mb10" id="recipient_optionTW" >
+				<input type="radio" name="recipient_wayOption" id="recipient_wayOption" value="1" />店到店
+				<br>
+				<font color="red">超商取貨只配合全家，通常寄出約兩個工作天到貨。</font>
+				<br>
+				<font color="red">商品到達指定門市後超過七天未領取，包裹會自動被退回轉運中心喔！</font>
+				<br>
+				<input class="mt10" type="radio" name="recipient_wayOption" id="recipient_wayOption" value="2" />貨運宅配
+				<br>
+				<font color="red">宅配人員寄送到您指定收件地址，約兩個工作天內到貨。</font>
+			</div>
+			<div class="mb10" id="recipient_optionElse" >
+				<input type="radio" name="recipient_wayOption" id="recipient_wayOption" value="3" />國際配送（中國、香港、澳門）
+				<br>
+				<font color="red">港澳地區約5-6天到貨、中國地區約7-12天到貨。</font>
+				<br>
+				<input class="mt10" type="radio" name="recipient_wayOption" id="recipient_wayOption" value="4" />國際配送（新加坡、馬來西亞）
+				<br>
+				<font color="red">新加坡、馬來西亞寄送約8-10天到貨。</font>
+			</div>
+            <input type="button" onclick="history.back()" class="btn-white" style="cursor: pointer;" value="back">
             <!--<div href="javascript: history.go(-1)">back</div>-->
         </div>
         <div class="order-list">

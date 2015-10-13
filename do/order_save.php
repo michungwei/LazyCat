@@ -13,6 +13,7 @@ $recipient_mobile = post("recipient_mobile", 1);
 $recipient_email = post("recipient_email", 1);
 $recipient_address = post("recipient_address", 1);
 $payment_type = post("payment_type", 1);
+$recipient_wayOption = post("recipient_wayOption", 1);
 
 
 $sResult = isNull($recipient_name, "姓名", 1, 30);
@@ -20,6 +21,7 @@ if($sResult){$sResult = isNull($recipient_mobile, "手機", 1, 15);}
 if($sResult){$sResult = isEmail2($recipient_email, "信箱");}
 if($sResult){$sResult = isNull($recipient_address, "地址", 1, 99999);}
 if($sResult){$sResult = isNull($payment_type, "付款方式", 1, 2);}
+if($sResult){$sResult = isNull($recipient_wayOption, "運送方式", 1, 2);}
 
 if($sResult){
 	$db = new Database($HS, $ID, $PW, $DB);
@@ -59,6 +61,7 @@ if($sResult){
 	$myorder -> recipient_email = $recipient_email;
 	$myorder -> recipient_mobile = $recipient_mobile;
 	$myorder -> recipient_address = $recipient_address;
+	$myorder -> recipient_wayOption = $recipient_wayOption;
 	$myorder -> create_time = request_cd();
 	$myorder -> update_time = request_cd();
 	$myorder -> payment_return = "";

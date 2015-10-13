@@ -1384,6 +1384,9 @@ li.prol-item {
 .mb10 {
 	margin-bottom:10px !important
 }
+.mt10 {
+	margin-top:10px !important
+}
 .pt10 {
 	padding-top:10px !important
 }
@@ -2930,4 +2933,15 @@ body .ui-tooltip {
 }
 .m_name {
 	margin-right: 20px;
+}
+
+#recipient_optionTW font{
+	font-size : 0.75em;
+	line-height : 10px;
+	margin-left: 20px;
+}
+#recipient_optionElse font{
+	font-size : 0.75em;
+	line-height : 10px;
+	margin-left: 20px;
 }
