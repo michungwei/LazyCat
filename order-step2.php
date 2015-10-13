@@ -82,7 +82,7 @@ if(!isLogin()){
                     <input name="recipient_address" type="text" id="recipient_address" value="<?php echo $row_member["member_address"]; ?>" />
                 </lable>
             </fieldset>
-			<input type ="button" onclick="history.back()" value="back"></input>
+            <input type="button" onclick="history.back()" class="btn-white" style="cursor: pointer;" value="back">
             <!--<div href="javascript: history.go(-1)">back</div>-->
         </div>
         <div class="order-list">
