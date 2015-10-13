@@ -131,6 +131,7 @@ class CoderOrder{
 				$data_order["order_recipient_email"] = $myorder -> recipient_email;
 				$data_order["order_recipient_mobile"] = $myorder -> recipient_mobile;
 				$data_order["order_recipient_address"] = $myorder -> recipient_address;
+				$data_order["order_recipient_wayOption"] = $myorder -> recipient_wayOption;
 				$data_order["order_manager"] = "";
 				$data_order["order_create_time"] = $myorder -> create_time;
 				$data_order["order_update_time"] = $myorder -> update_time;

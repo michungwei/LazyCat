@@ -128,6 +128,9 @@ $(document).ready(function(e) {
 				},
 				payment_type: {
 					required: true
+				},
+				recipient_wayOption: {
+					required: true
 				}
 			},
 			messages: {
@@ -146,6 +149,9 @@ $(document).ready(function(e) {
 				},
 				payment_type: {
 					required: "請選擇付款方式"
+				},
+				recipient_wayOption: {
+					required: "請選擇運送方式"
 				}
 			},
 
@@ -215,5 +221,21 @@ $(document).ready(function(e) {
 			}
 		});
 	}
+	$('#recipient_optionElse').hide();
+	$('#recipient_optionTW').show();
+	
+	$('#recipient_way').change(function() {
+		var selectVal = $( "#recipient_way option:selected" ).val();
+		if (selectVal == 1)
+		{
+			$('#recipient_optionTW').show();
+			$('#recipient_optionElse').hide();
+		}
+		else if(selectVal == 2)
+		{
+			$('#recipient_optionTW').hide();
+			$('#recipient_optionElse').show();
+		}
+	});
 	
 });
