@@ -47,6 +47,31 @@ $rows_hot = Product::getHotPro();
 <script src="scripts/shoppingcar.js"></script>
 <script>
 var pic_path = "<?php echo $web_path_product; ?>"+"m";
+$(document).ready(function(){ 
+
+    //initial color select
+    var OriColor = <?php echo "\"".$row["product_color"]."\""; ?>;
+    var OriColorStrAry = OriColor.split(",");
+    console.log(OriColorStrAry);
+    for(index in OriColorStrAry)
+    {
+        if(OriColorStrAry[index] != "")
+        {
+            if(index == 0)
+                $('#colorSelect').append("<div class='select' style='background-color: "+OriColorStrAry[index]+"'></div>");
+            else
+                $('#colorSelect').append("<div style='background-color: "+OriColorStrAry[index]+"'></div>");
+            OriColorStrAry[index] += ",";
+        }
+    }
+    console.log(OriColorStrAry);
+
+    $('#colorSelect div').click(function()
+    {
+        $('#colorSelect div').removeClass("select");
+        $(this).addClass("select");
+    });
+});
 </script>
 </head>
 <body>
@@ -82,6 +107,7 @@ var pic_path = "<?php echo $web_path_product; ?>"+"m";
         <h2><?php echo $row["product_name_en"]; ?></h2>
         <h3><?php echo $row["product_name_tw"]; ?></h3>
         <h1 class="price">TWD.<?php echo $row["product_sell_price"]; ?></h1>
+        <div id="colorSelect"><a>顏色：</a></div>
         <?php
 		if($stock > 0){
 		?>

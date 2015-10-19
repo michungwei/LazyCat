@@ -33,6 +33,7 @@ if($row){
 	$comment = $row["product_comment"];
 	$is_show = $row["product_is_show"];
 	$update_time = $row["product_update_time"];
+    $color = $row["product_color"];
 }else{
  	script("資料不存在");
 }
@@ -51,10 +52,13 @@ $db -> close();
 <meta charset="utf-8" />
 <title>Untitled Document</title>
 <link href="../css/admin_style_gray.css" rel="stylesheet" />
+<link rel="stylesheet" href="../../ui/colorpicker/css/colorpicker.css" type="text/css" />
+
 <script src="../../scripts/jquery-1.6.1rc1.min.js"></script>
 <script src="../../ui/ckeditor/ckeditor.js"></script>
 <script src="../../scripts/public.js"></script>
 <script src="../../scripts/function.js"></script>
+<script src="../../ui/colorpicker/js/colorpicker.js"></script>
 <script>
 $(document).ready(function(){ 
 	$("form").submit(function(){
@@ -105,6 +109,67 @@ $(document).ready(function(){
 			$("#serial").html('<option value="" >請選擇分類</option>');
 		}
     });
+
+    //initial color select
+    var OriColor = <?php echo "\"".$color."\""; ?>;
+    var OriColorStrAry = OriColor.split(",");
+    console.log(OriColorStrAry);
+    var colorSelCnt = 0;
+    for(index in OriColorStrAry)
+    {
+        if(OriColorStrAry[index] != "")
+        {
+            var colorSelId ="colorItem" + colorSelCnt;
+            $('#colorContainer').append("<div id='colorShow'><div id='"+colorSelId+"' style='background-color: "+OriColorStrAry[index]+"'></div></div>");
+            CreateColorSelect(colorSelCnt, colorSelId, OriColorStrAry[index]);
+            OriColorStrAry[index] += ",";
+            colorSelCnt ++;
+        }
+    }
+    console.log(OriColorStrAry);
+
+    var colorStrAry = OriColorStrAry;
+    var combineStr = "";
+    $('#colorSelector').click(function(){
+        var colorSelId ="colorItem" + colorSelCnt;
+        $('#colorContainer').append("<div id='colorShow'><div id='"+colorSelId+"' style='background-color: #0000ff'></div></div>");
+        colorStrAry[colorSelCnt] = "#0000ff,";
+        CreateColorSelect(colorSelCnt, colorSelId, "#0000ff");
+        colorSelCnt ++;
+    });
+    function CreateColorSelect(id, name, color)
+    {
+        console.log("CreateColorSelect!!");
+        var colorStr = "";
+        var selectorId = "#" + name;
+        console.log(selectorId);
+        $(selectorId).ColorPicker({
+            color: color,
+            onShow: function (colpkr) {
+                 $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onSubmit: function(hsb, hex, rgb, el) {
+                var combineStr = "";
+                colorStrAry[id] = "#" + hex + ",";
+                for(var index in colorStrAry)
+                {
+                    combineStr += colorStrAry[index];
+                }
+                console.log(combineStr);
+                $('#color').val(combineStr);
+                $(el).ColorPickerHide();
+            },
+            onChange: function (hsb, hex, rgb) {
+                //console.log("onchange!!");
+                $(selectorId).css('background-color', '#' + hex);
+            }
+        });
+    }
 });
 </script>
 </head>
@@ -191,6 +256,14 @@ $(document).ready(function(){
                         <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">售價</h4></td>
                             <td><input type="text" name="price" id="price" size="50" value="<?php echo $price; ?>"/></td>
+                        </tr>
+                        <tr>
+                            <td width="150" valign="top"><h4 class="input-text-title">顏色</h4></td>
+                            <td>
+                                <div id="colorSelector"><a>+</a></div>
+                                <div id="colorContainer"></div>
+                                <input type="hidden" name="color" id="color" size="50" value=""/>
+                            </td>
                         </tr>
                         <?php /*?><tr>
                             <td width="150" valign="top"><h4 class="input-text-title">特價</h4></td>

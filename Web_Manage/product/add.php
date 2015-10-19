@@ -7,10 +7,13 @@ include_once("_config.php");
 <meta charset="utf-8" />
 <title>Untitled Document</title>
 <link href="../css/admin_style_gray.css" rel="stylesheet" />
+<link rel="stylesheet" href="../../ui/colorpicker/css/colorpicker.css" type="text/css" />
+
 <script src="../../scripts/jquery-1.6.1rc1.min.js"></script>
 <script src="../../scripts/public.js"></script>
 <script src="../../ui/ckeditor/ckeditor.js"></script>
 <script src="../../scripts/function.js"></script>
+<script src="../../ui/colorpicker/js/colorpicker.js"></script>
 <script>
 function checkSNO(sno){
 	var success = false;
@@ -86,7 +89,49 @@ $(document).ready(function(){
 			$("#serial").html('<option value="" >請選擇分類</option>');
 		}
     });
-	
+    var colorSelCnt = 0;
+    var colorStrAry = [];
+    var combineStr = "";
+    $('#colorSelector').click(function(){
+        var colorSelId ="colorItem" + colorSelCnt;
+        $('#colorContainer').append("<div id='colorShow'><div id='"+colorSelId+"' style='background-color: #0000ff'></div></div>");
+        colorStrAry[colorSelCnt] = "#0000ff,";
+        CreateColorSelect(colorSelCnt, colorSelId);
+        colorSelCnt ++;
+    });
+    function CreateColorSelect(id, name)
+    {
+        console.log("CreateColorSelect!!");
+        var colorStr = "";
+        var selectorId = "#" + name;
+        console.log(selectorId);
+        $(selectorId).ColorPicker({
+            color: '#0000ff',
+            onShow: function (colpkr) {
+                 $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onSubmit: function(hsb, hex, rgb, el) {
+                var combineStr = "";
+                colorStrAry[id] = "#" + hex + ",";
+                for(var index in colorStrAry)
+                {
+                    combineStr += colorStrAry[index];
+                }
+                console.log(combineStr);
+                $('#color').val(combineStr);
+                $(el).ColorPickerHide();
+            },
+            onChange: function (hsb, hex, rgb) {
+                //console.log("onchange!!");
+                $(selectorId).css('background-color', '#' + hex);
+            }
+        });
+    }
 });
 </script>
 </head>
@@ -163,6 +208,14 @@ $(document).ready(function(){
                         <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">庫存</h4></td>
                             <td><input type="text" name="stock" id="stock" size="50" value=""/></td>
+                        </tr>
+                        <tr>
+                            <td width="150" valign="top"><h4 class="input-text-title">顏色</h4></td>
+                            <td>
+                                <div id="colorSelector"><a>+</a></div>
+                                <div id="colorContainer"></div>
+                                <input type="hidden" name="color" id="color" size="50" value=""/>
+                            </td>
                         </tr>
                         <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">圖片1</h4></td>

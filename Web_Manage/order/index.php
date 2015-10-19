@@ -61,7 +61,7 @@ if($e_price != ""){
   $sql_str.=" AND order_total_price <= '$e_price'";
 }	
 
-$sql = "SELECT order_id, order_sno, order_member_id, order_payment_type, order_total_price, order_payment_state, order_state, order_recipient_name, order_create_time, order_update_time, member_id, member_name
+$sql = "SELECT order_id, order_sno, order_member_id, order_payment_type, order_total_price, order_payment_state, order_state, order_recipient_name,order_recipient_wayOption, order_create_time, order_update_time, member_id, member_name
 		FROM $table_order 
 		LEFT JOIN $table_member ON order_member_id = member_id 
 		WHERE 1 $sql_str
@@ -162,6 +162,7 @@ $(document).ready(function(e) {
                         <th width="60" align="center" >ID</th>
                         <th width="120" align="center">訂單編號</th>
                         <th width="80" align="center" >付款方式</th>
+                        <th width="80" align="center" >運送方式</th>
                         <th width="80" align="center" >付款狀態</th>
                         <th width="80" align="center" >訂單狀態</th>
                         <th width="100" align="center" >訂單金額</th>
@@ -181,6 +182,7 @@ $(document).ready(function(e) {
                         <th align="center"><?php echo $row["order_id"]; ?></th>
                         <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $row["order_sno"]; ?></td>
                         <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $ary_payment_type[$row["order_payment_type"]]; ?></td>
+                        <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $ary_transport_type[$row["order_recipient_wayOption"]]; ?></td>
                         <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $ary_payment_state[$row["order_payment_state"]]; ?></td>
                         <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $ary_order_state[$row["order_state"]]; ?></td>
                         <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $row["order_total_price"]; ?></td>

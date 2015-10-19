@@ -28,6 +28,8 @@ $data["product_weekly"] = post("weekly");
 $data["product_hot"] = post("hot");
 $data["product_update_time"] = request_cd();
 
+$data["product_color"] = post("color",1);
+
 $file = new imgUploder($_FILES['pic1']);
 if($file -> file_name != ""){		
 	$rr = explode('.', $file -> file_name);

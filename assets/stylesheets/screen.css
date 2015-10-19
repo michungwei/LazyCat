@@ -2945,3 +2945,25 @@ body .ui-tooltip {
 	line-height : 10px;
 	margin-left: 20px;
 }
+
+/*-----------------顏色選擇------------------*/
+#colorSelect div{
+	border: solid 2px #fff; 
+	width: 30px;
+	height: 30px;
+	margin-left: 15px;
+	float: left;
+	cursor: pointer;
+}
+#colorSelect a{
+	float: left;
+	font-size: 15px;
+}
+#colorSelect{
+	float:left;
+	margin-bottom: 15px;
+	line-height: 30px;
+}
+#colorSelect .select{
+	border: solid 2px #000; 
+}

@@ -75,6 +75,7 @@ $(document).ready(function(e) {
                 <th width="60" align="center" ></th>
                 <th width="120" align="center">訂單編號</th>
                 <th width="80" align="center" >付款方式</th>
+                <th width="80" align="center" >運送方式</th>
                 <th width="120" align="center" >付款狀態</th>
                 <th width="80" align="center" >訂單狀態</th>
                 <th width="100" align="center" >訂單金額</th>
@@ -91,6 +92,7 @@ $(document).ready(function(e) {
                 <th align="center"><?php echo $row["order_id"]; ?></th>
                 <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $row["order_sno"]; ?></td>
                 <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $ary_payment_type[$row["order_payment_type"]]; ?></td>
+                <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $ary_transport_type[$row["order_recipient_wayOption"]]; ?></td>
                 <td align="center" style="word-wrap: break-word; word-break: break-all;">
                     <?php echo $ary_payment_state[$row["order_payment_state"]];
                         /*if($row["order_payment_state"] == 0)  

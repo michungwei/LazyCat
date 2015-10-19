@@ -22,6 +22,8 @@ $data["product_is_show"] = post("is_show");
 $data["product_create_time"] = request_cd();
 $data["product_update_time"] = request_cd();
 
+$data["product_color"] = post("color", 1);
+
 $new_store = post("stock", 1);
 
 $file = new imgUploder($_FILES['pic1']);

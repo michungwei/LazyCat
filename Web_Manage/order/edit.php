@@ -96,6 +96,10 @@ $(document).ready(function(){
                             <td><?php echo $ary_payment_type[$row["order_payment_type"]]; ?></td>
                         </tr>
                         <tr>
+                            <td width="150" valign="top"><h4 class="input-text-title">運送方式</h4></td>
+                            <td><?php echo $ary_transport_type[$row["order_recipient_wayOption"]]; ?></td>
+                        </tr>
+                        <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">訂單金額</h4></td>
                             <td><?php echo $order_total_price; ?></td>
                         </tr>
