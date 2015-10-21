@@ -4,6 +4,13 @@ include_once($inc_path."lib/_product.php");
 include_once($inc_path."lib/coder_member.php");
 include_once($inc_path.'lib/_shoppingcar.php');
 
+function getParameter($pname, $defaultStr){
+    return isset($_POST[$pname])?$_POST[$pname]:$defaultStr;
+}
+$stName = getParameter('stName', '選擇門市');
+$stCate = getParameter('stCate', 'TFM');
+$stCode = getParameter('stCode', '0');
+
 $db = new Database($HS, $ID, $PW, $DB);
 $db -> connect();
 
@@ -88,8 +95,14 @@ if(!isLogin()){
 				<option value="2">海外</option>
 			</select>
 			<div class="mb10" id="recipient_optionTW" >
-				<input type="radio" name="recipient_wayOption" id="recipient_wayOption" value="1" />店到店
-				<br>
+                <input type="radio" checked name="recipient_wayOption" id="recipient_wayOption" value="1" />店到店
+                <input type="button" name="ezship_choose" id="ezship_choose" value="<?php echo $stName; ?>" onclick="window.location.href = 'http://map.ezship.com.tw/ezship_map_web_2014.jsp?rtURL=http://www.lazycatshop.com/order-step2.html';"/>
+                <input type="hidden" name="ezship_name" id="ezship_name" value="<?php echo $stName; ?>"/>
+                <input type="hidden" name="ezship_cate" id="ezship_cate" value="<?php echo $stCate; ?>"/>
+                <input type="hidden" name="ezship_code" id="ezship_code" value="<?php echo $stCode; ?>"/>
+                <!--<input type="hidden" name="ezship_type" id="ezship_type" value="<?php echo $stName; ?>"/>
+                <a><?php echo $stName; ?></a>-->
+                <br>
 				<font color="red">超商取貨只配合全家，通常寄出約兩個工作天到貨。</font>
 				<br>
 				<font color="red">商品到達指定門市後超過七天未領取，包裹會自動被退回轉運中心喔！</font>

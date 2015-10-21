@@ -34,7 +34,7 @@ $(document).ready(function(e) {
             total_price += subtotal_price;
         });
 		$("span.total_price").text(total_price);
-		console.log(total_price);
+		//console.log(total_price);
     });
 	
 	$("span.plus").click(function(e) {
@@ -50,7 +50,7 @@ $(document).ready(function(e) {
             total_price += subtotal_price;
         });
 		$("span.total_price").text(total_price);
-		console.log(total_price);
+		//console.log(total_price);
     });
 	
 	$("#update_cart_btn").click(function(e) {
@@ -86,6 +86,14 @@ $(document).ready(function(e) {
 		var length = value.length;
 		return this.optional(element) || (length == 10 && /^09[0-9]{8}$/.test(value));
 	}, "請正確填寫手機號碼");
+
+	$.validator.addMethod("isChooseStore", function(value, element) {
+		return this.optional(element) || value != "選擇門市";
+	}, "請選擇取貨門市");
+
+	$.validator.addMethod("isFamily", function(value, element, param) {
+		return $(param).val() == "TFM";
+	}, "請選擇全家門市");
 	
 	var showErrors = function(errorMap, errorList){
 		// Clean up any tooltips for valid elements
@@ -131,6 +139,10 @@ $(document).ready(function(e) {
 				},
 				recipient_wayOption: {
 					required: true
+				},
+				ezship_choose: {
+					isChooseStore: true,
+					isFamily: '#ezship_cate'
 				}
 			},
 			messages: {
@@ -237,12 +249,28 @@ $(document).ready(function(e) {
 			$('#recipient_optionElse').show();
 		}
 	});
-
+	//$('#ezship_choose').hide();
 	$('input[name="recipient_wayOption"]').change(function() {
 		var isHaveBag = $('input[name="haveBag"]').val();
 		var totalPrice = $('input[name="totalPrice"]').val();
 		var freightLimit = 1000;
 		var freight = 0;
+		if(this.value == 1)
+		{
+			$('#ezship_choose').show();
+			$('input[name="ezship_choose"]').val("選擇門市");
+			$('input[name="ezship_name"]').val("選擇門市");
+			$('input[name="ezship_cate"]').val("TFM");
+			$('input[name="ezship_code"]').val("0");
+		}
+		else
+		{	
+			$('#ezship_choose').hide();
+			$('input[name="ezship_choose"]').val("無");
+			$('input[name="ezship_name"]').val("無");
+			$('input[name="ezship_cate"]').val("TFM");
+			$('input[name="ezship_code"]').val("0");
+		}
 		//console.log(totalPrice + "   " + freightLimit);
 		if(this.value < 3 && totalPrice > 1000 )
 		{
