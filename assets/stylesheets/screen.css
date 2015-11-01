@@ -2967,3 +2967,13 @@ body .ui-tooltip {
 #colorSelect .select{
 	border: solid 2px #000; 
 }
+
+#curStock a{
+	float: left;
+	font-size: 15px;
+}
+#curStock{
+	float:left;
+	margin-bottom: 15px;
+	line-height: 30px;
+}

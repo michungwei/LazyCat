@@ -24,6 +24,7 @@ if($row){
 	$price = $row["product_sell_price"];
 	$sprice = $row["product_special_price"];
 	$stock = $row["product_stock"];
+    $colorStock = $row["product_colorStock"];
 	$pic1 = $row["product_pic1"];
 	$pic2 = $row["product_pic2"];
 	$pic3 = $row["product_pic3"];
@@ -114,34 +115,47 @@ $(document).ready(function(){
     var OriColor = <?php echo "\"".$color."\""; ?>;
     var OriColorStrAry = OriColor.split(",");
     console.log(OriColorStrAry);
+    var OriColorStock = <?php echo "\"".$stock."\""; ?>;
+    var OriColorStockAry = OriColorStock.split(",");
+    console.log(OriColorStrAry);
+
     var colorSelCnt = 0;
     for(index in OriColorStrAry)
     {
         if(OriColorStrAry[index] != "")
         {
             var colorSelId ="colorItem" + colorSelCnt;
+            var colorStockSelId = 'colorStock' + colorSelCnt;
             $('#colorContainer').append("<div id='colorShow'><div id='"+colorSelId+"' style='background-color: "+OriColorStrAry[index]+"'></div></div>");
-            CreateColorSelect(colorSelCnt, colorSelId, OriColorStrAry[index]);
+            $('#colorStockContainer').append("<input type='text' id='"+colorStockSelId+"' size='5' value='"+OriColorStockAry[index]+"'/>");
+            CreateColorSelect(colorSelCnt, colorSelId, OriColorStrAry[index], colorStockSelId);
             OriColorStrAry[index] += ",";
+            OriColorStockAry[index] += ",";
             colorSelCnt ++;
         }
     }
     console.log(OriColorStrAry);
+    console.log(OriColorStockAry);
 
     var colorStrAry = OriColorStrAry;
+    var StockNumAry = OriColorStockAry;
     var combineStr = "";
     $('#colorSelector').click(function(){
         var colorSelId ="colorItem" + colorSelCnt;
+        var colorStockSelId = 'colorStock' + colorSelCnt;
         $('#colorContainer').append("<div id='colorShow'><div id='"+colorSelId+"' style='background-color: #0000ff'></div></div>");
+        $('#colorStockContainer').append("<input type='text' id='"+colorStockSelId+"' size='5' value='0'/>");
         colorStrAry[colorSelCnt] = "#0000ff,";
-        CreateColorSelect(colorSelCnt, colorSelId, "#0000ff");
+        StockNumAry[colorSelCnt] = "0,";
+        CreateColorSelect(colorSelCnt, colorSelId, "#0000ff", colorStockSelId);
         colorSelCnt ++;
     });
-    function CreateColorSelect(id, name, color)
+    function CreateColorSelect(id, name, color, stockName)
     {
         console.log("CreateColorSelect!!");
         var colorStr = "";
         var selectorId = "#" + name;
+        var stockSelId = "#" + stockName;
         console.log(selectorId);
         $(selectorId).ColorPicker({
             color: color,
@@ -168,6 +182,16 @@ $(document).ready(function(){
                 //console.log("onchange!!");
                 $(selectorId).css('background-color', '#' + hex);
             }
+        });
+        $(stockSelId).change(function(){
+            var combineStr = "";
+            StockNumAry[id] = $(this).val() + ",";
+            for(var index in StockNumAry)
+            {
+                combineStr += StockNumAry[index];
+            }
+            console.log(combineStr);
+            $('#stock').val(combineStr);
         });
     }
 });
@@ -262,7 +286,7 @@ $(document).ready(function(){
                             <td>
                                 <div id="colorSelector"><a>+</a></div>
                                 <div id="colorContainer"></div>
-                                <input type="hidden" name="color" id="color" size="50" value=""/>
+                                <input type="hidden" name="color" id="color" size="50" value="<?php echo $color; ?>"/>
                             </td>
                         </tr>
                         <?php /*?><tr>
@@ -271,7 +295,7 @@ $(document).ready(function(){
                         </tr><?php */?>
                         <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">庫存</h4></td>
-                            <td><input type="text" name="stock" id="stock" size="50" value="<?php echo $stock; ?>"/></td>
+                            <td><div id="colorStockContainer"></div><input type="text" name="stock" id="stock" size="50" value="<?php echo $stock; ?>"/></td>
                         </tr>
                         <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">圖片1</h4></td>

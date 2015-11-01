@@ -32,6 +32,7 @@ if($row){
 	$order_create_time = $row["order_create_time"];
 	$order_update_time = $row["order_update_time"];
 	$order_payment_return = $row["order_payment_return"];
+    $order_transport_memo = $row["order_transport_memo"];
 	
 	$row_member = $db -> query_first("SELECT * FROM $table_member WHERE member_id = '$order_member_id'");
 	
@@ -97,7 +98,7 @@ $(document).ready(function(){
                         </tr>
                         <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">運送方式</h4></td>
-                            <td><?php echo $ary_transport_type[$row["order_recipient_wayOption"]]; ?></td>
+                            <td><?php echo $ary_transport_type[$row["order_recipient_wayOption"]]; ?><?php if($row["order_recipient_wayOption"] == 1) echo " - ".$row["order_transport_memo"]; ?></td>
                         </tr>
                         <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">訂單金額</h4></td>

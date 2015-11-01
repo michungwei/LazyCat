@@ -414,10 +414,11 @@ class shoppingItem{
 		$product_name_tw = "",
 		$pic = "",
 		$product_type_id = 0;
+		$product_color = "";
 		//$serial_id = 0,
 		//$type_id = 0;
 		
-	function shoppingItem($product_id, $product_sno, $special_price, $sell_price, $amount, $subtotal, $product_name_en, $product_name_tw, $pic){
+	function shoppingItem($product_id, $product_sno, $special_price, $sell_price, $amount, $subtotal, $product_name_en, $product_name_tw, $pic, $product_color){
 		
 		$this -> product_id = $product_id;
 		$this -> product_sno = $product_sno;
@@ -428,6 +429,7 @@ class shoppingItem{
 		$this -> product_name_en = $product_name_en;
 		$this -> product_name_tw = $product_name_tw;
 		$this -> pic = $pic;
+		$this -> product_color = $product_color;
 		//$this -> serial_id = $serial_id;
 		//$this -> type_id = $type_id;
 	}
@@ -457,6 +459,7 @@ class shoppingItem{
 			$this->product_name_tw=$row['product_name_tw'];
 			$this->pic=$row['product_pic1'];
 			$this->product_type_id=$row['product_type_id'];
+			$this->product_color = $row['product_color'];
 		}
 	}
 }

@@ -52,7 +52,7 @@ $(document).ready(function(){
     //initial color select
     var OriColor = <?php echo "\"".$row["product_color"]."\""; ?>;
     var OriColorStrAry = OriColor.split(",");
-    console.log(OriColorStrAry);
+//    console.log(OriColorStrAry);
     for(index in OriColorStrAry)
     {
         if(OriColorStrAry[index] != "")
@@ -64,12 +64,26 @@ $(document).ready(function(){
             OriColorStrAry[index] += ",";
         }
     }
-    console.log(OriColorStrAry);
+//    console.log(OriColorStrAry);
+
+    var stockNum = "<?php echo $stock; ?>";
+    var stockStrAry = stockNum.split(",");
+
+//    console.log(stockStrAry);
+
+    $('#curStock a').replaceWith("目前庫存："+ stockStrAry[0]);
+    if(stockStrAry[0] <= 0)
+        $('.btn-white-add').hide();
 
     $('#colorSelect div').click(function()
     {
         $('#colorSelect div').removeClass("select");
         $(this).addClass("select");
+        $('#curStock').replaceWith("<div id='curStock'>目前庫存：" + stockStrAry[$(this).index()-1] + "</div>");
+        if(stockStrAry[$(this).index()-1] <= 0)
+            $('.btn-white-add').hide();
+        else
+            $('.btn-white-add').show();
     });
 });
 </script>
@@ -108,6 +122,9 @@ $(document).ready(function(){
         <h3><?php echo $row["product_name_tw"]; ?></h3>
         <h1 class="price">TWD.<?php echo $row["product_sell_price"]; ?></h1>
         <div id="colorSelect"><a>顏色：</a></div>
+        <br>
+        <div id="curStock"><a>目前庫存：</a></div>
+        <!--
         <?php
 		if($stock > 0){
 		?>
@@ -123,6 +140,7 @@ $(document).ready(function(){
 				?>
             </ul>
         </div>
+        -->
         <button class="btn-white-add" id="buy_btn" pro_id="<?php echo $pro_id; ?>" pro_sno="<?php echo $row["product_sno"]; ?>" member_id="<?php echo $member_id; ?>" page="detail" type_id="<?php echo $type_id; ?>" name_en="<?php echo $row["product_name_en"]; ?>" name_tw="<?php echo $row["product_name_tw"]; ?>" sell_price="<?php echo $row["product_sell_price"]; ?>" pic="<?php echo $row["product_pic1"]; ?>"><img src="assets/images/ui-s/bag.png" height="15" alt="" />&nbsp;&nbsp;ADD TO CAR</button>
         <?php
 		}else{

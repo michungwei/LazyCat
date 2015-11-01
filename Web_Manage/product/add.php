@@ -91,19 +91,23 @@ $(document).ready(function(){
     });
     var colorSelCnt = 0;
     var colorStrAry = [];
+    var StockNumAry = [];
     var combineStr = "";
     $('#colorSelector').click(function(){
         var colorSelId ="colorItem" + colorSelCnt;
+        var colorStockSelId = 'colorStock' + colorSelCnt;
         $('#colorContainer').append("<div id='colorShow'><div id='"+colorSelId+"' style='background-color: #0000ff'></div></div>");
+        $('#colorStockContainer').append("<input type='text' id='"+colorStockSelId+"' size='5' value='0'/>");
         colorStrAry[colorSelCnt] = "#0000ff,";
-        CreateColorSelect(colorSelCnt, colorSelId);
+        CreateColorSelect(colorSelCnt, colorSelId, colorStockSelId);
         colorSelCnt ++;
     });
-    function CreateColorSelect(id, name)
+    function CreateColorSelect(id, name, stockName)
     {
         console.log("CreateColorSelect!!");
         var colorStr = "";
         var selectorId = "#" + name;
+        var stockSelId = "#" + stockName;
         console.log(selectorId);
         $(selectorId).ColorPicker({
             color: '#0000ff',
@@ -130,6 +134,16 @@ $(document).ready(function(){
                 //console.log("onchange!!");
                 $(selectorId).css('background-color', '#' + hex);
             }
+        });
+        $(stockSelId).change(function(){
+            var combineStr = "";
+            StockNumAry[id] = $(this).val() + ",";
+            for(var index in StockNumAry)
+            {
+                combineStr += StockNumAry[index];
+            }
+            console.log(combineStr);
+            $('#stock').val(combineStr);
         });
     }
 });
@@ -206,16 +220,16 @@ $(document).ready(function(){
                             <td><input type="text" name="sprice" id="sprice" size="50" value=""/></td>
                         </tr>-->
                         <tr>
-                            <td width="150" valign="top"><h4 class="input-text-title">庫存</h4></td>
-                            <td><input type="text" name="stock" id="stock" size="50" value=""/></td>
-                        </tr>
-                        <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">顏色</h4></td>
                             <td>
                                 <div id="colorSelector"><a>+</a></div>
                                 <div id="colorContainer"></div>
                                 <input type="hidden" name="color" id="color" size="50" value=""/>
                             </td>
+                        </tr>
+                        <tr>
+                            <td width="150" valign="top"><h4 class="input-text-title">庫存</h4></td>
+                            <td><div id="colorStockContainer"></div><input type="text" name="stock" id="stock" size="50" value="0,"/></td>
                         </tr>
                         <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">圖片1</h4></td>
