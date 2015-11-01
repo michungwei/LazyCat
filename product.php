@@ -74,6 +74,8 @@ $(document).ready(function(){
     $('#curStock a').replaceWith("目前庫存："+ stockStrAry[0]);
     if(stockStrAry[0] <= 0)
         $('.btn-white-add').hide();
+    else
+        $('.btn-white-add').show();
 
     $('#colorSelect div').click(function()
     {
@@ -84,6 +86,9 @@ $(document).ready(function(){
             $('.btn-white-add').hide();
         else
             $('.btn-white-add').show();
+        $('#buy_btn').attr("pro_color", $(this).index()-1);
+        $('#wish_btn').attr("pro_color", $(this).index()-1);
+        //console.log($('#wish_btn').attr("pro_color") );
     });
 });
 </script>
@@ -121,35 +126,14 @@ $(document).ready(function(){
         <h2><?php echo $row["product_name_en"]; ?></h2>
         <h3><?php echo $row["product_name_tw"]; ?></h3>
         <h1 class="price">TWD.<?php echo $row["product_sell_price"]; ?></h1>
+        <?php if($row["product_color"]!=NULL){?>
         <div id="colorSelect"><a>顏色：</a></div>
+        <?php }?>
         <br>
         <div id="curStock"><a>目前庫存：</a></div>
-        <!--
-        <?php
-		if($stock > 0){
-		?>
-        <div class="numSelect"> <span class="beSelect">1</span>
-            <ul class="num">
-            	<?php
-					$j = $stock<10 ? $stock : 10;
-					for($i = 1; $i <= $j; $i ++){
-				?>
-                <li isSel="<?php echo $i; ?>"><?php echo $i; ?></li>
-                <?php
-					}
-				?>
-            </ul>
-        </div>
-        -->
-        <button class="btn-white-add" id="buy_btn" pro_id="<?php echo $pro_id; ?>" pro_sno="<?php echo $row["product_sno"]; ?>" member_id="<?php echo $member_id; ?>" page="detail" type_id="<?php echo $type_id; ?>" name_en="<?php echo $row["product_name_en"]; ?>" name_tw="<?php echo $row["product_name_tw"]; ?>" sell_price="<?php echo $row["product_sell_price"]; ?>" pic="<?php echo $row["product_pic1"]; ?>"><img src="assets/images/ui-s/bag.png" height="15" alt="" />&nbsp;&nbsp;ADD TO CAR</button>
-        <?php
-		}else{
-		?>
-        <button class="btn-white-add"><img src="assets/images/ui-s/bag.png" height="15" alt="" />&nbsp;&nbsp;補貨中</button>
-        <?php
-		}
-		?>
-        <button id="wish_btn" class="btn-white" pro_id="<?php echo $pro_id; ?>" member_id="<?php echo $member_id; ?>" page="detail" type_id="<?php echo $type_id; ?>" style="cursor: pointer;">WISH LIST</button>
+        <button class="btn-white-add" id="buy_btn" pro_color="0" pro_id="<?php echo $pro_id; ?>" pro_sno="<?php echo $row["product_sno"]; ?>" member_id="<?php echo $member_id; ?>" page="detail" type_id="<?php echo $type_id; ?>" name_en="<?php echo $row["product_name_en"]; ?>" name_tw="<?php echo $row["product_name_tw"]; ?>" sell_price="<?php echo $row["product_sell_price"]; ?>" pic="<?php echo $row["product_pic1"]; ?>"><img src="assets/images/ui-s/bag.png" height="15" alt="" />&nbsp;&nbsp;ADD TO CAR</button>
+
+        <button id="wish_btn" class="btn-white" pro_color="0" pro_id="<?php echo $pro_id; ?>" member_id="<?php echo $member_id; ?>" page="detail" type_id="<?php echo $type_id; ?>" style="cursor: pointer;">WISH LIST</button>
         <p class="proC-en"><?php echo $row["product_comment"]; ?></p>
         <ul class="social">
             <li class="soc-item"><a class="ui-s-ig" href="###"></a></li>

@@ -23,10 +23,11 @@ if($method == "add"){
 	$amount = post('amount');
 	$subtotal = post('subtotal');
 	$pic = post('pic', 1);
+	$product_color = post('color', 1);
 
 	if($product_id > 0 && $product_sno != ""){
 
-		$item = new shoppingItem($product_id, $product_sno, $special_price, $sell_price, $amount, $subtotal, $product_name_en, $product_name_tw, $pic);
+		$item = new shoppingItem($product_id, $product_sno, $special_price, $sell_price, $amount, $subtotal, $product_name_en, $product_name_tw, $pic, $product_color);
 		$car -> add($item);//加入car
 		$result = 1;
 		$car -> calculate();//計算
@@ -77,15 +78,17 @@ if($method == "clear"){
 if($method == "chkstock"){
 	$product_id = post('product_id', 1);
 	$num = post('num');
+	$color = post('color');
 
 	if($product_id > 0 && $num > 0){
 		$row = $db -> query_first("SELECT * FROM $table_product WHERE  product_id = '$product_id'");
-		$stock = $row["product_stock"];
+		$stockAry = explode( ",", $row["product_stock"]);
+		$stock = $stockAry[$color];
 		if($stock >= $num){
 			$result = 1;
 			
 		}else{
-			$msg = $row["product_name_tw"]."庫存不足!庫存只剩".$row["product_stock"]."!";
+			$msg = $row["product_name_tw"]."庫存不足!庫存只剩".$stock."!";
 		}
 	}else{
 		$msg = "參數資料傳送錯誤!";

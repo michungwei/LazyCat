@@ -3,7 +3,8 @@ function chkStock(){
 	$("td.cart_list_td").each(function(index, element) {
 		var product_id = $(this).find("span.cost").attr("product_id");
 		var num = $(this).find("span.num").text();
-		var res = chkProductStock(product_id, num);
+		var color = $(this).attr("color");
+		var res = chkProductStock(product_id, num, color);
 		if(!res){
 			result = false;
 		}

@@ -2961,6 +2961,7 @@ body .ui-tooltip {
 }
 #colorSelect{
 	float:left;
+	width: 100%;
 	margin-bottom: 15px;
 	line-height: 30px;
 }

@@ -46,6 +46,7 @@ $(document).ready(function(e) {
 	
 	$(".wish_add_cart").click(function(e) {
 		var w_id = $(this).attr("w_id");
+		var w_color = $(this).attr("w_color");
 		var product_id = $(this).attr("pro_id");
 		var product_sno = $(this).attr("pro_sno");
 		//var type_id = $(this).attr("type_id");
@@ -62,7 +63,7 @@ $(document).ready(function(e) {
 		//console.log(stock);
 		if(isLogin()){
 			if(stock > 0){
-				addCar(product_id, product_sno, special_price, sell_price, amount, subtotal, product_name_en, product_name_tw, pic);
+				addCar(product_id, product_sno, special_price, sell_price, amount, subtotal, product_name_en, product_name_tw, pic, w_color);
 				delWishList(w_id);
 			}else{
 				alert("此商品庫存目前不足!");

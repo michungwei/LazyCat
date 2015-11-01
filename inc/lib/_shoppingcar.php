@@ -171,7 +171,7 @@ class shoppingCar
 	 */		
 	function add($si){
 		$car = $this -> car;
-		$item = $this -> getItemByID($si -> product_id.$si->product_sno);
+		$item = $this -> getItemByID($si -> product_id.$si->product_sno.$si->product_color);
 		if($item == null){
 			$this -> insertItem($si);
 		}
@@ -209,7 +209,7 @@ class shoppingCar
 	function getItemByID($id){
 		$car = $this -> car;
 		for($i=0; $i<count($car); $i++){
-			if($car[$i]->product_id.$car[$i]->product_sno == $id){
+			if($car[$i]->product_id.$car[$i]->product_sno.$car[$i]->product_color == $id){
 				return $car[$i];
 			}
 		}
@@ -222,7 +222,7 @@ class shoppingCar
 	function removeItemByID($id){
 		$car=$this->car;
 		for($i=0;$i<count($car);$i++){
-			if($car[$i]->product_id.$car[$i]->product_sno == $id){
+			if($car[$i]->product_id.$car[$i]->product_sno.$car[$i]->product_color == $id){
 				unset($car[$i]);
 			}
 		}
@@ -246,7 +246,7 @@ class shoppingCar
 	function updateItem($item){
 		$car=$this->car;
 		for($i=0;$i<count($car);$i++){
-			if($car[$i] -> product_id.$car[$i] -> product_sno == $item -> product_id.$item -> product_sno){
+			if($car[$i] -> product_id.$car[$i] -> product_sno.$car[$i] -> product_color == $item -> product_id.$item -> product_sno.$item -> product_color){
 				$car[$i] = $item;
 			}
 		}
@@ -413,8 +413,8 @@ class shoppingItem{
 		$product_name_en = "",
 		$product_name_tw = "",
 		$pic = "",
-		$product_type_id = 0;
-		$product_color = "";
+		$product_type_id = 0,
+		$product_color = 0;
 		//$serial_id = 0,
 		//$type_id = 0;
 		
@@ -459,7 +459,7 @@ class shoppingItem{
 			$this->product_name_tw=$row['product_name_tw'];
 			$this->pic=$row['product_pic1'];
 			$this->product_type_id=$row['product_type_id'];
-			$this->product_color = $row['product_color'];
+			$this->product_color = $this->product_color;
 		}
 	}
 }

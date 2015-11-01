@@ -27,8 +27,8 @@ class Product{
 		global $db, $table_productserial, $table_product;
 		return $db -> fetch_all_array(
 									  "SELECT productserial_id, productserial_type_id, productserial_name, productserial_is_show, product_serial_id, COUNT(product_id) AS amount, MAX(product_sell_price) AS height_price, MIN(product_sell_price) AS low_price
-									   FROM $table_productserial LEFT JOIN $table_product ON product_serial_id = productserial_id
-									   WHERE productserial_is_show = 1 AND productserial_type_id = '$type_id'
+									   FROM $table_productserial LEFT JOIN $table_product ON product_serial_id = productserial_id AND product_is_show = 1
+									   WHERE product_is_show = 1 AND productserial_is_show = 1 AND productserial_type_id = '$type_id'
 									   GROUP BY product_serial_id
 									   HAVING amount > 0
 									   ORDER BY productserial_ind DESC"
@@ -38,7 +38,7 @@ class Product{
 		global $db, $table_productserial, $table_product;
 		return $db -> fetch_all_array(
 									  "SELECT product_id, product_ind, product_sno, product_type_id, product_serial_id, product_name_tw, product_name_en, product_sell_price, product_pic1, product_is_show, productserial_id, productserial_ind, productserial_name, COUNT(product_id) AS amount, MAX(product_sell_price) AS height_price, MIN(product_sell_price) AS low_price
-									   FROM $table_product LEFT JOIN $table_productserial ON product_serial_id = productserial_id
+									   FROM $table_product LEFT JOIN $table_productserial ON product_serial_id = productserial_id AND product_is_show = 1
 									   WHERE product_is_show = 1 AND (product_name_tw LIKE '%$keyword%' OR product_name_en LIKE '%$keyword%')
 									   GROUP BY product_serial_id
 									   HAVING amount > 0
@@ -228,7 +228,7 @@ class Product{
 	public static function getWishList($member_id){
 		global $db, $table_wish, $table_product;
 		return $db -> fetch_all_array(
-									  "SELECT wish_id, wish_member_id, wish_product_id, wish_create_time, product_id, product_sno, product_name_tw, product_name_en, product_stock, product_sell_price, product_special_price, product_pic1, product_is_show
+									  "SELECT wish_id, wish_member_id, wish_color, wish_product_id, wish_create_time, product_id, product_sno, product_name_tw, product_name_en, product_stock, product_sell_price, product_special_price, product_pic1, product_is_show, product_color
 									   FROM $table_wish LEFT JOIN  $table_product ON wish_product_id = product_id
 									   WHERE wish_member_id = '$member_id'
 									   ORDER BY wish_create_time DESC"

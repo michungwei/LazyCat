@@ -76,6 +76,7 @@ if($sResult){
 		$detailitem -> order_sno = "";
 		$detailitem -> product_id = $carItem[$i] -> product_id;
 		$detailitem -> product_sno = $carItem[$i] -> product_sno;
+		$detailitem -> product_color = $carItem[$i] -> product_color;
 		$detailitem -> product_name_tw = $carItem[$i] -> product_name_tw;
 		$detailitem -> product_name_en = $carItem[$i] -> product_name_en;
 		$detailitem -> sell_price = $carItem[$i] -> sell_price;
@@ -115,7 +116,7 @@ if($sResult){
 		
 	}catch(Exception $ex){
 		//$sResule = 0;
-		$message = $e -> getMessage();
+		$message = $ex -> getMessage();
 	}
 
 //$db -> close();

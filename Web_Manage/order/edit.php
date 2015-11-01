@@ -36,7 +36,7 @@ if($row){
 	
 	$row_member = $db -> query_first("SELECT * FROM $table_member WHERE member_id = '$order_member_id'");
 	
-	$sql_products = "SELECT orderdetail_order_sno, orderdetail_product_id, orderdetail_product_sno, orderdetail_sell_price, orderdetail_amount, orderdetail_total_price, product_sno, product_name_tw, product_name_en, product_pic1 
+	$sql_products = "SELECT orderdetail_order_sno, orderdetail_product_id, orderdetail_product_sno, orderdetail_product_color, orderdetail_sell_price, orderdetail_amount, orderdetail_total_price, product_sno, product_name_tw, product_name_en, product_pic1, product_color 
 					 FROM $table_orderdetail LEFT JOIN $table_product ON orderdetail_product_id = product_id AND orderdetail_product_sno = product_sno 
 					 WHERE orderdetail_order_sno = '$order_sno'
 					 ORDER BY orderdetail_id";
@@ -141,12 +141,15 @@ $(document).ready(function(){
                         <td width="100" alien="center">圖片</td>
                         <td width="200" >產品名稱</td>
                         <td width="80"  alien="center">數量</td>
+                        <td width="80"  alien="center">顏色</td>
                         <td width="80"  alien="center">單價</td>
                         <td width="80"  alien="center">小計</td>
                     </tr>
                     <?php
 					$i = 1;
 					foreach($rows_product as $row_product){
+                        $colorAry = explode(",", $row_product["product_color"]);
+                        $colorStr = $colorAry[$row_product["orderdetail_product_color"]];
 					?>
                     <tr>
                         <td alien="center"><?php echo $i; ?></td>
@@ -154,6 +157,14 @@ $(document).ready(function(){
                         <td alien="center"><img src="<?php echo $admin_path_product."m".$row_product["product_pic1"]; ?>" alt="#" width="50" ></td>
                         <td><?php echo $row_product["product_name_tw"]."/".$row_product["product_name_en"]; ?></td>
                         <td alien="center"><?php echo $row_product["orderdetail_amount"]; ?></td>
+                        <?php if($row_product["product_color"] != NULL) {?>
+                        <td alien="center"><div id='colorShow'><div style='background-color: <?php echo $colorStr;?>'></div></div></td>
+                        <?php 
+                        } 
+                        else{
+                        ?>
+                        <td alien="center">無</td>
+                        <?php } ?>
                         <td alien="center"><?php echo $row_product["orderdetail_sell_price"]; ?></td>
                         <td alien="center"><?php echo $row_product["orderdetail_total_price"]; ?></td>
                     </tr>

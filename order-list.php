@@ -6,9 +6,9 @@ include_once($inc_path."_getpage.php");
 
 $member_id = "";
 if(isLogin()){
-	$member_id = get("member_id", 1);
-	//$member_id = $_SESSION["session_id"];
-	if($member_id < 0 || $member_id == "" /*|| $member_id != $_SESSION["session_id"]*/){
+	//$member_id = get("member_id", 1);
+	$member_id = $_SESSION["session_id"];
+	if($member_id < 0 || $member_id == "" || $member_id != $_SESSION["session_id"]){
 		script("資料傳輸錯誤,請再試一次!");
 	}
 }else{

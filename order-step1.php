@@ -61,6 +61,7 @@ $rows_hot = Product::getHotPro();
                 <td width="30"></td>
                 <td width="125"></td>
                 <td width="200">商品名稱 / NAME</td>
+                <td width="120">顏色 / COLOR</td>
                 <td width="120">價格 / PRICE</td>
                 <td width="100">數量 / QUANTITY</td>
                 <td>TOTAL</td>
@@ -75,15 +76,27 @@ $rows_hot = Product::getHotPro();
 					$amount = $carItem[$i] -> amount;
 					$subtotal = $carItem[$i] -> subtotal;
 					$pic = $carItem[$i] -> pic;
-					$cart_id = $product_id.$product_sno;
+                    $product_color = $carItem[$i] -> product_color;
+                    $cart_id = $product_id.$product_sno.$product_color;
+                    $row_product = Product::getProduct($product_id);
+                    if($row_product["product_color"] != NULL)
+                    {
+                        $colorAry = explode(",", $row_product["product_color"]);
+                        $colorStr = $colorAry[$product_color];
+                    }
+                    else
+                    {
+                        $colorStr = "無";
+                    }
 			?>
             <tr>
                 <td><button class="btn-del cart_del_btn" cart_id="<?php echo $cart_id; ?>">×</button></td>
                 <td><img src="<?php echo $web_path_product."m".$pic; ?>" width="90" height="120" alt="" /></td>
                 <td><?php echo $product_name_en; ?> <br />
                     <?php echo $product_name_tw; ?><br /></td>
+                <td class="color"><div id="colorSelect"><div style='background-color: <?php echo $colorStr; ?>'></div></div></td>
                 <td class="sell_price_td"> TWD.<span class="sell_price"><?php echo $sell_price; ?></span></td>
-                <td class="cart_list_td"><span class="cost" style="cursor: pointer;" cart_id="<?php echo $cart_id; ?>" product_id="<?php echo $product_id; ?>">&#8211;</span>&nbsp;&nbsp;&nbsp;&nbsp; <span class="num"><?php echo $amount; ?></span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="plus" style="cursor: pointer;" cart_id="<?php echo $cart_id; ?>">&plus;</span></td>
+                <td class="cart_list_td" color="<?php echo $product_color; ?>"><span class="cost" style="cursor: pointer;" cart_id="<?php echo $cart_id; ?>" product_id="<?php echo $product_id; ?>">&#8211;</span>&nbsp;&nbsp;&nbsp;&nbsp; <span class="num"><?php echo $amount; ?></span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="plus" style="cursor: pointer;" cart_id="<?php echo $cart_id; ?>">&plus;</span></td>
                 <td class="subtotal_price_td">TWD.<span class="subtotal_price"><?php echo $subtotal; ?></span></td>
             </tr>
             <?php

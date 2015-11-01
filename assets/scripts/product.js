@@ -12,6 +12,7 @@ $(document).ready(function(e) {
 		var pro_id = $(this).attr("pro_id");
 		var type_id = $(this).attr("type_id");
 		var member_id = $(this).attr("member_id");
+		var pro_color = $(this).attr("pro_color");
 		var page = $(this).attr("page");
 		if(isLogin()){
 			$.ajax({
@@ -19,7 +20,7 @@ $(document).ready(function(e) {
 				async : false,
 				cache: false,
 				type : "POST",
-				data : {pro_id : pro_id, member_id : member_id},
+				data : {pro_id : pro_id, member_id : member_id, pro_color : pro_color},
 				dataType : "json",
 				success : function(data){
 						if(data.result=="true"){
@@ -50,11 +51,12 @@ $(document).ready(function(e) {
 		var sell_price = $(this).attr("sell_price");
 		var special_price = 0;
 		var pic = $(this).attr("pic");
-		var amount = $(".beSelect").text();
+		var amount = 1;
 		var subtotal = (sell_price * amount);
+		var color = $(this).attr("pro_color");
 		//console.log(subtotal);
 		if(isLogin()){
-			addCar(product_id, product_sno, special_price, sell_price, amount, subtotal, product_name_en, product_name_tw, pic);
+			addCar(product_id, product_sno, special_price, sell_price, amount, subtotal, product_name_en, product_name_tw, pic, color);
 		}else{
 			alert("請先登入會員!");
 			location.href = "sign.html?page="+page+"&pro_id="+product_id+"&type_id="+type_id;

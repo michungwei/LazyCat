@@ -62,6 +62,7 @@ class CoderOrder{
 			$data_detail["orderdetail_order_sno"] = $order_sno;
 			$data_detail["orderdetail_product_id"] = $detail_ary[$i] -> product_id;
 			$data_detail["orderdetail_product_sno"] = $detail_ary[$i] -> product_sno;
+			$data_detail["orderdetail_product_color"] = $detail_ary[$i] -> product_color;
 			$data_detail["orderdetail_sell_price"] = $detail_ary[$i] -> sell_price;
 			$data_detail["orderdetail_amount"] = $detail_ary[$i] -> amount;
 			$data_detail["orderdetail_total_price"] = $detail_ary[$i] -> subtotal;
@@ -72,16 +73,23 @@ class CoderOrder{
 			$product_id = $detail_ary[$i] -> product_id;
 			$amount = $detail_ary[$i] -> amount;
 			$row = $db -> query_first("SELECT * FROM $table_product WHERE product_id = '$product_id'");
-			$stock = $row["product_stock"];
-			
-			$data_pro["product_stock"] = ($stock - $amount);
+			$stockAry = explode( ",", $row["product_stock"]);
+			$stockAry[$detail_ary[$i] -> product_color] -= $amount;
+
+			$stockStr = "";
+			for($j = 0; $j < count($stockAry) - 1; $j ++)
+			{
+				$stockStr .= $stockAry[$j].",";
+			}
+
+			$data_pro["product_stock"] = $stockStr;
 			
 			$db -> query_update($table_product, $data_pro, "product_id = $product_id");
 			
 			//寫入log
 			$data_store["storelog_product_id"] = $product_id;
 			$data_store["storelog_acc"] = "網站";
-			$data_store["storelog_comment"] = "(訂單寫入)庫存由".$stock."修改為".($stock - $amount);
+			$data_store["storelog_comment"] = "(訂單寫入)庫存由".$row["product_stock"]."修改為".$stockStr;
 			$data_store["storelog_create_time"] = request_cd();
 			
 			$db -> query_insert($table_storelog, $data_store);
@@ -95,10 +103,13 @@ class CoderOrder{
 		for($i = 0; $i < count($detail_ary); $i ++){
 			$product_id = $detail_ary[$i] -> product_id;
 			$order_amount = $detail_ary[$i] -> amount;
+			$product_color = $detail_ary[$i] -> product_color;
 			
-			$row = $db -> query_first("SELECT * FROM $table_product WHERE product_id = '$product_id' AND product_stock < '$order_amount'");
+			$row = $db -> query_first("SELECT * FROM $table_product WHERE product_id = '$product_id'");
+			$stockAry = explode( ",", $row["product_stock"]);
+			$stock = $stockAry[$product_color];
 			
-			if($row){
+			if($stock < $order_amount){
 				$result[0] = false;
 				$result[1] = $row["product_name_tw"]."庫存不足";
 				return $result;
@@ -229,6 +240,7 @@ class CoderOrder{
 		$msg .= '親愛的顧客'.$member_name.'您好，感謝您的訂購，以下為您的訂單內容：<br /><br />';
 		$msg .= '訂單編號：'.$order_sno.'<br />';
 		$msg .= '付款方式：'.$ary_payment_type[$payment_type].'<br />';
+		$msg .= '訂單查詢網址：http://www.lazycatshop.com/order-list.php<br />';
 		$msg .= '<br />';
         $msg .= '*若您是使用ATM虛擬帳號付款,超商代收或7-11ibon / 全家FamiPort / 萊爾富Life-ET / OK 超商OK-go等付款方式,請在指定天數內付款，確認付款後我們將為您盡快出貨<br /><br />';
 		foreach($detailary as $item){
@@ -259,7 +271,7 @@ class CoderOrderItem{
 }
 
 class CoderOrderDetailItem{
-	public $id, $order_sno, $product_id, $product_sno, $product_name_tw, $product_name_en, $sell_price, $amount, $subtotal, $create_time;
+	public $id, $order_sno, $product_id, $product_sno, $product_color, $product_name_tw, $product_name_en, $sell_price, $amount, $subtotal, $create_time;
 	
 	public function _construct(){
 	}

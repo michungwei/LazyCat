@@ -77,25 +77,31 @@ $u = count($carItem);
                 <td width="30"></td>
                 <td width="125"></td>
                 <td width="292">商品名稱 / NAME</td>
+                <td width="292">顏色 / COLOR</td>
                 <td width="135">價格 / PRICE</td>
                 <td width="140">庫存 / STOCK</td>
                 <td></th>
             </tr>
             <?php
 				foreach($rows as $row){
+                    $colorAry = explode(",", $row["product_color"]);
+                    $colorStr = $colorAry[$row["wish_color"]];
+                    $stockAry = explode(",", $row["product_stock"]);
+                    $stockNum = $stockAry[$row["wish_color"]];
 			?>
             <tr class="list">
                 <td><button class="btn-del wish_del" w_id="<?php echo $row["wish_id"]; ?>">×</button></td>
                 <td><img src="<?php echo $web_path_product."m".$row["product_pic1"]; ?>" height="120" width="90" alt="" /></td>
                 <td><?php echo $row["product_name_en"]; ?> <br />
                     <?php echo $row["product_name_tw"]; ?></td>
+                <td><div id="colorSelect"><div style='background-color: <?php echo $colorStr; ?>'></div></div></td>
                 <td> TWD.<?php echo $row["product_sell_price"]; ?></td>
-                <td><span class="num"><?php echo ($row["product_stock"] > 0) ? $row["product_stock"] : "補貨中"; ?></span></td>
+                <td><span class="num"><?php echo ($stockNum > 0) ? $stockNum : "補貨中"; ?></span></td>
                 <td>
                 <?php
-				if($row["product_stock"] > 0){
+				if($stockNum > 0){
 				?>
-                <button class="btn-white-add wish_add_cart" w_id="<?php echo $row["wish_id"]; ?>" pro_id="<?php echo $row["product_id"]; ?>" pro_sno="<?php echo $row["product_sno"]; ?>" name_en="<?php echo $row["product_name_en"]; ?>" name_tw="<?php echo $row["product_name_tw"]; ?>" sell_price="<?php echo $row["product_sell_price"]; ?>" pic="<?php echo $row["product_pic1"]; ?>" style="cursor: pointer;"><img src="assets/images/ui-s/bag.png" height="15" alt="" />&nbsp;&nbsp;ADD TO CAR</button>
+                <button class="btn-white-add wish_add_cart" w_color="<?php echo $row["wish_color"]; ?>" w_id="<?php echo $row["wish_id"]; ?>" pro_id="<?php echo $row["product_id"]; ?>" pro_sno="<?php echo $row["product_sno"]; ?>" name_en="<?php echo $row["product_name_en"]; ?>" name_tw="<?php echo $row["product_name_tw"]; ?>" sell_price="<?php echo $row["product_sell_price"]; ?>" pic="<?php echo $row["product_pic1"]; ?>" style="cursor: pointer;"><img src="assets/images/ui-s/bag.png" height="15" alt="" />&nbsp;&nbsp;ADD TO CAR</button>
                 <?php
 				}else{
 				?>

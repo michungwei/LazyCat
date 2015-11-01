@@ -18,7 +18,7 @@ var serviceurl="do/shoppingservice.php";
  * @param{isshow} 是否顯示
  * @param{createtime} 建立時間
  */
-function addCar(product_id, product_sno, special_price, sell_price, amount, subtotal, product_name_en, product_name_tw, pic){
+function addCar(product_id, product_sno, special_price, sell_price, amount, subtotal, product_name_en, product_name_tw, pic, color){
 	if(product_id > 0 && product_sno != ""){
 		//alert("hi");
 		$.ajax({
@@ -34,7 +34,8 @@ function addCar(product_id, product_sno, special_price, sell_price, amount, subt
 					subtotal : subtotal,
 					product_name_en : product_name_en,
 					product_name_tw : product_name_tw,
-					pic : pic
+					pic : pic,
+					color : color
 			},
 			dataType : "json",
 			success : function(data){
@@ -133,7 +134,7 @@ function clearCar(){
 		});
 }
 
-function chkProductStock(product_id, num){ 
+function chkProductStock(product_id, num, color){ 
 	if(product_id != ""){
 		var res = false;
 		$.ajax({
@@ -142,7 +143,8 @@ function chkProductStock(product_id, num){
 			type : "POST",
 			data : {method : "chkstock",
 					product_id : product_id,
-					num : num
+					num : num,
+					color : color
 			},
 			dataType:"json",
 			success:function(data){
