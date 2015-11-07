@@ -151,6 +151,7 @@ function select_price(max_price, min_price, max_value_price, min_value_price, wh
         },
 		stop: function( event, ui ) {
 			var type_id = $("#type_id").val();
+			var style_id = $("#style_id").val();
 			var serial_id = $("#serial_id").val();
 			var max_value_price = ui.values[1];
 			var min_value_price = ui.values[0];
@@ -166,6 +167,9 @@ function select_price(max_price, min_price, max_value_price, min_value_price, wh
 				
 			}else if(where == "new"){
 				location.href = "product-new_"+type_id+"_"+max_value_price+"_"+min_value_price+"_"+order+"_"+page+".html";
+			}
+			else if(where == "style"){
+				location.href = "style-list.php?style_id="+style_id+"&serial_id="+serial_id+"&max_value_price="+max_value_price+"&min_value_price="+min_value_price+"&order="+order+"&page="+page;			
 			}
 		}
     });

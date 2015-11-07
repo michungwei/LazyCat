@@ -85,7 +85,57 @@ function showPage2(){
 		//echo  '<a href=?'.$querystring.'page='.$pre.'>上一頁</a>&nbsp;&nbsp;';
 		//echo  '<a href=product-list'.$querystring.'_1.html>首頁</a>&nbsp;&nbsp;';
 		//echo  '<a href=product-list'.$querystring.'_'.$pre.'.html>上一頁</a>&nbsp;&nbsp;';
-		echo  '<li class="first"><a href=product-list'.$querystring.'_'.$pre.'.html><div class="ui-s-small-arrow-left"></div></a></li>&nbsp;&nbsp;';     
+		echo  '<li class="first"><a href=style-list.php'.$querystring.'$page='.$pre.'><div class="ui-s-small-arrow-left"></div></a></li>&nbsp;&nbsp;';     
+	}
+	$viewpage = 5;
+	
+	if($page_count > $viewpage){
+		if($page-$viewpage < 0){
+			$s = 1;$j = $viewpage;
+		}else{
+			$s = $page-$viewpage+1;
+			$j = $s+5;
+			if($j >= $page_count){
+				$j = $page_count;
+			}
+		}
+	}else{
+		$s = 1;
+		$j = $page_count;
+	}
+	
+	for($i = $s;$i <= $j;$i++){
+		$num = $i;
+		if($page == $num){
+			//echo $num."&nbsp;";
+			echo '<li class="page active">'.$num.'</li>&nbsp;';
+		}else{
+			//echo '<a href=product-list'.$querystring.'_'.$num.'.html>'.$num.'</a>&nbsp;&nbsp;';
+			echo '<li class="page"><a href=style-list.php'.$querystring.'&page='.$num.'>'.$num.'</a></li>&nbsp;&nbsp;';
+		}
+	}
+
+	if($page < $page_count){
+		echo '<li class="last"><a href=style-list.php'.$querystring.'&page'.($page+1).'><div class="ui-s-small-arrow-right"></div></a></li>&nbsp;&nbsp;';
+		//echo '<a href=product-list'.$querystring.'_'.($page+1).'.html>下一頁</a>&nbsp;&nbsp;';
+		//echo '<a href=product-list'.$querystring.'_'.$page_count.'.html>末頁</a>&nbsp;';
+	}
+}
+
+function showStylePage(){
+	global $page, $page_count, $count, $pre, $next, $querystring;
+	if($querystring != ""){
+    	//$querystring = $querystring."&";
+		$querystring = $querystring;
+	}
+	//echo $page.' / '.$page_count.'&nbsp;&nbsp;共'.$count.'筆資料&nbsp;&nbsp;'; 
+	
+	if($page != 1){
+		//echo  '<a href=?'.$querystring.'page=1>首頁</a>&nbsp;&nbsp;';
+		//echo  '<a href=?'.$querystring.'page='.$pre.'>上一頁</a>&nbsp;&nbsp;';
+		//echo  '<a href=product-list'.$querystring.'_1.html>首頁</a>&nbsp;&nbsp;';
+		//echo  '<a href=product-list'.$querystring.'_'.$pre.'.html>上一頁</a>&nbsp;&nbsp;';
+		echo  '<li class="first"><a href=style-list.php?'.$querystring.'_'.$pre.'.html><div class="ui-s-small-arrow-left"></div></a></li>&nbsp;&nbsp;';     
 	}
 	$viewpage = 5;
 	

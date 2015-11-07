@@ -20,6 +20,16 @@ class Banner{
 					   					 ORDER BY pic_is_show DESC"
 		);
 	}
+
+	public static function getPicFormId($id){
+		global $db, $table_pic;
+		return $db -> query_first(
+										"SELECT *
+					   					 FROM $table_pic
+					   					 WHERE pic_is_show = 1 AND pic_id = '$id'
+					   					 ORDER BY pic_is_show DESC"
+		);
+	}
 	
 	public static function getSubBanner(){
 		global $db, $table_subbanner;

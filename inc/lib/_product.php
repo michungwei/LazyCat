@@ -99,6 +99,7 @@ class Product{
 				ORDER BY ".$order_str;
 		return $sql;
 	}
+
 	//最高價格
 	public static function getMAXPrice($type_id, $serial_id){
 		global $db, $table_product;
@@ -232,6 +233,75 @@ class Product{
 									   FROM $table_wish LEFT JOIN  $table_product ON wish_product_id = product_id
 									   WHERE wish_member_id = '$member_id'
 									   ORDER BY wish_create_time DESC"
+		);
+	}
+
+		//商品列表in風格
+	public static function getStyleProductList($style_id, $serial_id, $max_value_price, $min_value_price, $order){
+		global $db, $table_product;
+
+		$where_str = " AND product_style_id = '$style_id'";
+		if($serial_id != "00"){
+			$where_str = " AND product_serial_id = '$serial_id'";
+		}
+
+		$order_str = "";
+		switch ($order){
+			case 1 :
+				$order_str = "product_sell_price DESC";
+				break;
+			case 2 :
+				$order_str = "product_sell_price ASC";
+				break;
+			case 9 :
+				$order_str = "product_ind DESC";
+				break;
+			default :
+				break;
+		}
+		$sql = "SELECT * 
+				FROM $table_product 
+				WHERE product_is_show = 1 AND (product_sell_price >= $min_value_price AND product_sell_price <= $max_value_price)".$where_str."
+				ORDER BY ".$order_str;
+		return $sql;
+	}
+	//商品系列列表in風格
+	public static function getStyleSerialList($style_id){
+		global $db, $table_productserial, $table_product;
+		return $db -> fetch_all_array(
+									  "SELECT productserial_id, productserial_type_id, productserial_name, productserial_is_show, product_serial_id, COUNT(product_id) AS amount, MAX(product_sell_price) AS height_price, MIN(product_sell_price) AS low_price
+									   FROM $table_productserial LEFT JOIN $table_product ON product_serial_id = productserial_id AND product_is_show = 1
+									   WHERE product_is_show = 1 AND productserial_is_show = 1 AND product_style_id = '$style_id'
+									   GROUP BY product_serial_id
+									   HAVING amount > 0
+									   ORDER BY productserial_ind DESC"
+		);
+	}
+	//最高價格in風格
+	public static function getStyleMAXPrice($style_id, $serial_id){
+		global $db, $table_product;
+		$where_str = " AND product_style_id = '$style_id'";
+		if($serial_id != "00"){
+			$where_str = " AND product_serial_id = '$serial_id'";
+		}
+		return $db -> query_first(
+								  "SELECT MAX(product_sell_price) AS height_price
+								   FROM $table_product 
+								   WHERE product_is_show = 1".$where_str
+		);
+	}	
+
+	//最低價格in風格
+	public static function getStyleMINPrice($style_id, $serial_id){
+		global $db, $table_product;
+		$where_str = " AND product_style_id = '$style_id'";
+		if($serial_id != "00"){
+			$where_str = " AND product_serial_id = '$serial_id'";
+		}
+		return $db -> query_first(
+								  "SELECT MIN(product_sell_price) AS low_price
+								   FROM $table_product 
+								   WHERE product_is_show = 1".$where_str
 		);
 	}
 	

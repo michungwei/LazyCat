@@ -15,6 +15,7 @@ $pic3_del = post("pic3_del");
 $pic4_del = post("pic4_del");
 
 $data["product_type_id"] = post("type");
+$data["product_style_id"] = post("style");
 $data["product_serial_id"] = post("serial");
 //$data["product_sno"] = post("sno", 1);
 $data["product_name_tw"] = post("name_tw", 1);

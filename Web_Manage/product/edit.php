@@ -1,5 +1,6 @@
 <?php
 include_once("_config.php");
+include_once($inc_path."lib/_banner.php");
 
 $id = get("id");
 
@@ -14,9 +15,11 @@ $sql = "SELECT *
 		FROM $table_product 
 		WHERE $id_column = '$id'";
 $row = $db -> query_first($sql);
+$rows_pic = Banner::getPic();
 
 if($row){
 	$type = $row["product_type_id"];
+    $style = $row["product_style_id"];
 	$serial = $row["product_serial_id"];
 	$sno = $row["product_sno"];
 	$name_tw = $row["product_name_tw"];
@@ -263,6 +266,19 @@ $(document).ready(function(){
                                     <?php
 										}
 									?>
+                                </select></td>
+                        </tr>
+                        <tr>
+                            <td width="150" valign="top"><h4 class="input-text-title">風格</h4></td>
+                            <td ><select name="style" id="style">
+                                    <option value="0" >請選擇風格</option>
+                                    <?php
+                                        foreach($rows_pic as $row_pic){
+                                    ?>
+                                        <option value="<?php echo $row_pic['pic_id']; ?>" <?php echo ($style == $row_pic['pic_id']) ? "selected": "";?> ><?php echo $row_pic['pic_name_tw'].'/'.$row_pic['pic_name_en']?></option>
+                                    <?php
+                                        }
+                                    ?>
                                 </select></td>
                         </tr>
                         <tr>

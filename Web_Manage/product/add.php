@@ -1,5 +1,13 @@
 <?php
 include_once("_config.php");
+include_once($inc_path."lib/_banner.php");
+
+$db = new Database($HS, $ID, $PW, $DB);
+$db -> connect();
+
+$rows_pic = Banner::getPic();
+
+$db -> close();
 ?>
 <!doctype html>
 <html>
@@ -197,6 +205,19 @@ $(document).ready(function(){
                             <td width="150" valign="top"><h4 class="input-text-title">系列</h4></td>
                             <td class="type_box"><select name="serial" id="serial">
                                     <option value="" >請選擇分類</option>
+                                </select></td>
+                        </tr>
+                        <tr>
+                            <td width="150" valign="top"><h4 class="input-text-title">風格</h4></td>
+                            <td class="type_box"><select name="style" id="style">
+                                    <option value="0" >請選擇風格</option>
+                                    <?php
+                                        foreach($rows_pic as $row_pic){
+                                    ?>
+                                        <option value="<?php echo $row_pic['pic_id']; ?>"><?php echo $row_pic['pic_name_tw'].'/'.$row_pic['pic_name_en']?></option>
+                                    <?php
+                                        }
+                                    ?>
                                 </select></td>
                         </tr>
                         <tr>
