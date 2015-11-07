@@ -45,11 +45,11 @@ $(document).ready(function() {
 		$('#join_member_btn').click(function() {
 			$('#join_member_form').submit();
 		});
-		$('#address_Country').change(function(){
+		$('#address_country').change(function(){
 			if($(this).val() != '台灣')
-				$('#address_City').hide();
+				$('#address_city').hide();
 			else
-				$('#address_City').show();	
+				$('#address_city').show();	
 		});
 		//$('#join_member_table').tooltip();
 		$("#join_member_form").validate({
@@ -216,6 +216,9 @@ $(document).ready(function() {
 				},
 				checkword: {
 					required: true
+				},
+				agree: {
+					required: true
 				}				
 			},
 			messages: {
@@ -229,7 +232,10 @@ $(document).ready(function() {
 				},
 				checkword: {
 					required: '請輸入驗證碼'
-				}				
+				},
+				agree: {
+					required: '請同意LazyCat服務條款'
+				}
 			},
 
 			showErrors: showErrors,

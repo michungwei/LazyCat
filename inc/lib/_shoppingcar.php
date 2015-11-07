@@ -324,7 +324,7 @@ class shoppingCar
 				$this->freightprice = 0;
 			}
 			else if($transportType == 1)
-				$this->freightprice = 80;
+				$this->freightprice = 60;
 			else if($transportType == 2)
 				$this->freightprice = 100;
 			else if($transportType == 3 && !$this->chkHaveBag())

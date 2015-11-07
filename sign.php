@@ -107,8 +107,8 @@ $(document).ready(function(e) {
                         </span><span> <a href="javascript:;" class="for_pwd">忘記密碼</a></span></td>
                 </tr>
                 <tr>
-                    <td>請輸入右圖驗證碼</td>
-                    <td><img id="imgcode" src="captcha.php" onclick="refresh_code()" /></td>
+                    <td>驗證碼</td>
+                    <td><img id="imgcode" src="captcha.php" onclick="refresh_code()" /><span> (點圖片更換驗證碼)</span></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -116,7 +116,7 @@ $(document).ready(function(e) {
                 </tr>
                 <tr>
                     <td></td>
-                    <td>我已經詳細閱讀並同意<span id="agreement">LAZYCAT服務條款</span></td>
+                    <td width="300"><span><input name="agree" type="checkbox" id="agree" value="0" />我已經詳細閱讀並同意<span id="agreement">LAZYCAT服務條款</span></td><span>
                 </tr>
                 <tr>
                     <td></td>

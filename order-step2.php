@@ -96,7 +96,7 @@ if(!isLogin()){
 			</select>
 			<div class="mb10" id="recipient_optionTW" >
                 <input type="radio" checked name="recipient_wayOption" id="recipient_wayOption" value="1" />店到店
-                <input type="button" name="ezship_choose" id="ezship_choose" value="<?php echo $stName; ?>" onclick="window.location.href = 'http://map.ezship.com.tw/ezship_map_web_2014.jsp?rtURL=http://www.lazycatshop.com/order-step2.html';"/>
+                <input type="button" name="ezship_choose" id="ezship_choose" value="<?php echo $stName; ?>" onclick="window.location.href = 'http://map.ezship.com.tw/ezship_map_web_2014.jsp?rtURL=<?php echo $web_url;?>order-step2.html';"/>
                 <input type="hidden" name="ezship_name" id="ezship_name" value="<?php echo $stName; ?>"/>
                 <input type="hidden" name="ezship_cate" id="ezship_cate" value="<?php echo $stCate; ?>"/>
                 <input type="hidden" name="ezship_code" id="ezship_code" value="<?php echo $stCode; ?>"/>
@@ -156,7 +156,7 @@ if(!isLogin()){
 						?>
                         <tr>
                             <td width="190" style="word-wrap: break-word; word-break: break-all;">運費</td>
-                            <td class="freight">0</td>
+                            <td class="freight">60</td>
                         </tr>
                     </tbody>
                     <tfoot>

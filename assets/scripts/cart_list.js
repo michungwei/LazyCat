@@ -186,19 +186,19 @@ $(document).ready(function(e) {
 						//console.log(response);
 						if(response.result){
 							if(response.payment_type == 1){//刷卡
-								location.href = "do/payment.html";
+								location.href = "http://www.lazycatshop.com/do/payment.html";
 							}
 							if(response.payment_type == 2){//ATM
-								location.href = "do/paymentatm.html";
+								location.href = "http://www.lazycatshop.com/do/paymentatm.html";
 							}
 							if(response.payment_type == 3){//超商代收
-								location.href = "do/paymentcs.html";
+								location.href = "http://www.lazycatshop.com/do/paymentcs.html";
 							}
 							if(response.payment_type == 4){//7-11ibon / 全家FamiPort / 萊爾富Life-ET / OK 超商OK-go'
-								location.href = "do/paymentmmk.html";
+								location.href = "http://www.lazycatshop.com/do/paymentmmk.html";
 							}
 							if(response.payment_type == 9){//貨到付款
-								location.href = "order-step3.html";
+								location.href = "http://www.lazycatshop.com/order-step3.html";
 							}
 						}else{
 							//alert(response.result);
@@ -243,11 +243,13 @@ $(document).ready(function(e) {
 		{
 			$('#recipient_optionTW').show();
 			$('#recipient_optionElse').hide();
+			$('.chk-way').show();
 		}
 		else if(selectVal == 2)
 		{
 			$('#recipient_optionTW').hide();
 			$('#recipient_optionElse').show();
+			$('.chk-way').not(':eq(0)').hide();
 		}
 	});
 	//$('#ezship_choose').hide();
@@ -278,7 +280,7 @@ $(document).ready(function(e) {
 			freight = 0;
 		}
 		else if(this.value == 1)
-			freight = 80;
+			freight = 60;
 		else if(this.value == 2)
 			freight = 100;
 		else if(this.value == 3 && !isHaveBag)
