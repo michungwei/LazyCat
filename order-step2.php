@@ -156,7 +156,7 @@ if(!isLogin()){
 						?>
                         <tr>
                             <td width="190" style="word-wrap: break-word; word-break: break-all;">運費</td>
-                            <td class="freight">60</td>
+                            <td class="freight">0</td>
                         </tr>
                     </tbody>
                     <tfoot>

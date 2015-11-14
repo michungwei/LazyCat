@@ -176,7 +176,7 @@ class shoppingCar
 			$this -> insertItem($si);
 		}
 		else{
-			$item -> update('num', $item -> amount + $si -> amount);
+			$item -> update('num', $item -> /*amount + $si ->*/ amount);
 			$item -> update('subtotal', $item -> amount * $item -> sell_price);
 			$this -> updateItem($item);
 		}
