@@ -26,7 +26,7 @@ $(document).ready(function(e) {
         <li href="memberCenter_<?php echo $_SESSION["session_id"]; ?>.html"> 會員中心 </li>
         <li href="wishlist.html"> wishlist </li>
         <li href="order-list.php?member_id=<?php echo $_SESSION["session_id"]; ?>"> 訂單查詢 </li>
-        <li href="wishlist.html"> 購物抵用金查詢 </li>
+        <!--<li> 購物抵用金查詢 </li>-->
     </ul>
 </div>
 <div id="nav">
@@ -36,6 +36,7 @@ $(document).ready(function(e) {
         <li class="menu-item menu-bag"><a href="product-list_1.html">bags</a></li>
         <li class="menu-item menu-access"><a href="product-list_2.html">accessories</a></li>
         <li class="menu-item menu-other"><a href="product-list_3.html">others</a></li>
+        <li class="menu-item menu-other"><a href="product-list_4.html">Sale</a></li>
         <li class="menu-item menu-look"><a href="lookbook.html">lookbook</a></li>
         <!--<li class="menu-item menu-wish"><a href="wishlist.html">wishlist</a></li>-->
     </ul>

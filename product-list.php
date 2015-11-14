@@ -77,6 +77,10 @@ switch($type_id){
 		$sub_banner_pic = $web_path_subbanner."m".$rows_subbanner[4]["subbanner_pic"];
 		$sub_banner_pic_link = $rows_subbanner[4]["subbanner_pic_link"];
 		break;
+    case 4:
+        $sub_banner_pic = $web_path_subbanner."m".$rows_subbanner[6]["subbanner_pic"];
+        $sub_banner_pic_link = $rows_subbanner[6]["subbanner_pic_link"];
+        break;
 }
 
 $car = new shoppingCar();
@@ -198,7 +202,13 @@ $(document).ready(function(e) {
             <div class="pro-item pro_list" pic1="<?php echo $web_path_product."m".$row_product["product_pic1"]; ?>" pic2="<?php echo $web_path_product."m".$row_product["product_pic2"]; ?>"> <img class="proi-img" src="<?php echo $web_path_product."m".$row_product["product_pic1"]; ?>" alt="" width="240" height="320"/>
                 <p class="proi-en"><?php echo $row_product["product_name_en"]; ?></p>
                 <p class="proi-zh"><?php echo $row_product["product_name_tw"]; ?></p>
-                <p class="price">TWD.<?php echo $row_product["product_sell_price"]; ?></p>
+
+                <p class="price"><a <?php if($type_id == 4) echo 'style="text-decoration:line-through;"' ?>>TWD.<?php echo $row_product["product_sell_price"]; ?></a></p>
+                <?php if($type_id == 4)
+                ?>
+                    <p class="price"><font color="red">TWD.<?php echo $row_product["product_special_price"]; ?></font></p>
+                <?php
+                ?>
             </div>
             </a>
             <?php
