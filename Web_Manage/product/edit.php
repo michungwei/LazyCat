@@ -35,6 +35,7 @@ if($row){
 	$weekly = $row["product_weekly"];
 	$hot = $row["product_hot"];
 	$comment = $row["product_comment"];
+    $comment2 = $row["product_comment2"];
 	$is_show = $row["product_is_show"];
 	$update_time = $row["product_update_time"];
     $color = $row["product_color"];
@@ -57,6 +58,7 @@ $db -> close();
 <title>Untitled Document</title>
 <link href="../css/admin_style_gray.css" rel="stylesheet" />
 <link rel="stylesheet" href="../../ui/colorpicker/css/colorpicker.css" type="text/css" />
+<link href="../../ui/uploadify/uploadify.css" rel="stylesheet"/>
 
 <script src="../../scripts/jquery-1.6.1rc1.min.js"></script>
 <script src="../../ui/ckeditor/ckeditor.js"></script>
@@ -298,6 +300,10 @@ $(document).ready(function(){
                             <td><input type="text" name="price" id="price" size="50" value="<?php echo $price; ?>"/></td>
                         </tr>
                         <tr>
+                            <td width="150" valign="top"><h4 class="input-text-title">特價</h4></td>
+                            <td><input type="text" name="sprice" id="sprice" size="50" value="<?php echo $sprice; ?>"/></td>
+                        </tr>
+                        <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">顏色</h4></td>
                             <td>
                                 <div id="colorSelector"><a>+</a></div>
@@ -305,10 +311,6 @@ $(document).ready(function(){
                                 <input type="hidden" name="color" id="color" size="50" value="<?php echo $color; ?>"/>
                             </td>
                         </tr>
-                        <?php /*?><tr>
-                            <td width="150" valign="top"><h4 class="input-text-title">特價</h4></td>
-                            <td><input type="text" name="sprice" id="sprice" size="50" value="<?php echo $sprice; ?>"/></td>
-                        </tr><?php */?>
                         <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">庫存</h4></td>
                             <td><div id="colorStockContainer"></div><input type="text" name="stock" id="stock" size="50" value="<?php echo $stock; ?>"/></td>
@@ -350,6 +352,10 @@ $(document).ready(function(){
                         <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">內容</h4></td>
                             <td><textarea name="comment" id="comment" class="ckeditor"><?php echo $comment; ?></textarea></td>
+                        </tr>
+                        <tr>
+                            <td width="150" valign="top"><h4 class="input-text-title">圖片內容</h4></td>
+                            <td><textarea name="comment2" id="comment2" class="ckeditor"><?php echo $comment2; ?></textarea></td>
                         </tr>
                         <tr>
                             <td></td>

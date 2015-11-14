@@ -51,7 +51,7 @@ $db -> close();
 <div id="mgbody-content">
     <div id="panel"> <br />
     </div>
-    <p class="slide"> <?php /*?><a href="add.php?<?php echo $query_str; ?>" class="btn-slideNo">新增</a><?php */?></p>
+    <p class="slide"> <a href="add.php?<?php echo $query_str; ?>" class="btn-slideNo">新增</a></p>
     <div id="adminlist">
         <h2> <img src="../images/admintitle.png" />&nbsp;&nbsp;<?php echo $mtitle; ?> >&nbsp;&nbsp;列表</h2>
         <br>

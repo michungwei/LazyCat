@@ -16,6 +16,7 @@ $db -> close();
 <title>Untitled Document</title>
 <link href="../css/admin_style_gray.css" rel="stylesheet" />
 <link rel="stylesheet" href="../../ui/colorpicker/css/colorpicker.css" type="text/css" />
+<link href="../../ui/uploadify/uploadify.css" rel="stylesheet"/>
 
 <script src="../../scripts/jquery-1.6.1rc1.min.js"></script>
 <script src="../../scripts/public.js"></script>
@@ -222,7 +223,7 @@ $(document).ready(function(){
                         </tr>
                         <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">商品序號</h4></td>
-                            <td><input type="text" name="sno" id="sno" size="50" value=""/></td>
+                            <td><input type="text" name="sno" id="sno" size="50" value="<?php $date = new DateTime(); echo $date->getTimestamp();?>"/></td>
                         </tr>
                         <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">名稱(中)</h4></td>
@@ -236,10 +237,10 @@ $(document).ready(function(){
                             <td width="150" valign="top"><h4 class="input-text-title">售價</h4></td>
                             <td><input type="text" name="price" id="price" size="50" value=""/></td>
                         </tr>
-                        <!--<tr>
+                        <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">特價</h4></td>
                             <td><input type="text" name="sprice" id="sprice" size="50" value=""/></td>
-                        </tr>-->
+                        </tr>
                         <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">顏色</h4></td>
                             <td>
@@ -283,6 +284,10 @@ $(document).ready(function(){
                         <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">說明</h4></td>
                             <td><textarea name="comment" id="comment" class="ckeditor"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td width="150" valign="top"><h4 class="input-text-title">圖片說明</h4></td>
+                            <td><textarea name="comment2" id="comment2" class="ckeditor"></textarea></td>
                         </tr>
                         <tr>
                             <td></td>
