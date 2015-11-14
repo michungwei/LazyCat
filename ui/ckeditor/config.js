@@ -50,7 +50,7 @@ CKEDITOR.editorConfig = function( config ) {
 
 			//{ name: 'insert', items : [ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ] },
 
-			{ name: 'insert', items : [ 'Image','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ] },
+			{ name: 'insert', items : [ 'Image','uploadImage','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ] },
 
 			//'/',
 
@@ -63,6 +63,8 @@ CKEDITOR.editorConfig = function( config ) {
 			
 
 	];
+
+	config.extraPlugins = 'uploadImage';//多圖上傳套件(uploadImage為plugins資料夾下層的資料夾名子)+插入程式碼套件
 
 	config.allowedContent = true;
 
