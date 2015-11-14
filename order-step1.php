@@ -88,6 +88,8 @@ $rows_hot = Product::getHotPro();
                     {
                         $colorStr = "無";
                     }
+                    $stockAry = explode(",", $row_product["product_stock"]);
+                    $stock = $stockAry[$product_color];
 			?>
             <tr>
                 <td><button class="btn-del cart_del_btn" cart_id="<?php echo $cart_id; ?>">×</button></td>
@@ -96,7 +98,19 @@ $rows_hot = Product::getHotPro();
                     <?php echo $product_name_tw; ?><br /></td>
                 <td class="color"><div id="colorSelect"><div style='background-color: <?php echo $colorStr; ?>'></div></div></td>
                 <td class="sell_price_td"> TWD.<span class="sell_price"><?php echo $sell_price; ?></span></td>
-                <td class="cart_list_td" color="<?php echo $product_color; ?>"><span class="cost" style="cursor: pointer;" cart_id="<?php echo $cart_id; ?>" product_id="<?php echo $product_id; ?>">&#8211;</span>&nbsp;&nbsp;&nbsp;&nbsp; <span class="num"><?php echo $amount; ?></span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="plus" style="cursor: pointer;" cart_id="<?php echo $cart_id; ?>">&plus;</span></td>
+                <!--<td class="cart_list_td" color="<?php echo $product_color; ?>"><span class="cost" style="cursor: pointer;" cart_id="<?php echo $cart_id; ?>" product_id="<?php echo $product_id; ?>">&#8211;</span>&nbsp;&nbsp;&nbsp;&nbsp; <span class="num"><?php echo $amount; ?></span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="plus" style="cursor: pointer;" cart_id="<?php echo $cart_id; ?>">&plus;</span></td>-->
+                <td class="cart_list_td" color="<?php echo $product_color; ?>">
+                    <select style="width: 50px;margin-right:50px" class="numSelect" id="numSelect" cart_id="<?php echo $cart_id; ?>" product_id="<?php echo $product_id; ?>">
+                        <?php
+                        for($j = 1; $j <= $stock; $j++)
+                        {
+                        ?>
+                            <option value="<?php echo $j; ?>" <?php echo ($j == $amount)? "selected" : ""; ?>><?php echo $j;?></option>
+                        <?php
+                        } 
+                        ?>
+                    </select>
+                </td>
                 <td class="subtotal_price_td">TWD.<span class="subtotal_price"><?php echo $subtotal; ?></span></td>
             </tr>
             <?php

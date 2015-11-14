@@ -1,9 +1,11 @@
 function chkStock(){
 	var result = true;
 	$("td.cart_list_td").each(function(index, element) {
-		var product_id = $(this).find("span.cost").attr("product_id");
-		var num = $(this).find("span.num").text();
+		var product_id = $(this).children('#numSelect').attr("product_id");
+		var num = $(this).children('select').find("option:selected").text();
 		var color = $(this).attr("color");
+		console.log("[chkStock] num = " + num +" color = " + color);
+
 		var res = chkProductStock(product_id, num, color);
 		if(!res){
 			result = false;
@@ -65,12 +67,28 @@ $(document).ready(function(e) {
 		}
 		location.reload();
     });
+
+    $("#numSelect").change(function()
+    {
+    	var cart_id = $(this).attr("cart_id");
+		var sell_price = $(this).parent("td").siblings("td.sell_price_td").find("span.sell_price").text();
+		var total_price = 0;
+    	var num = $('#numSelect option:selected').text();
+    	$(this).parent("td").siblings("td.subtotal_price_td").find("span.subtotal_price").text(num*sell_price);
+		$("td.subtotal_price_td").each(function(index, element) {
+			var subtotal_price = parseInt($(this).find("span.subtotal_price").text());
+            total_price += subtotal_price;
+        });
+		$("span.total_price").text(total_price);
+    });
 	
 	$("#cheakout_btn").click(function(e) {
 		if(chkStock()){
 			$("td.cart_list_td").each(function(index, element) {
-				var cart_id = $(this).find("span.cost").attr("cart_id");
-				var num = $(this).find("span.num").text();
+				var cart_id = $('#numSelect').attr("cart_id");
+				//var cart_id = $(this).find("select.cost").attr("cart_id");
+				//var num = $(this).find("span.num").text();
+				var num = $('#numSelect option:selected').text();
 				updateCar(cart_id, num);
         	});
 			location.href = "order-step2.html";
@@ -186,16 +204,16 @@ $(document).ready(function(e) {
 						//console.log(response);
 						if(response.result){
 							if(response.payment_type == 1){//刷卡
-								location.href = "http://www.lazycatshop.com/do/payment.html";
+								location.href = "do/payment.html";
 							}
 							if(response.payment_type == 2){//ATM
-								location.href = "http://www.lazycatshop.com/do/paymentatm.html";
+								location.href = "do/paymentatm.html";
 							}
 							if(response.payment_type == 3){//超商代收
-								location.href = "http://www.lazycatshop.com/do/paymentcs.html";
+								location.href = "do/paymentcs.html";
 							}
 							if(response.payment_type == 4){//7-11ibon / 全家FamiPort / 萊爾富Life-ET / OK 超商OK-go'
-								location.href = "http://www.lazycatshop.com/do/paymentmmk.html";
+								location.href = "do/paymentmmk.html";
 							}
 							if(response.payment_type == 9){//貨到付款
 								location.href = "http://www.lazycatshop.com/order-step3.html";
