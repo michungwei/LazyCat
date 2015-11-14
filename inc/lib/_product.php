@@ -229,7 +229,7 @@ class Product{
 	public static function getWishList($member_id){
 		global $db, $table_wish, $table_product;
 		return $db -> fetch_all_array(
-									  "SELECT wish_id, wish_member_id, wish_color, wish_product_id, wish_create_time, product_id, product_sno, product_name_tw, product_name_en, product_stock, product_sell_price, product_special_price, product_pic1, product_is_show, product_color
+									  "SELECT wish_id, wish_member_id, wish_color, wish_product_id, wish_create_time, product_type_id, product_id, product_sno, product_name_tw, product_name_en, product_stock, product_sell_price, product_special_price, product_pic1, product_is_show, product_color
 									   FROM $table_wish LEFT JOIN  $table_product ON wish_product_id = product_id
 									   WHERE wish_member_id = '$member_id'
 									   ORDER BY wish_create_time DESC"

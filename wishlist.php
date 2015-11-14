@@ -92,8 +92,8 @@ $u = count($carItem);
             <tr class="list">
                 <td><button class="btn-del wish_del" w_id="<?php echo $row["wish_id"]; ?>">×</button></td>
                 <td><img src="<?php echo $web_path_product."m".$row["product_pic1"]; ?>" height="120" width="90" alt="" /></td>
-                <td><?php echo $row["product_name_en"]; ?> <br />
-                    <?php echo $row["product_name_tw"]; ?></td>
+                <td><a href="product_<?php echo $row["product_type_id"]; ?>_<?php echo $row["product_id"]; ?>.html"><?php echo $row["product_name_en"]; ?> <br />
+                    <?php echo $row["product_name_tw"]; ?></a></td>
                 <td><div id="colorSelect"><div style='background-color: <?php echo $colorStr; ?>'></div></div></td>
                 <td> TWD.<?php echo $row["product_sell_price"]; ?></td>
                 <td><span class="num"><?php echo ($stockNum > 0) ? $stockNum : "補貨中"; ?></span></td>
