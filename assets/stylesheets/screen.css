@@ -1334,6 +1334,9 @@ li.prol-item {
 .productInfo .social {
 	margin-top:40px
 }
+.productComment2 {
+	width: auto;
+}
 .recently-title:before {
 	content:"RECENTLY POST"
 }

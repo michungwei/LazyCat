@@ -140,6 +140,12 @@ $(document).ready(function(){
             <li class="soc-item "><a class="ui-s-fb" href="###"></a></li>
         </ul>
     </div>
+    <div class="clear-both"></div>
+</div>
+<div class="orderContent">
+    <div class="productComment2">
+        <p><?php echo $row["product_comment2"]; ?></p>
+    </div>
 </div>
 <div class="hot">
     <!--<div class="recently-title"></div>-->
