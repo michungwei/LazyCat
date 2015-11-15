@@ -68,14 +68,14 @@ $(document).ready(function(e) {
 		location.reload();
     });
 
-    $("select").change(function(e)
+    $("td.cart_list_td select").change(function(e)
     {
-    	console.log("change!");
+    	//console.log("change!");
     	var cart_id = $(this).attr("cart_id");
 		var sell_price = $(this).parent("td").siblings("td.sell_price_td").find("span.sell_price").text();
 		var total_price = 0;
-    	var num = /*$('#numSelect option:selected').text();*/$(this).find('option:selected').text();
-    	console.log("number select : sell_price = " + sell_price + "num = " + num);
+    	var num = $(this).find('option:selected').text();
+    	//console.log("number select : sell_price = " + sell_price + "num = " + num);
     	$(this).parent("td").siblings("td.subtotal_price_td").find("span.subtotal_price").text(num*sell_price);
 		$("td.subtotal_price_td").each(function(index, element) {
 			var subtotal_price = parseInt($(this).find("span.subtotal_price").text());
@@ -87,10 +87,10 @@ $(document).ready(function(e) {
 	$("#cheakout_btn").click(function(e) {
 		if(chkStock()){
 			$("td.cart_list_td").each(function(index, element) {
-				var cart_id = $('#numSelect').attr("cart_id");
+				var cart_id = $(this).children('select').attr("cart_id");
 				//var cart_id = $(this).find("select.cost").attr("cart_id");
 				//var num = $(this).find("span.num").text();
-				var num = $('#numSelect option:selected').text();
+				var num = $(this).children('select').find('option:selected').text();
 				updateCar(cart_id, num);
         	});
 			location.href = "order-step2.html";
