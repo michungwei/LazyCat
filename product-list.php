@@ -205,9 +205,11 @@ $(document).ready(function(e) {
 
                 <p class="price"><a <?php if($type_id == 4) echo 'style="text-decoration:line-through;"' ?>>TWD.<?php echo $row_product["product_sell_price"]; ?></a></p>
                 <?php if($type_id == 4)
+                {
                 ?>
                     <p class="price"><font color="red">TWD.<?php echo $row_product["product_special_price"]; ?></font></p>
                 <?php
+                }
                 ?>
             </div>
             </a>

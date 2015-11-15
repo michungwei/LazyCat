@@ -68,12 +68,14 @@ $(document).ready(function(e) {
 		location.reload();
     });
 
-    $("#numSelect").change(function()
+    $("select").change(function(e)
     {
+    	console.log("change!");
     	var cart_id = $(this).attr("cart_id");
 		var sell_price = $(this).parent("td").siblings("td.sell_price_td").find("span.sell_price").text();
 		var total_price = 0;
-    	var num = $('#numSelect option:selected').text();
+    	var num = /*$('#numSelect option:selected').text();*/$(this).find('option:selected').text();
+    	console.log("number select : sell_price = " + sell_price + "num = " + num);
     	$(this).parent("td").siblings("td.subtotal_price_td").find("span.subtotal_price").text(num*sell_price);
 		$("td.subtotal_price_td").each(function(index, element) {
 			var subtotal_price = parseInt($(this).find("span.subtotal_price").text());
