@@ -15,7 +15,8 @@ $ApprovalCode = getParameter('ApprovalCode');
 $BankResponseCode = getParameter('BankResponseCode');
 $BatchNumber = getParameter('BatchNumber');
 
-$Code = "abcd1234";
+//$Code = "abcd1234";
+$Code = "2fvxqj5x";
 
 $db = new Database($HS, $ID, $PW, $DB);
 $db -> connect();
