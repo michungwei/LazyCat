@@ -26,7 +26,8 @@ $total_price = $_SESSION["total_price"];
 
 
 //金流資料
-$act_url = "https://testmaple2.neweb.com.tw/NewebmPP/cdcard.jsp";
+//$act_url = "https://testmaple2.neweb.com.tw/NewebmPP/cdcard.jsp";
+$act_url = "https://taurus.neweb.com.tw/NewebmPP/cdcard.jsp";
 $MerchantNumber = "760535"; //商店編號
 $OrderNumber = $order_sno;
 $Amount = $total_price;
@@ -37,7 +38,8 @@ $Englishmode = 0;
 $iphonepage = 0;
 $OrderURL = $web_url."do/PaymentType_feedback2.php";
 $ReturnURL = $web_url."do/PaymentType_receive.php";
-$Code = "abcd1234";
+//$Code = "abcd1234";
+$Code = "2fvxqj5x";
 $checksum = md5($MerchantNumber.$OrderNumber.$Code.$Amount);
 
 $db -> close();

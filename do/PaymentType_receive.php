@@ -16,7 +16,8 @@ $final_return_ApproveCode = getParameter('final_return_ApproveCode');
 $final_return_BankRC = getParameter('final_return_BankRC');
 $final_return_BatchNumber = getParameter('final_return_BatchNumber');
 
-$Code = "abcd1234";
+//$Code = "abcd1234";
+$Code = "2fvxqj5x";
 
 $Msg = "no_get";
 $turl = '';

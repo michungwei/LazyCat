@@ -95,7 +95,7 @@ if(!isLogin()){
 				<option value="2">海外</option>
 			</select>
 			<div class="mb10" id="recipient_optionTW" >
-                <input type="radio" checked name="recipient_wayOption" id="recipient_wayOption" value="1" />店到店
+                <input type="radio" <?php if($stCode != "0") echo "checked";?> name="recipient_wayOption" id="recipient_wayOption" value="1" />店到店
                 <input type="button" name="ezship_choose" id="ezship_choose" value="<?php echo $stName; ?>" onclick="window.location.href = 'http://map.ezship.com.tw/ezship_map_web_2014.jsp?rtURL=<?php echo $web_url;?>order-step2.html';"/>
                 <input type="hidden" name="ezship_name" id="ezship_name" value="<?php echo $stName; ?>"/>
                 <input type="hidden" name="ezship_cate" id="ezship_cate" value="<?php echo $stCate; ?>"/>
