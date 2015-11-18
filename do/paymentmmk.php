@@ -28,8 +28,8 @@ $total_price = $_SESSION["total_price"];
 
 
 //金流資料
-$act_url = "https://testmaple2.neweb.com.tw/CashSystemFrontEnd/Payment";
-$code = "abcd1234";
+$act_url = "https://aquarius.neweb.com.tw/CashSystemFrontEnd/Payment";
+$code = "dufu7iz4";
 $merchantnumber = "460060"; //商店編號
 $ordernumber = $order_sno;
 $amount = $total_price;
