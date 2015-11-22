@@ -90,17 +90,27 @@ if($final_result=="1"){
 		$orderdetail_product_id = $row_detail["orderdetail_product_id"];
 		$orderdetail_product_sno = $row_detail["orderdetail_product_sno"];
 		$orderdetail_amount = $row_detail["orderdetail_amount"];
+		$orderdetail_product_color = $row_detail["orderdetail_product_color"];
+
 		
 		$db -> begin();
 		try{
 			$row_stock = $db -> query_first("SELECT * FROM $table_product WHERE product_id = '$orderdetail_product_id' AND product_sno = '$orderdetail_product_sno'");
-			
-			$db -> query("UPDATE $table_product SET product_stock = (product_stock + '$orderdetail_amount') WHERE product_id = '$orderdetail_product_id' AND product_sno = '$orderdetail_product_sno'");
+			$stockAry = explode( ",", $row_stock["product_stock"]);
+			$stockAry[$orderdetail_product_color] += $orderdetail_amount;
+
+			$stockStr = "";
+			for($j = 0; $j < count($stockAry) - 1; $j ++)
+			{
+				$stockStr .= $stockAry[$j].",";
+			}
+
+			$db -> query("UPDATE $table_product SET product_stock = '$stockStr' WHERE product_id = '$orderdetail_product_id' AND product_sno = '$orderdetail_product_sno'");
 			
 			//新增庫存log
 			$data_stock["storelog_product_id"] = $orderdetail_product_id;
 			$data_stock["storelog_acc"] = "網站";
-			$data_stock["storelog_comment"] = "(金流失敗)庫存由".$row_stock["product_stock"]."修改為".($row_stock["product_stock"]+$orderdetail_amount);
+			$data_stock["storelog_comment"] = "(金流失敗)庫存由".$row_stock["product_stock"]."修改為".$stockStr;
 			$data_stock["storelog_create_time"] = request_cd();
 			
 			$db -> query_insert($table_storelog, $data_stock);
