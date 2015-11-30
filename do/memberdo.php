@@ -25,6 +25,7 @@ if($actiontype == "insert"){
 	$mobile = post("mobile", 1);
 	$mobile_national_number = post("mobile_national_number", 1);
 	$address = post("address", 1);
+	$checkCode = post("checkCode", 1);
 	
 	$sResult = isNull($account, "帳號", 2, 100);
 	if($sResult){$sResult = isNull($password, "密碼", 6, 35);}
@@ -33,6 +34,12 @@ if($actiontype == "insert"){
 	if($sResult){$sResult = isNull($birthday, "生日", 1, 15);}
 	if($sResult){$sResult = isNull($mobile, "手機", 1, 20);}
 	if($sResult){$sResult = isNull($address, "地址", 1, 255);}
+
+	if($_SESSION['check_word'] != $checkCode || empty($checkCode))
+	{
+		$str_message = "驗證碼輸入錯誤";
+		$sResult = false;
+	}
 	
 	if($sResult){	
 		try{

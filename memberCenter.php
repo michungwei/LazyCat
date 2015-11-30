@@ -151,7 +151,7 @@ $(document).ready(function(e) {
                         <td><input name="password" type="password" id="password" /></td>
                     </tr>
                     <tr>
-                        <td>在輸入一次</td>
+                        <td>再輸入一次</td>
                         <td><input name="repassword" type="password" id="repassword" /></td>
                     </tr>
                     <tr>

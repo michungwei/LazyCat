@@ -42,7 +42,8 @@ coderMember.prototype = {
 					birthday : member.birthday, 
 					address : member.address, 
 					mobile : member.mobile,
-					mobile_national_number : member.mobile_national_number,   
+					mobile_national_number : member.mobile_national_number,
+					checkCode: member.checkCode,   
 					actiontype : "insert" 
 			},
 			dataType : "json",

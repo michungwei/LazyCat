@@ -106,6 +106,9 @@ $(document).ready(function() {
 				},
 				address_code:{
 					required: true
+				},
+				checkword: {
+					required: true
 				}
 			},
 			messages: {
@@ -156,6 +159,9 @@ $(document).ready(function() {
 				},
 				address_code:{
 					required: "請輸入郵遞區號"
+				},
+				checkword: {
+					required: '請輸入驗證碼'
 				}
 			},
 
@@ -175,7 +181,9 @@ $(document).ready(function() {
 				_item.mobile_national_number = $('#mobile_national_number').val();
 				_item.mobile = $('#mobile').val();
 				_item.address = '('+ $('#address_code').val() +')' + $('#address_country').val() + $('#address_city').val() + $('#address').val();
-				console.log(_item.address);
+				_item.checkCode = $('#chkword').val();
+				/*console.log(_item.address);
+				console.log(_item.checkCode);*/
 				setTimeout(
 					function() {
 						if (myMember.insert(_item, 'insert')) {
@@ -186,7 +194,7 @@ $(document).ready(function() {
 							}
 						} else {
 							$('#join_member_btn').show();
-							alert("會員加入失敗！");
+							alert("會員加入失敗！" + myMember.message );
 						}
 					}, 1000);
 			}

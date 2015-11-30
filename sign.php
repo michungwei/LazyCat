@@ -68,6 +68,7 @@ $(document).ready(function(e) {
 <script>  
     function refresh_code(){   
         document.getElementById("imgcode").src="captcha.php";   
+        document.getElementById("imgcode2").src="captcha.php";   
     }   
 </script>
 </head>
@@ -254,6 +255,14 @@ $(document).ready(function(e) {
                         <br>
                         <a style="color:#FF0000; font-size:7px;">請確認填寫地址與郵遞區號完整無誤，避免錯誤導致無法收件</a>
                     </td>
+                </tr>
+                <tr>
+                    <td>驗證碼</td>
+                    <td><img id="imgcode2" src="captcha.php" onclick="refresh_code()" /><span> (點圖片更換驗證碼)</span></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input name="chkword" type="text" id="chkword" /></td>
                 </tr>
                 <tr>
                     <td colspan="2"></td>
