@@ -95,7 +95,7 @@ if(!isLogin()){
 				<option value="2">海外</option>
 			</select>
 			<div class="mb10" id="recipient_optionTW" >
-                <input type="radio" <?php if($stCode != "0") echo "checked";?> name="recipient_wayOption" id="recipient_wayOption" value="1" />店到店
+                <input type="radio" <?php /*if($stCode != "0")*/ echo "checked";?> name="recipient_wayOption" id="recipient_wayOption" value="1" />店到店
                 <input type="button" name="ezship_choose" id="ezship_choose" value="<?php echo $stName; ?>" onclick="window.location.href = 'http://map.ezship.com.tw/ezship_map_web_2014.jsp?rtURL=<?php echo $web_url;?>order-step2.html';"/>
                 <input type="hidden" name="ezship_name" id="ezship_name" value="<?php echo $stName; ?>"/>
                 <input type="hidden" name="ezship_cate" id="ezship_cate" value="<?php echo $stCate; ?>"/>
@@ -137,6 +137,7 @@ if(!isLogin()){
                     </thead>
                     <tbody>
                         <?php
+                        $sum = 0;
 						for($i = 0; $i < count($carItem); $i++){
 							$product_id = $carItem[$i] -> product_id;
 							$product_sno = $carItem[$i] -> product_sno;
@@ -152,6 +153,7 @@ if(!isLogin()){
                             <td><?php echo $subtotal; ?></td>
                         </tr>
                         <?php
+                            $sum += $subtotal;
 						}
 						?>
                         <tr>
@@ -176,7 +178,14 @@ if(!isLogin()){
                 </div>
                 <?php
 				}
+                if(1000 - $sum > 0)
+                {
+                    $temp = 1000 - $sum;
 				?>
+                <div class="buy_hint"><font size="1" color="red">購物滿1000元免運費，離免運費還差<?php echo $temp; ?>元</font></div>
+                <?php
+                }
+                ?>
             </div>
             <input type="button" class="btn-white" style="cursor: pointer;" id="order_pay_btn" value="確認訂單">
         </div>

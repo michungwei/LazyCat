@@ -14,6 +14,32 @@ function chkStock(){
 	return result;
 }
 $(document).ready(function(e) {
+	var isHaveBag = $('input[name="haveBag"]').val();
+	var totalPrice = $('input[name="totalPrice"]').val();
+	var wayOption = $('input[name="recipient_wayOption"]').val();
+	var freightLimit = 1000;
+	var freight = 0;
+	//console.log(totalPrice + "   " + freightLimit + "    " +wayOption);
+	if(wayOption < 3 && totalPrice > 1000 )
+	{
+		freight = 0;
+	}
+	else if(wayOption == 1)
+		freight = 60;
+	else if(wayOption == 2)
+		freight = 100;
+	else if(wayOption == 3 && !isHaveBag)
+		freight = 200;
+	else if(wayOption == 3 && isHaveBag)
+		freight = 580;
+	else if(wayOption == 4 && !isHaveBag)
+		freight = 460;
+	else if(wayOption == 4 && isHaveBag)
+		freight = 610;
+	totalPrice = parseInt(totalPrice) + freight;
+	$('.freight').replaceWith("<td class='freight'>"+freight+"</td>");
+	$('.total').replaceWith("<td class='total'>"+totalPrice+"</td>");
+
 	$(".cart_del_btn").click(function(e) {
 		var cart_id = $(this).attr("cart_id");
 		var num = 0;
@@ -193,7 +219,7 @@ $(document).ready(function(e) {
 			submitHandler: function(form) {
 				//alertify.log("訂單送出中...請稍待!");
 				$('#order_pay_btn').hide();
-				var act = "do/order_save.html";
+				var act = "do/order_save.php";
 				var data = $("#order_pay_form").serialize();
 				$.ajax({
 					url : act,
@@ -206,7 +232,7 @@ $(document).ready(function(e) {
 						//console.log(response);
 						if(response.result){
 							if(response.payment_type == 1){//刷卡
-								location.href = "do/payment.html";
+								location.href = "do/payment.php";
 							}
 							if(response.payment_type == 2){//ATM
 								location.href = "do/paymentatm.html";
@@ -264,12 +290,14 @@ $(document).ready(function(e) {
 			$('#recipient_optionTW').show();
 			$('#recipient_optionElse').hide();
 			$('.chk-way').show();
+			$('.buy_hint').show();
 		}
 		else if(selectVal == 2)
 		{
 			$('#recipient_optionTW').hide();
 			$('#recipient_optionElse').show();
 			$('.chk-way').not(':eq(0)').hide();
+			$('.buy_hint').hide();
 		}
 	});
 	//$('#ezship_choose').hide();
@@ -281,18 +309,18 @@ $(document).ready(function(e) {
 		if(this.value == 1)
 		{
 			$('#ezship_choose').show();
-			$('input[name="ezship_choose"]').val("選擇門市");
+			/*$('input[name="ezship_choose"]').val("選擇門市");
 			$('input[name="ezship_name"]').val("選擇門市");
 			$('input[name="ezship_cate"]').val("TFM");
-			$('input[name="ezship_code"]').val("0");
+			$('input[name="ezship_code"]').val("0");*/
 		}
 		else
 		{	
 			$('#ezship_choose').hide();
-			$('input[name="ezship_choose"]').val("無");
+			/*$('input[name="ezship_choose"]').val("無");
 			$('input[name="ezship_name"]').val("無");
 			$('input[name="ezship_cate"]').val("TFM");
-			$('input[name="ezship_code"]').val("0");
+			$('input[name="ezship_code"]').val("0");*/
 		}
 		//console.log(totalPrice + "   " + freightLimit);
 		if(this.value < 3 && totalPrice > 1000 )
