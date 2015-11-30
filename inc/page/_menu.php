@@ -36,7 +36,7 @@ $(document).ready(function(e) {
         <li class="menu-item menu-bag"><a href="product-list_1.html">bags</a></li>
         <li class="menu-item menu-access"><a href="product-list_2.html">accessories</a></li>
         <li class="menu-item menu-other"><a href="product-list_3.html">others</a></li>
-        <li class="menu-item menu-other"><a href="product-list_4.html">Sale</a></li>
+        <li class="menu-item menu-sale"><a href="product-list_4.html">sale</a></li>
         <li class="menu-item menu-look"><a href="lookbook.html">lookbook</a></li>
         <!--<li class="menu-item menu-wish"><a href="wishlist.html">wishlist</a></li>-->
     </ul>

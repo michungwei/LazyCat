@@ -218,8 +218,8 @@ h2.footer-title, .discover .title h2 {
 	width:146px;
 	height:45px
 }
-.menu-sprite, .menu-access, .menu-bag, .menu-look, .menu-me, .menu-news, .menu-other, .menu-signin, .menu-signout, .menu-wish {
-	background-image:url('../images/menu-sd6852e64a1.png');
+.menu-sprite, .menu-access, .menu-bag, .menu-look, .menu-me, .menu-news, .menu-other, .menu-signin, .menu-signout, .menu-wish, .menu-sale {
+	background-image:url('../images/menu-sd6852e64a2.png');
 	background-repeat:no-repeat
 }
 .menu-access {
@@ -248,6 +248,9 @@ h2.footer-title, .discover .title h2 {
 }
 .menu-wish {
 	background-position:0 -118px
+}
+.menu-sale {
+	background-position: 0px -133px;
 }
 .menu-news {
 	width:78px;
@@ -283,6 +286,10 @@ h2.footer-title, .discover .title h2 {
 }
 .menu-signout {
 	width:51px;
+	height:15px
+}
+.menu-sale {
+	width:24px;
 	height:15px
 }
 a {
