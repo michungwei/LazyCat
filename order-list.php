@@ -74,6 +74,7 @@ $(document).ready(function(e) {
             <tr>
                 <th width="60" align="center" ></th>
                 <th width="120" align="center">訂單編號</th>
+                <th width="250" align="center">商品</th>
                 <th width="80" align="center" >付款方式</th>
                 <th width="80" align="center" >運送方式</th>
                 <th width="120" align="center" >付款狀態</th>
@@ -87,10 +88,27 @@ $(document).ready(function(e) {
         <tbody id="the-list" class="list:cat">
             <?php
                 foreach($rows as $row){
+                    $order_sno = $row["order_sno"];
+                    $sql_products = "SELECT orderdetail_product_id, orderdetail_product_sno, product_pic1, product_name_tw, product_color, product_sno, product_id
+                     FROM $table_orderdetail LEFT JOIN $table_product ON orderdetail_product_id = product_id AND orderdetail_product_sno = product_sno 
+                     WHERE orderdetail_order_sno = '$order_sno'
+                     ORDER BY orderdetail_id";
+                $rows_product = $db ->fetch_all_array($sql_products);
             ?>
             <tr>
                 <th align="center"><?php echo $row["order_id"]; ?></th>
                 <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $row["order_sno"]; ?></td>
+                <th align="left">
+                <?php
+                foreach($rows_product as $row_product){
+                ?>
+                    <img src="<?php echo $admin_path_product."m".$row_product["product_pic1"]; ?>" alt="#" width="50" >
+                    <?php echo $row_product["product_name_tw"]; ?>
+                    <br>
+                <?php
+                }
+                ?>
+                </th>
                 <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $ary_payment_type[$row["order_payment_type"]]; ?></td>
                 <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $ary_transport_type[$row["order_recipient_wayOption"]]; ?></td>
                 <td align="center" style="word-wrap: break-word; word-break: break-all;">
@@ -98,9 +116,9 @@ $(document).ready(function(e) {
                         /*if($row["order_payment_state"] == 0)  
                         {*/
                     ?>
-                    <a color="red" href=<?php echo "goPay.php?sno=".$row['order_sno']."&member_id=".$member_id."&payType=".$row["order_payment_type"]; ?>>
+                    <!--<a color="red" href=<?php echo "goPay.php?sno=".$row['order_sno']."&member_id=".$member_id."&payType=".$row["order_payment_type"]; ?>>
                         (前往付款)
-                    </a>
+                    </a>-->
                     <?        
                         //}
                     ?>
