@@ -10,7 +10,7 @@ function getParameter($pname){
 }
 
 //$code               = "abcd1234";
-$code = "2fvxqj5x";
+$code = "dufu7iz4";
 $merchantnumber     = getParameter('merchantnumber');
 $ordernumber        = getParameter('ordernumber');
 $amount             = getParameter('amount');
