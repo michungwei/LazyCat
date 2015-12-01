@@ -9,7 +9,8 @@ function getParameter($pname){
 	return isset($_POST[$pname])?$_POST[$pname]:"";
 }
 
-$code               = "abcd1234";
+//$code               = "abcd1234";
+$code = "2fvxqj5x";
 $merchantnumber     = getParameter('merchantnumber');
 $ordernumber        = getParameter('ordernumber');
 $amount             = getParameter('amount');
