@@ -85,7 +85,7 @@ function showPage2(){
 		//echo  '<a href=?'.$querystring.'page='.$pre.'>上一頁</a>&nbsp;&nbsp;';
 		//echo  '<a href=product-list'.$querystring.'_1.html>首頁</a>&nbsp;&nbsp;';
 		//echo  '<a href=product-list'.$querystring.'_'.$pre.'.html>上一頁</a>&nbsp;&nbsp;';
-		echo  '<li class="first"><a href=style-list.php'.$querystring.'$page='.$pre.'><div class="ui-s-small-arrow-left"></div></a></li>&nbsp;&nbsp;';     
+		echo  '<li class="first"><a href=product-list'.$querystring.'_'.$pre.'.html><div class="ui-s-small-arrow-left"></div></a></li>&nbsp;&nbsp;';     
 	}
 	$viewpage = 5;
 	
@@ -111,12 +111,12 @@ function showPage2(){
 			echo '<li class="page active">'.$num.'</li>&nbsp;';
 		}else{
 			//echo '<a href=product-list'.$querystring.'_'.$num.'.html>'.$num.'</a>&nbsp;&nbsp;';
-			echo '<li class="page"><a href=style-list.php'.$querystring.'&page='.$num.'>'.$num.'</a></li>&nbsp;&nbsp;';
+			echo '<li class="page"><a href=product-list'.$querystring.'_'.$num.'.html>'.$num.'</a></li>&nbsp;&nbsp;';
 		}
 	}
 
 	if($page < $page_count){
-		echo '<li class="last"><a href=style-list.php'.$querystring.'&page'.($page+1).'><div class="ui-s-small-arrow-right"></div></a></li>&nbsp;&nbsp;';
+		echo '<li class="last"><a href=product-list'.$querystring.'_'.($page+1).'.html><div class="ui-s-small-arrow-right"></div></a></li>&nbsp;&nbsp;';
 		//echo '<a href=product-list'.$querystring.'_'.($page+1).'.html>下一頁</a>&nbsp;&nbsp;';
 		//echo '<a href=product-list'.$querystring.'_'.$page_count.'.html>末頁</a>&nbsp;';
 	}
@@ -161,12 +161,12 @@ function showStylePage(){
 			echo '<li class="page active">'.$num.'</li>&nbsp;';
 		}else{
 			//echo '<a href=product-list'.$querystring.'_'.$num.'.html>'.$num.'</a>&nbsp;&nbsp;';
-			echo '<li class="page"><a href=product-list'.$querystring.'_'.$num.'.html>'.$num.'</a></li>&nbsp;&nbsp;';
+			echo '<li class="page"><a href=style-list.php'.$querystring.'&page='.$num.'>'.$num.'</a></li>&nbsp;&nbsp;';
 		}
 	}
 
 	if($page < $page_count){
-		echo '<li class="last"><a href=product-list'.$querystring.'_'.($page+1).'.html><div class="ui-s-small-arrow-right"></div></a></li>&nbsp;&nbsp;';
+		echo '<li class="last"><a href=style-list.php'.$querystring.'&page'.($page+1).'><div class="ui-s-small-arrow-right"></div></a></li>&nbsp;&nbsp;';
 		//echo '<a href=product-list'.$querystring.'_'.($page+1).'.html>下一頁</a>&nbsp;&nbsp;';
 		//echo '<a href=product-list'.$querystring.'_'.$page_count.'.html>末頁</a>&nbsp;';
 	}
