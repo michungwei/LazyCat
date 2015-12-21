@@ -207,6 +207,9 @@ function chkPromoCode(totalPrice, promoCode){
 					}
 
 				}else{
+					$('#promo_discount').hide();
+					$('#promo_money').hide();
+					$('input[name="recipient_promoCode"]').val("");
 					alert(data.message);
 				}
 			},
