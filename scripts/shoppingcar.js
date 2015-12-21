@@ -164,6 +164,63 @@ function chkProductStock(product_id, num, color){
 	}
 }
 
+function chkPromoCode(totalPrice, promoCode){ 
+	if(promoCode != ""){
+		var res = false;
+		$.ajax({
+			url : serviceurl,
+			async : false,
+			type : "POST",
+			data : {method : "chkPromoCode",
+					promoCode : promoCode
+			},
+			dataType:"json",
+			success:function(data){
+				if(data.result){
+					res = true;
+					if(data.promo_money > 0)
+					{
+						$('#promo_money').show();
+						$('.promo_money').replaceWith("<td class='promo_money'>- "+data.promo_money+"</td>");
+					}
+					else{
+						$('#promo_money').hide();
+					}
+					if(data.promo_discount < 1)
+					{
+						$('#promo_discount').show();
+						$('.promo_discount').replaceWith("<td class='promo_discount'>x "+data.promo_discount+"</td>");
+					}
+					else{
+						$('#promo_discount').hide();
+					}
+
+					var total = Math.ceil((totalPrice - data.promo_money) * data.promo_discount);
+					if(total > 0)
+						$('.total').replaceWith("<td class='total'>"+total+"</td>");
+					else
+					{
+						$('#promo_discount').hide();
+						$('#promo_money').hide();
+						$('input[name="recipient_promoCode"]').val("");
+						alert("折扣後結帳金額為"+total+"，小於0無法做折扣!\n" + "[折扣金額為"+data.promo_money+" %數為"+data.promo_discount+"]");
+					}
+
+				}else{
+					alert(data.message);
+				}
+			},
+			error:function(jqXHR, textStatus, errorThrown){
+				alert(errorThrown);
+			}
+		});	
+		return res;	
+	}else{
+		$('#promo_money').hide();
+		$('#promo_discount').hide();
+	}
+}
+
 function updateCarState(amount,subtotal,total,freight,alltotal,discount,disbonus,n){
 	$('#subtotal'+n).html(subtotal);
 	$("#total").text(total);

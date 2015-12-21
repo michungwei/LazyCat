@@ -94,6 +94,25 @@ if($method == "chkstock"){
 		$msg = "參數資料傳送錯誤!";
 	}
 }
+if($method == "chkPromoCode"){
+	$promo_code = post('promoCode', 1);
+
+
+	if($promo_code != ""){
+		$row = $db -> query_first("SELECT * FROM $table_promo WHERE promo_code = '$promo_code' AND promo_start_time <= NOW() AND promo_end_time >= NOW()");
+		if($row){
+			$result = 1;
+			$promo_money = $row['promo_money'];
+			$promo_discount = $row['promo_discount'] / 100;
+		}else{
+			$promo_money = 0;
+			$promo_discount = 1;
+			$msg ="折扣碼輸入錯誤或已過期！";
+		}
+	}else{
+		$msg = "參數資料傳送錯誤!";
+	}
+}
 $db -> close();
 
 //echo '[{"result":"'.($result===true ? 'true' : 'false') .'","message":'.$msg.',"total":'.$total.'}]';
@@ -101,6 +120,8 @@ $db -> close();
 $re["result"] = ($result == 1) ? true : false;
 $re["message"] = $msg;
 $re["total"] = $total;
+$re["promo_discount"] = $promo_discount;
+$re["promo_money"] = $promo_money;
 
 echo json_encode($re);
 

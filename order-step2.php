@@ -120,6 +120,10 @@ if(!isLogin()){
 				<br>
 				<font color="red">新加坡、馬來西亞寄送約8-10天到貨。</font>
 			</div>
+            <lable for="recipient_promoCode" class="field-grop">
+                    <p class="fieldTitle"> 折扣碼 </p>
+                    <input name="recipient_promoCode" type="text" id="recipient_promoCode" value="" />
+                </lable>
             <input type="button" onclick="history.back()" class="btn-white" style="cursor: pointer;" value="back">
             <input name="haveBag" type="hidden" value="<?php echo $car -> chkHaveBag(); ?>" />
             <input name="totalPrice" type="hidden" value="<?php echo $total; ?>" />
@@ -159,6 +163,14 @@ if(!isLogin()){
                         <tr>
                             <td width="190" style="word-wrap: break-word; word-break: break-all;">運費</td>
                             <td class="freight">0</td>
+                        </tr>
+                        <tr id="promo_money">
+                            <td width="190" style="word-wrap: break-word; word-break: break-all; font-color: 'red'">折扣金額</td>
+                            <td class="promo_money">- 0</td>
+                        </tr>
+                        <tr id="promo_discount">
+                            <td width="190" style="word-wrap: break-word; word-break: break-all; font-color: 'red'">折扣%數</td>
+                            <td class="promo_discount">x 1</td>
                         </tr>
                     </tbody>
                     <tfoot>

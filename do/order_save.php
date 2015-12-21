@@ -13,6 +13,7 @@ $recipient_name = post("recipient_name", 1);
 $recipient_mobile = post("recipient_mobile", 1);
 $recipient_email = post("recipient_email", 1);
 $recipient_address = post("recipient_address", 1);
+$recipient_promoCode = post("recipient_promoCode",1);
 $payment_type = post("payment_type", 1);
 $recipient_wayOption = post("recipient_wayOption", 1);
 $ezship_choose = post("ezship_name", 1);
@@ -31,10 +32,22 @@ if($sResult){
 	$db = new Database($HS, $ID, $PW, $DB);
 	$db -> connect();
 	
+    $row = $db -> query_first("SELECT * FROM $table_promo WHERE promo_code = '$recipient_promoCode' AND promo_start_time <= NOW() AND promo_end_time >= NOW()");
+    if($row)
+    {
+    	$promo_money = $row["promo_money"];
+    	$promo_discount = $row["promo_discount"] / 100;
+    }
+    else
+    {
+    	$promo_money = 0;
+    	$promo_discount = 1;
+    }
+
 	$car = new shoppingCar();
 	$carItem = $car -> getCarFromDB();
 	$u = count($carItem);
-	$car -> calculate($recipient_wayOption,true);
+	$car -> calculate($recipient_wayOption, true, $promo_money, $promo_discount);
 	$total = $car -> total;
 	
 	if(!isLogin()){

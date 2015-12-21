@@ -19,6 +19,7 @@ $(document).ready(function(e) {
 	var wayOption = $('input[name="recipient_wayOption"]').val();
 	var freightLimit = 1000;
 	var freight = 0;
+	var promo_code = "";
 	//console.log(totalPrice + "   " + freightLimit + "    " +wayOption);
 	if(wayOption < 3 && totalPrice > 1000 )
 	{
@@ -342,6 +343,13 @@ $(document).ready(function(e) {
 		totalPrice = parseInt(totalPrice) + freight;
 		$('.freight').replaceWith("<td class='freight'>"+freight+"</td>");
 		$('.total').replaceWith("<td class='total'>"+totalPrice+"</td>");
+		chkPromoCode(totalPrice, promo_code);
 	});
-	
+	$('#promo_money').hide();
+	$('#promo_discount').hide();
+
+	$('input[name="recipient_promoCode"]').change(function() {
+		chkPromoCode(totalPrice, this.value);
+		promo_code = this.value;
+	});
 });
