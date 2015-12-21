@@ -11,7 +11,7 @@ mb_internal_encoding("UTF-8");
 header("Content-type:text/html; charset=utf-8");
 
 $web_name = "LazyCat 特色配件專門店";
-$web_url = "http://localhost/lazycat/";
+$web_url = "http://lazycat.far.pub/";
 $description = "";
 $keywords = "";
 $favicon = "assets/images/favicon.ico";
@@ -21,16 +21,16 @@ $manage_name = "LazyCat－網站管理系統";
 
 
 /*Database*/
-$HS = "xxxx";
-$ID = "xxxx";
-$PW = "xxxx";
-$DB = "xxxx";
+$HS = "localhost:3306";
+$ID = "root";
+$PW = "root";
+$DB = "LazyCat";
 
-/*SMTP Server*/ 
+/*SMTP Server*/
 $smtp_auth = false;
 $smtp_host = "127.0.0.1";
-$smtp_port = 25;
-$smtp_id   = ""; 
+$smtp_port = 3306;
+$smtp_id   = "";
 $smtp_pw   = "";
 
 /*DB Table*/
@@ -49,6 +49,7 @@ $table_productserial = "lc_productserial";
 $table_wish = "lc_wish";
 $table_storelog = "lc_storelog";
 $table_subbanner = "lc_subbanner";
+$table_promo = "lc_promo";
 
 /*Upload path*/
 //banner
@@ -99,6 +100,11 @@ $productserial_pic_h = 261;
 $product_pic_w = 450;
 $product_pic_h = 600;
 
+//product_img
+$product_img_pic_w = 1020;
+$product_img_pic_h = 800;
+
+
 //lookbook
 $lookbook_pic_w = 1010;
 $lookbook_pic_h = 1010;
@@ -106,14 +112,15 @@ $lookbook_pic_h = 1010;
 /*資料用ARY*/
 $ary_yn = array('否', '是');
 $ary_payment_state = array(0 => '未付款', 1 => '已付款');//付款狀態
-$ary_payment_type = array(1 => '線上刷卡', 2 => 'ATM虛擬帳號', 3 => '超商代收', 4 => '7-11ibon / 全家FamiPort / 萊爾富Life-ET / OK 超商OK-go', 9 => '貨到付款');//付款方式
+$ary_payment_type = array(1 => '線上刷卡', 2 => 'ATM虛擬帳號', 3 => '超商代收', 4 => '7-11ibon / 全家FamiPort / 萊爾富Life-ET / OK 超商OK-go'/*, 9 => '貨到付款'*/);//付款方式
 $ary_order_state = array(0 => '處理中', 1 => '可出貨', 2 => '己出貨', 3 => '交易完成', 10 => '退貨', 11 => '交易取消');//訂單狀態
-$ary_product_type = array(1 => 'Bag', 2 => 'Accessories', 3 => 'Others');
-$ary_page = array(1 => "首頁", 2 =>"what's news", 3 => "bags", 4 => "accessories", 5 => "others", 6 => "wishlist");
+$ary_product_type = array(1 => 'Bag', 2 => 'Accessories', 3 => 'Others', 4 => 'Sale');
+$ary_page = array(1 => "首頁", 2 =>"what's news", 3 => "bags", 4 => "accessories", 5 => "others", 6 => "wishlist", 7 => "sale");
+$ary_transport_type = array(1 => "店到店", 2 =>"貨運宅配", 3 => "國際配送（中國、香港、澳門）", 4 => "國際配送（新加坡、馬來西亞）");
 
 /*Email*/
 $sys_email = "lazycat.co@gmail.com";
-$sys_name = "客服中心";
+$sys_name = "LazyCat特色配件專門店";
 
 
 $slash = (strstr(dirname(__FILE__), '/'))?"/":"\\";

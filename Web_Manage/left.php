@@ -79,6 +79,16 @@ $(function(){
             <div class="menu-top">
                 <div class="mg-menu-toggle"><br />
                 </div>
+                <span>抵用金管理</span></div>
+            <li><a href="promo/index.php" target="main" onFocus="this.blur()"><span>抵用金列表</span></a></li>
+        </div>
+        <div class="clear"></div>
+    </ul>
+    <ul>
+        <div class="menu-close">
+            <div class="menu-top">
+                <div class="mg-menu-toggle"><br />
+                </div>
                 <span>會員管理</span></div>
             <li><a href="member/index.php" target="main" onFocus="this.blur()"><span>會員列表</span></a></li>
         </div>
