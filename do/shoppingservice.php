@@ -11,6 +11,8 @@ $method = post('method', 1);
 $result = 0;
 $msg = "";
 $total = "";
+$promo_money = 0;
+$promo_discount = 1;
 $re = array();
 
 if($method == "add"){
