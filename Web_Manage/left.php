@@ -80,7 +80,8 @@ $(function(){
                 <div class="mg-menu-toggle"><br />
                 </div>
                 <span>抵用金管理</span></div>
-            <li><a href="promo/index.php" target="main" onFocus="this.blur()"><span>抵用金列表</span></a></li>
+            <li><a href="promo/index.php" target="main" onFocus="this.blur()"><span>折扣碼列表</span></a></li>
+            <li><a href="discharge/index.php" target="main" onFocus="this.blur()"><span>抵用金列表</span></a></li>
         </div>
         <div class="clear"></div>
     </ul>

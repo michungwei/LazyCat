@@ -9,14 +9,14 @@ $reind = trim(get("remove", 1));
 if($reind != ""){
 	$nid = get("nid", 0);
 	if($nid > 0){
-		getOrder($reind, $table_promo, $id_column, $ind_column, $nid, "");
+		getOrder($reind, $table_discharge, $id_column, $ind_column, $nid, "");
 	}
 } 
 
 //刪除
 if(get("is_del", 1) == 'y'){
 	$did = get("did");
-  	$db -> query("DELETE FROM $table_promo WHERE $id_column = $did");
+  	$db -> query("DELETE FROM $table_discharge WHERE $id_column = $did");
 	script("刪除成功");
 }
 
@@ -40,7 +40,7 @@ if($e_price != ""){
 }	
 
 $sql = "SELECT *
-		FROM $table_promo 
+		FROM $table_discharge
 		WHERE 1 $sql_str
 		ORDER BY $ind_column DESC";
 		
@@ -110,10 +110,8 @@ $(document).ready(function(e) {
                     <tr>
                         <th width="60" align="center" >ID</th>
                         <th width="120" align="center">名稱</th>
-                        <th width="60" align="center" >是否啟用</th>
-                        <th width="120" align="center">兌換碼</th>
-                        <th width="80" align="center" >折扣金額</th>
-                        <th width="80" align="center" >折扣%數</th>
+                        <th width="60" align="center">啟用</th>
+                        <th width="60" align="center">永久</th>
                         <th width="120" align="center">開始時間</th>
                         <th width="120" align="center">結束時間</th>                        
                         <th align="left"></th>
@@ -128,19 +126,17 @@ $(document).ready(function(e) {
 						foreach($rows as $row){
 					?>
                     <tr>
-                        <th align="center"><?php echo $row["promo_id"]; ?></th>
-                        <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $row["promo_name"]; ?></td>
-                        <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $ary_yn[$row["promo_enable"]]; ?></td>
-                        <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $row["promo_code"]; ?></td>
-                        <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $row["promo_money"]; ?></td>
-                        <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $row["promo_discount"]; ?></td>
-                        <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $row["promo_start_time"]; ?></td>
-                        <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $row["promo_end_time"]; ?></td>
+                        <th align="center"><?php echo $row["discharge_id"]; ?></th>
+                        <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $row["discharge_name"]; ?></td>
+                        <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $ary_yn[$row["discharge_enable"]]; ?></td>
+                        <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $ary_yn[$row["discharge_forever"]]; ?></td>
+                        <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $row["discharge_start_time"]; ?></td>
+                        <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $row["discharge_end_time"]; ?></td>
                         <td align="left"></td>
-                        <td align="center"><?php echo $row["promo_update_time"]; ?></td>
-                        <td align="center"><?php echo $row["promo_create_time"]; ?></td>
-                        <td align="center"><a href="edit.php?id=<?php echo $row["promo_id"].'&'.$query_str; ?>">修改</a></td>
-                        <td align="center" ><a href="index.php?is_del=y&did=<?php echo $row["promo_id"].'&'.$query_str; ?>" onClick="return confirm('您確定要刪除這筆記錄?')">刪除</a></td>
+                        <td align="center"><?php echo $row["discharge_update_time"]; ?></td>
+                        <td align="center"><?php echo $row["discharge_create_time"]; ?></td>
+                        <td align="center"><a href="edit.php?id=<?php echo $row["discharge_id"].'&'.$query_str; ?>">修改</a></td>
+                        <td align="center" ><a href="index.php?is_del=y&did=<?php echo $row["discharge_id"].'&'.$query_str; ?>" onClick="return confirm('您確定要刪除這筆記錄?')">刪除</a></td>
                     </tr>
                     <?php
 						}

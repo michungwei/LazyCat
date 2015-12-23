@@ -12,19 +12,17 @@ $db = new Database($HS, $ID, $PW, $DB);
 $db -> connect();
 
 $sql = "SELECT * 
-		FROM $table_promo 
+		FROM $table_discharge 
 		WHERE $id_column = '$id'";
 $row = $db -> query_first($sql);
 $rows_pic = Banner::getPic();
 
 if($row){
-	$name = $row["promo_name"];
-    $code = $row["promo_code"];
-    $enable = $row["promo_enable"];
-    $money = $row["promo_money"];
-    $discount = $row["promo_discount"];
-    $start_time = $row["promo_start_time"];
-    $end_time = $row["promo_end_time"];
+	$name = $row["discharge_name"];
+    $enable = $row["discharge_enable"];
+    $forever = $row["discharge_forever"];
+    $start_time = $row["discharge_start_time"];
+    $end_time = $row["discharge_end_time"];
 }else{
  	script("資料不存在");
 }
@@ -71,7 +69,6 @@ $(document).ready(function(){
 		
 		var re = true;
 		err_msg = '';
-		if(re){re = isnull("code", "兌換碼", 0, 1, 20);}
         if(re){re = isnull("name", "名稱", 0, 1, 100);}
         if(re){re = isnull("start_time", "開始時間", 0, 1, 100);}
         if(re){re = isnull("end_time", "結束時間", 0, 1, 100);}		
@@ -93,7 +90,7 @@ $(document).ready(function(){
         <div class="accordion ">
             <div class="tableheader">
                 <div class="handlediv"></div>
-                <p align="left">修改折扣碼</p>
+                <p align="left">修改購物抵用金</p>
             </div>
             <div class="listshow">
                 <form action="edit_save.php?<?php echo $query_str; ?>" method="post" enctype="multipart/form-data" name="form" id="form">
@@ -107,20 +104,14 @@ $(document).ready(function(){
                                 啟用 </td>
                         </tr>
                         <tr>
+                            <td width="150" valign="top"><h4 class="input-text-title">是否永久生效</h4></td>
+                            <td><input type="checkbox" name="forever" id="forever" <?php if($forever) echo "checked";?> value="1"/>
+                                &nbsp;
+                                永久 </td>
+                        </tr>
+                        <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">名稱</h4></td>
                             <td><input type="text" name="name" id="name" size="50" value="<?php echo $name; ?>"/></td>
-                        </tr>
-                        <tr>
-                            <td width="150" valign="top"><h4 class="input-text-title">兌換碼</h4></td>
-                            <td><input type="text" name="code" id="code" size="50" value="<?php echo $code;?>"/></td>
-                        </tr>
-                        <tr>
-                            <td width="150" valign="top"><h4 class="input-text-title">折扣金額</h4></td>
-                            <td><input type="text" name="money" id="money" size="20" value="<?php echo $money; ?>"/>元</td>
-                        </tr>
-                        <tr>
-                            <td width="150" valign="top"><h4 class="input-text-title">折扣%數</h4></td>
-                            <td><input type="text" name="discount" id="discount" size="5" value="<?php echo $discount; ?>"/>%</td>
                         </tr>
                         <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">開始時間</h4></td>
