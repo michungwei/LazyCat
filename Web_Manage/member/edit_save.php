@@ -24,6 +24,8 @@ $day = sprintf("%02d", post("ymd_day"));
 $data["member_birthday"] = $year.$month.$day;
 $data["member_address"] = post("address", 1);
 $data["member_update_time"] = request_cd();
+$data["member_discharge_id"] = post("disId",1);
+$data["member_discharge_amount"] = post("disAmount",1);
 
 $db -> query_update($table_member, $data, "$id_column = $id");
 $db -> close();

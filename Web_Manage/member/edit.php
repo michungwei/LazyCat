@@ -23,12 +23,20 @@ if($row){
 	$birthday = $row["member_birthday"];
 	$address = $row["member_address"];
 	$update_time = $row["member_update_time"];
+    $discharge_id = $row["member_discharge_id"];
+    $discharge_amount = $row["member_discharge_amount"];
 	$year = substr($birthday, 0, 4);
 	$month = substr($birthday, 4, 2);
 	$day = substr($birthday, 6, 2);
 }else{
 	script("資料不存在");
 }
+
+$sql = "SELECT * 
+        FROM $table_discharge
+        WHERE discharge_enable = 1";
+$rows_dis = $db -> fetch_all_array($sql);
+
 
 $db->close();
 ?>
@@ -187,6 +195,119 @@ $(document).ready(function(){
 			$(this).attr("selected", true);
 		}
     });
+    var OriDisName = <?php echo "\"".$discharge_id."\""; ?>;
+    var OriDisNameAry = OriDisName.split(",");
+    console.log(OriDisNameAry);
+    var OriDisAmount = <?php echo "\"".$discharge_amount."\""; ?>;
+    var OriDisAmountAry = OriDisAmount.split(",");
+    console.log(OriDisAmountAry);
+
+    var disSelCnt = 0;
+    for(index in OriDisNameAry)
+    {
+        if(OriDisNameAry[index] != "")
+        {
+            var divId ="discharge" + disSelCnt;
+            var disSelId ="disSel" + disSelCnt;
+            var disAmountId = 'disAmt' + disSelCnt;
+            var html = "";
+            html += "<div id='"+divId+"''>";
+            html += "<div id='deletor"+disSelCnt+"' name='deletor"+disSelCnt+"'><a>X</a></div><select name='"+disSelId+"' id='"+disSelId+"'>";
+            //html += "<option checked value='"+OriDisNameAry[index]+"' >請選擇抵用金</option>";
+            html += "<?php foreach($rows_dis as $row_dis) { ?>";
+            html += "<option <?php if("+OriDisNameAry[index]+" == $row_dis['discharge_id']) echo 'checked'; ?> value='<?php echo $row_dis['discharge_id']; ?>'><?php echo $row_dis['discharge_name']; ?></option>";
+            html += "<?php } ?>";
+            html += "</select>";
+            html += "&nbsp;&nbsp;金額&nbsp;&nbsp;<input name='"+disAmountId+"' type='text' id='"+disAmountId+"' size='10' value='"+OriDisAmountAry[index]+"' />";
+            html += "<br>";
+            html += "</div>";
+
+            $('#dischargeContainer').append(html);
+
+            CreateDisSelect("#"+disSelId, "#"+disAmountId, disSelCnt, "#deletor"+disSelCnt);
+
+            OriDisNameAry[index] += ",";
+            OriDisAmountAry[index] += ",";
+            disSelCnt ++;
+        }
+    }
+    console.log(OriDisNameAry);
+    console.log(OriDisAmountAry);
+
+    var disNameAry = OriDisNameAry;
+    var disAmountAry = OriDisAmountAry;
+    var combineStr = "";
+    $('#colorSelector').click(function(){
+        var divId ="discharge" + disSelCnt;
+        var disSelId ="disSel" + disSelCnt;
+        var disAmountId = 'disAmt' + disSelCnt;
+        var html = "";
+        html += "<div id='"+divId+"''>";
+        html += "<div id='deletor"+disSelCnt+"' name='deletor"+disSelCnt+"'><a>X</a></div><select name='"+disSelId+"' id='"+disSelId+"'>";
+        html += "<option checked value='0' >請選擇抵用金</option>";
+        html += "<?php foreach($rows_dis as $row_dis) { ?>";
+        html += "<option value='<?php echo $row_dis['discharge_id']; ?>'><?php echo $row_dis['discharge_name']; ?></option>";
+        html += "<?php } ?>";
+        html += "</select>";
+        html += "&nbsp;&nbsp;金額&nbsp;&nbsp;<input name='"+disAmountId+"' type='text' id='"+disAmountId+"' size='10' value='' />";
+        html += "<br>";
+        html += "</div>";
+
+        $('#dischargeContainer').append(html);
+
+        CreateDisSelect("#"+disSelId, "#"+disAmountId, disSelCnt, "#deletor"+disSelCnt);
+        disNameAry[disSelCnt] = "0,";
+        disAmountAry[disSelCnt] = "0,";
+        disSelCnt ++;
+    });
+
+    function CreateDisSelect(selName_id, selName_amount, id, delName)
+    {
+        $(delName).click(function(){
+            //console.log("delele!!");
+            $('#discharge'+id).replaceWith("");
+            var combineStr = "";
+            disNameAry[id] = "";
+            for(var index in disNameAry)
+            {
+                if(disNameAry[index] != "0,")
+                    combineStr += disNameAry[index];
+            }
+            console.log(combineStr);
+            $('#disId').val(combineStr);
+            var combineStr = "";
+            disAmountAry[id] = "";
+            for(var index in disAmountAry)
+            {
+                if(disAmountAry[index] != "0,")
+                    combineStr += disAmountAry[index];
+            }
+            console.log(combineStr);
+            $('#disAmount').val(combineStr);
+        });
+        $(selName_id).change(function(){
+            var combineStr = "";
+            disNameAry[id] = $(this).val() + ",";
+            for(var index in disNameAry)
+            {
+                if(disNameAry[index] != "0,")
+                    combineStr += disNameAry[index];
+            }
+            console.log(combineStr);
+            $('#disId').val(combineStr);
+        });
+        $(selName_amount).change(function(){
+            var combineStr = "";
+            disAmountAry[id] = $(this).val() + ",";
+            for(var index in disAmountAry)
+            {
+                if(disAmountAry[index] != "0,")
+                    combineStr += disAmountAry[index];
+            }
+            console.log(combineStr);
+            $('#disAmount').val(combineStr);
+        });
+    }
 	
 });
 </script>
@@ -485,6 +606,20 @@ $(document).ready(function(){
                             <td width="150" valign="top"><h4 class="input-text-title">地址</h4></td>
                             <td><input name="address" type="text" id="address" size="40" value="<?php echo $address; ?>" /></td>
                         </tr>
+                        <tr>   
+                            <td width="150" valign="top"><h4 class="input-text-title">新增購物抵用金</td>
+                            <td><div id="colorSelector"><a>+</a></div> </td>
+                        </tr>
+                        <tr>
+                            <td width='75' valign='top'><h4 class='input-text-title'></h4></td>
+                            <td><div id="dischargeContainer"></td>
+                        </tr>
+                        <tr>
+                        </tr>
+                            <td>
+                                <input name="disId" id="disId" size="50" value="<?php echo $discharge_id; ?>"/>
+                                <input name="disAmount" id="disAmount" size="50" value="<?php echo $discharge_amount; ?>"/>
+                            </td>
                         <tr>
                             <td width="150"></td>
                             <td height="30"><input name="savenews" type="submit" id="savenews" value=" 送 出 " />
