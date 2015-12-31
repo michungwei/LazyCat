@@ -50,6 +50,7 @@ $table_wish = "lc_wish";
 $table_storelog = "lc_storelog";
 $table_subbanner = "lc_subbanner";
 $table_promo = "lc_promo";
+$table_discharge = "lc_discharge";
 
 /*Upload path*/
 //banner

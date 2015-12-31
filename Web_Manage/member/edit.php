@@ -201,13 +201,14 @@ $(document).ready(function(){
     var OriDisAmount = <?php echo "\"".$discharge_amount."\""; ?>;
     var OriDisAmountAry = OriDisAmount.split(",");
     console.log(OriDisAmountAry);
-
+    
+    var optionSize = <?php echo sizeof($rows_dis) ?>;
     var disSelCnt = 0;
     for(index in OriDisNameAry)
     {
         if(OriDisNameAry[index] != "")
         {
-            var divId ="discharge" + disSelCnt;
+            var divId = "discharge" + disSelCnt;
             var disSelId ="disSel" + disSelCnt;
             var disAmountId = 'disAmt' + disSelCnt;
             var html = "";
@@ -215,7 +216,7 @@ $(document).ready(function(){
             html += "<div id='deletor"+disSelCnt+"' name='deletor"+disSelCnt+"'><a>X</a></div><select name='"+disSelId+"' id='"+disSelId+"'>";
             //html += "<option checked value='"+OriDisNameAry[index]+"' >請選擇抵用金</option>";
             html += "<?php foreach($rows_dis as $row_dis) { ?>";
-            html += "<option <?php if("+OriDisNameAry[index]+" == $row_dis['discharge_id']) echo 'checked'; ?> value='<?php echo $row_dis['discharge_id']; ?>'><?php echo $row_dis['discharge_name']; ?></option>";
+            html += "<option value='<?php echo $row_dis['discharge_id']; ?>'><?php echo $row_dis['discharge_name']; ?></option>";
             html += "<?php } ?>";
             html += "</select>";
             html += "&nbsp;&nbsp;金額&nbsp;&nbsp;<input name='"+disAmountId+"' type='text' id='"+disAmountId+"' size='10' value='"+OriDisAmountAry[index]+"' />";
@@ -223,6 +224,8 @@ $(document).ready(function(){
             html += "</div>";
 
             $('#dischargeContainer').append(html);
+
+            $('#'+divId+" option:[value="+OriDisNameAry[index]+"]").prop('selected', 'selected');
 
             CreateDisSelect("#"+disSelId, "#"+disAmountId, disSelCnt, "#deletor"+disSelCnt);
 
@@ -617,8 +620,8 @@ $(document).ready(function(){
                         <tr>
                         </tr>
                             <td>
-                                <input name="disId" id="disId" size="50" value="<?php echo $discharge_id; ?>"/>
-                                <input name="disAmount" id="disAmount" size="50" value="<?php echo $discharge_amount; ?>"/>
+                                <input name="disId" type="hidden" id="disId" size="50" value="<?php echo $discharge_id; ?>"/>
+                                <input name="disAmount" type="hidden" id="disAmount" size="50" value="<?php echo $discharge_amount; ?>"/>
                             </td>
                         <tr>
                             <td width="150"></td>
