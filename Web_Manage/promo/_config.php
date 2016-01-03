@@ -15,6 +15,6 @@ $s_date = get("s_date", 1);
 $e_date = get("e_date", 1);
 
 $query_str = "&keyword=".$keyword."&s_price=".$s_price."&e_price=".$e_price."&s_date=".$s_date."&e_date=".$e_date."&page=".$page;
-$mtitle = "<a href='index.php?".$query_str."'> 購物抵用金 </a>";
+$mtitle = "<a href='index.php?".$query_str."'> 折扣碼 </a>";
 
 /*END PHP*/
