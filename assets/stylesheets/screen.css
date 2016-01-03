@@ -2996,13 +2996,9 @@ body .ui-tooltip {
 #disName{
 	float: left;
 	width:30%;
-	line-height: 35px;
+	line-height: 50px;
 }
 #disAmount input{
 	float: left;
 	width:30%;
-	height:20px;
-}
-#disAmount font{
-	height:35px;
 }

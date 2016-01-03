@@ -15,7 +15,7 @@ $db = new Database($HS, $ID, $PW, $DB);
 $db -> connect();
 
 $car = new shoppingCar();
-$car -> calculate(1, true);
+$freight = $car -> calculate();
 $total = $car -> total;
 $carItem = $car -> getCarFromDB();
 $u = count($carItem);
@@ -72,6 +72,7 @@ if(!isLogin()){
 $(document).ready(function(){
 
     var disCnt = <?php echo sizeof($disNameAry); ?>;
+    var freight = <?php echo $freight; ?>;
     var disSum = 0;
     var totalPrice = $('input[name="totalPrice"]').val();
     var promo_code = $('input[name="recipient_promoCode"]').val();
@@ -80,7 +81,10 @@ $(document).ready(function(){
     {
         $("#disRange"+i).on('input',{index:""+i}, changeDisAmtTxt);
         $("#disRange"+i).on('change', function(){
-            calTotalPrice($('input[name="totalPrice"]').val(), $('input[name="recipient_promoCode"]').val(), $('input[name="discharge_amount"]').val());
+            calTotalPrice(
+                parseInt($('input[name="totalPrice"]').val()) + parseInt($('input[name="freight"]').val()),
+                $('input[name="recipient_promoCode"]').val(),
+                $('input[name="discharge_amount"]').val());
         });
         disSum += parseInt($("#disRange"+i).val());
         disAmtStr += $("#disRange"+i).val() + ',';
@@ -94,7 +98,7 @@ $(document).ready(function(){
     }
     else
         $('#discharge').hide();
-    calTotalPrice(totalPrice, promo_code, disSum);
+    calTotalPrice(parseInt(totalPrice) + parseInt($('input[name="freight"]').val()), promo_code, disSum);
 
     function changeDisAmtTxt(event)
     {
@@ -102,7 +106,7 @@ $(document).ready(function(){
         var res = document.getElementById("disFont"+index);
         var p = document.getElementById("disRange"+index);
         //console.log("range slider!! " + $("#disRange"+index).val());
-        res.innerHTML = "TWD $" + p.value;
+        //res.innerHTML = "TWD $" + p.value;
         disChargeHandler();
     }
     function disChargeHandler()
@@ -123,7 +127,10 @@ $(document).ready(function(){
             $('input[name="dischargeStr"]').val(disAmtStr);
         }
         else
+        {
             $('#discharge').hide();
+            $('input[name="discharge_amount"]').val(disSum);
+        }
     }
 });
 </script>
@@ -219,7 +226,7 @@ $(document).ready(function(){
                             <font>&nbsp;&nbsp;<?php echo $disNameAry[$i]['discharge_name'];?></font>
                         </div>
                         <div id="disAmount">
-                            <input id="disRange<?php echo $i;?>" name="discharge" type="range" data-orig-type="range" min="0" max="<?php echo $disAmtAry[$i];?>" value="0" >&nbsp;&nbsp;<font id="disFont<?php echo $i;?>" color="gray" style="line-height:35px;">TWD $0</font>
+                            <input id="disRange<?php echo $i;?>" name="discharge" type="number" min="0" max="<?php echo $disAmtAry[$i];?>" value="0" >&nbsp;&nbsp;<font id="disFont<?php echo $i;?>" color="gray" style="line-height:50px;">(有TWD $<?php echo $disAmtAry[$i];?>可使用)</font>
                         </div>
                     </div>
                 <?php
@@ -230,6 +237,7 @@ $(document).ready(function(){
             <input type="button" onclick="history.back()" class="btn-white" style="cursor: pointer;" value="back">
             <input name="haveBag" type="hidden" value="<?php echo $car -> chkHaveBag(); ?>" />
             <input name="totalPrice" type="hidden" value="<?php echo $total; ?>" />
+            <input name="freight" type="hidden" value="<?php echo $freight; ?>" />
             <input id="discharge_amount" name="discharge_amount" type="hidden" value="0" />
             <input id="dischargeStr" name="dischargeStr" type="hidden" value="" />
             <input id="dischargeIdStr" name="dischargeIdStr" type="hidden" value="<?php echo $disIdStr; ?>" />

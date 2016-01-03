@@ -22,25 +22,12 @@ $(document).ready(function(e) {
 	var promo_code = "";
 	var disSum = $('input[name="discharge_amount"]').val();
 	//console.log(totalPrice + "   " + freightLimit + "    " +wayOption);
-	if(wayOption < 3 && totalPrice >= 1000 )
-	{
-		freight = 0;
-	}
-	else if(wayOption == 1)
-		freight = 60;
-	else if(wayOption == 2)
-		freight = 100;
-	else if(wayOption == 3 && !isHaveBag)
-		freight = 200;
-	else if(wayOption == 3 && isHaveBag)
-		freight = 580;
-	else if(wayOption == 4 && !isHaveBag)
-		freight = 460;
-	else if(wayOption == 4 && isHaveBag)
-		freight = 610;
+
+	freight = getFreight(wayOption, totalPrice, isHaveBag);
 	totalPrice = parseInt(totalPrice) + freight;
 	$('.freight').replaceWith("<td class='freight'>"+freight+"</td>");
-	//$('.total').replaceWith("<td class='total'>"+totalPrice+"</td>");
+	$('input[name="freight"]').val(freight);
+	$('.total').replaceWith("<td class='total'>"+totalPrice+"</td>");
 
 	$(".cart_del_btn").click(function(e) {
 		var cart_id = $(this).attr("cart_id");
@@ -194,7 +181,7 @@ $(document).ready(function(e) {
 					isFamily: '#ezship_cate'
 				},
 				discharge: {
-					required: false,
+					
 				}
 			},
 			messages: {
@@ -216,6 +203,10 @@ $(document).ready(function(e) {
 				},
 				recipient_wayOption: {
 					required: "請選擇運送方式"
+				},
+				discharge: {
+					min: jQuery.format("抵用金不能為{0}以下哦！"),
+					max: jQuery.format("此抵用金有{0}可使用")
 				}
 			},
 
@@ -313,6 +304,7 @@ $(document).ready(function(e) {
 		var freightLimit = 1000;
 		var freight = 0;
 		var disSum = $('input[name="discharge_amount"]').val();
+		wayOption = this.value;
 		if(this.value == 1)
 		{
 			$('#ezship_choose').show();
@@ -330,24 +322,10 @@ $(document).ready(function(e) {
 			$('input[name="ezship_code"]').val("0");*/
 		}
 		//console.log(totalPrice + "   " + freightLimit);
-		if(this.value < 3 && totalPrice >= 1000 )
-		{
-			freight = 0;
-		}
-		else if(this.value == 1)
-			freight = 60;
-		else if(this.value == 2)
-			freight = 100;
-		else if(this.value == 3 && !isHaveBag)
-			freight = 200;
-		else if(this.value == 3 && isHaveBag)
-			freight = 580;
-		else if(this.value == 4 && !isHaveBag)
-			freight = 460;
-		else if(this.value == 4 && isHaveBag)
-			freight = 610;
+		freight = getFreight(this.value, totalPrice, isHaveBag);
 		totalPrice = parseInt(totalPrice) + freight;
 		$('.freight').replaceWith("<td class='freight'>"+freight+"</td>");
+		$('input[name="freight"]').val(freight);
 		$('.total').replaceWith("<td class='total'>"+totalPrice+"</td>");
 		chkPromoCode(totalPrice, promo_code);
 		calTotalPrice(totalPrice, promo_code, disSum);
@@ -356,10 +334,33 @@ $(document).ready(function(e) {
 	$('#promo_discount').hide();
 
 	$('input[name="recipient_promoCode"]').change(function() {
-		var totalPrice = $('input[name="totalPrice"]').val();
+		var totalPrice = parseInt($('input[name="totalPrice"]').val()) + parseInt($('input[name="freight"]').val()) ;
 		var disSum = $('input[name="discharge_amount"]').val();
 		chkPromoCode(totalPrice, this.value);
-		promo_code = this.value;
+		promo_code = $('input[name="recipient_promoCode"]').val();
 		calTotalPrice(totalPrice, promo_code, disSum);
 	});
+
 });
+function getFreight(wayOption, totalPrice, isHaveBag)
+	{
+		var freight = 0;
+		if(wayOption < 3 && totalPrice >= 1000 )
+		{
+			freight = 0;
+		}
+		else if(wayOption == 1)
+			freight = 60;
+		else if(wayOption == 2)
+			freight = 100;
+		else if(wayOption == 3 && !isHaveBag)
+			freight = 200;
+		else if(wayOption == 3 && isHaveBag)
+			freight = 580;
+		else if(wayOption == 4 && !isHaveBag)
+			freight = 460;
+		else if(wayOption == 4 && isHaveBag)
+			freight = 610;
+
+		return freight;
+	}

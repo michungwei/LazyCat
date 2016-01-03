@@ -250,9 +250,9 @@ function calTotalPrice(totalPrice, promoCode, discharge){
 				else
 				{
 					$('.total').replaceWith("<td class='total'>"+total+"</td>");
-					$('#promo_discount').hide();
+					/*$('#promo_discount').hide();
 					$('#promo_money').hide();
-					$('input[name="recipient_promoCode"]').val("");
+					$('input[name="recipient_promoCode"]').val("");*/
 					alert("折扣後結帳金額為"+total+"，小於0無法做折扣!\n" + "[折扣金額為"+data.promo_money+" %數為"+data.promo_discount+" 抵用金為"+discharge+"]");
 				}
 			},

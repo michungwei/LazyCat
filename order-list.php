@@ -55,15 +55,6 @@ $u = count($carItem);
 <script src="scripts/coder_member.js"></script>
 <script src="scripts/memberdo.js"></script>
 <script src="assets/scripts/demo.js"></script>
-<script>
-var year = <?php echo $year; ?>;
-var month = <?php echo $month; ?>;
-var day = <?php echo $day; ?>;
-
-$(document).ready(function(e) {
-    set_ymd_date(1911, year, month, day);
-});
-</script>
 </head>
 <body>
 <?php include_once($inc_path."page/_menu.php"); ?>
