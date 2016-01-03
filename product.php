@@ -104,25 +104,25 @@ $(document).ready(function(){
         <div class="arrow-left"></div>
         <div class="arrow-right"></div>
         <div class="proImg">
-            <a href='<?php echo $web_path_product.$row["product_pic1"]; ?>' class='cloud-zoom' id='zoom1' rel="adjustX:10, adjustY:-4"><img src="<?php echo $web_path_product."m".$row["product_pic1"]; ?>" alt='' title="放大鏡顯示" /></a>
+            <a href='<?php echo $web_path_product.$row["product_pic1"]; ?>' class='cloud-zoom' id='zoom1' rel="adjustX:10, adjustY:-4"><img src="<?php echo $web_path_product.$row["product_pic1"]; ?>" alt='' title="放大鏡顯示" /></a>
             <!--<img src="<?php echo $web_path_product."m".$row["product_pic1"]; ?>" width="450" height="600" alt="" />-->
         </div>
         <ul class="proImg-ist">
-            <li class="prol-item active"><img bigImg="<?php echo $web_path_product.$row["product_pic1"]; ?>" src="<?php echo $web_path_product."m".$row["product_pic1"]; ?>" alt="" width="90" height="120" /></li>
+            <li class="prol-item active"><img bigImg="<?php echo $web_path_product.$row["product_pic1"]; ?>" src="<?php echo $web_path_product.$row["product_pic1"]; ?>" alt="" width="90" height="120" /></li>
             <?php
 				if($row["product_pic2"] != ""){
 			?>
-            <li class="prol-item"><img bigImg="<?php echo $web_path_product.$row["product_pic2"]; ?>" src="<?php echo $web_path_product."m".$row["product_pic2"]; ?>" width="90" height="120" alt="" /></li>
+            <li class="prol-item"><img bigImg="<?php echo $web_path_product.$row["product_pic2"]; ?>" src="<?php echo $web_path_product.$row["product_pic2"]; ?>" width="90" height="120" alt="" /></li>
             <?php
 				}
 				if($row["product_pic3"] != ""){
 			?>
-            <li class="prol-item"><img bigImg="<?php echo $web_path_product.$row["product_pic3"]; ?>" src="<?php echo $web_path_product."m".$row["product_pic3"]; ?>" alt="" width="90" height="120"/></li>
+            <li class="prol-item"><img bigImg="<?php echo $web_path_product.$row["product_pic3"]; ?>" src="<?php echo $web_path_product.$row["product_pic3"]; ?>" alt="" width="90" height="120"/></li>
             <?php
 				}
 				if($row["product_pic4"] != ""){
 			?>
-            <li class="prol-item"><img bigImg="<?php echo $web_path_product.$row["product_pic4"]; ?>" src="<?php echo $web_path_product."m".$row["product_pic4"]; ?>" alt="" width="90" height="120"/></li>
+            <li class="prol-item"><img bigImg="<?php echo $web_path_product.$row["product_pic4"]; ?>" src="<?php echo $web_path_product.$row["product_pic4"]; ?>" alt="" width="90" height="120"/></li>
             <?php
 				}
 			?>

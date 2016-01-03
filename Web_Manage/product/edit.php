@@ -220,13 +220,13 @@ $(document).ready(function(){
                         <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">最後修改時間</h4></td>
                             <td><?php echo $update_time; ?></td>
-                            <td rowspan="15" valign="top"><?php if($pic1 != ""){echo '<a href="'.$file_path.$pic1.'" target="_blank"><img src="'.$file_path."m".$pic1.'" width="100"></a>圖1';} ?>
+                            <td rowspan="15" valign="top"><?php if($pic1 != ""){echo '<a href="'.$file_path.$pic1.'" target="_blank"><img src="'.$file_path.$pic1.'" width="100"></a>圖1';} ?>
                                 <br />
-                                <?php if($pic2 != ""){echo '<a href="'.$file_path.$pic2.'" target="_blank"><img src="'.$file_path."m".$pic2.'" width="100"></a>圖2';} ?>
+                                <?php if($pic2 != ""){echo '<a href="'.$file_path.$pic2.'" target="_blank"><img src="'.$file_path.$pic2.'" width="100"></a>圖2';} ?>
                                 <br />
-                                <?php if($pic3 != ""){echo '<a href="'.$file_path.$pic3.'" target="_blank"><img src="'.$file_path."m".$pic3.'" width="100"></a>圖3';} ?>
+                                <?php if($pic3 != ""){echo '<a href="'.$file_path.$pic3.'" target="_blank"><img src="'.$file_path.$pic3.'" width="100"></a>圖3';} ?>
                                 <br />
-                                <?php if($pic4 != ""){echo '<a href="'.$file_path.$pic4.'" target="_blank"><img src="'.$file_path."m".$pic4.'" width="100"></a>圖4';} ?>
+                                <?php if($pic4 != ""){echo '<a href="'.$file_path.$pic4.'" target="_blank"><img src="'.$file_path.$pic4.'" width="100"></a>圖4';} ?>
                                 <br /></td>
                         </tr>
                         <tr>
@@ -320,14 +320,14 @@ $(document).ready(function(){
                             <td><p>
                                     <input type="file" name="pic1" id="pic1" />
                                     <br />
-                                    (請上傳符合 <?php echo $product_pic_w; ?> x <?php echo $product_pic_h; ?> 尺寸的圖片)<!--<input name="pic1_del" type="checkbox" id="pic1_del" value="1">&nbsp;刪除圖片1--></p></td>
+                                    (請上傳符合比 <?php echo $product_pic_w; ?> x <?php echo $product_pic_h; ?> 大尺寸的圖片)<!--<input name="pic1_del" type="checkbox" id="pic1_del" value="1">&nbsp;刪除圖片1--></p></td>
                         </tr>
                         <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">圖片2</h4></td>
                             <td><p>
                                     <input type="file" name="pic2" id="pic2" />
                                     <br />
-                                    (請上傳符合 <?php echo $product_pic_w; ?> x <?php echo $product_pic_h; ?> 尺寸的圖片)&nbsp;&nbsp;
+                                    (請上傳符合比 <?php echo $product_pic_w; ?> x <?php echo $product_pic_h; ?> 大尺寸的圖片)&nbsp;&nbsp;
                                     <input name="pic2_del" type="checkbox" id="pic2_del" value="1">
                                     &nbsp;刪除圖片2</p></td>
                         </tr>
@@ -336,7 +336,7 @@ $(document).ready(function(){
                             <td><p>
                                     <input type="file" name="pic3" id="pic3" />
                                     <br />
-                                    (請上傳符合 <?php echo $product_pic_w; ?> x <?php echo $product_pic_h; ?> 尺寸的圖片)&nbsp;&nbsp;
+                                    (請上傳符合比 <?php echo $product_pic_w; ?> x <?php echo $product_pic_h; ?> 大尺寸的圖片)&nbsp;&nbsp;
                                     <input name="pic3_del" type="checkbox" id="pic3_del" value="1">
                                     &nbsp;刪除圖片3</p></td>
                         </tr>
@@ -345,7 +345,7 @@ $(document).ready(function(){
                             <td><p>
                                     <input type="file" name="pic4" id="pic4" />
                                     <br />
-                                    (請上傳符合 <?php echo $product_pic_w; ?> x <?php echo $product_pic_h; ?> 尺寸的圖片)&nbsp;&nbsp;
+                                    (請上傳符合比 <?php echo $product_pic_w; ?> x <?php echo $product_pic_h; ?> 大尺寸的圖片)&nbsp;&nbsp;
                                     <input name="pic4_del" type="checkbox" id="pic4_del" value="1">
                                     &nbsp;刪除圖片4</p></td>
                         </tr>

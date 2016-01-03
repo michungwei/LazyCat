@@ -258,28 +258,28 @@ $(document).ready(function(){
                             <td><p>
                                     <input type="file" name="pic1" id="pic1" />
                                     <br />
-                                    (請上傳符合 <?php echo $product_pic_w; ?> x <?php echo $product_pic_h; ?> 尺寸的圖片)</p></td>
+                                    (請上傳比 <?php echo $product_pic_w; ?> x <?php echo $product_pic_h; ?> 大尺寸的圖片)</p></td>
                         </tr>
                         <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">圖片2</h4></td>
                             <td><p>
                                     <input type="file" name="pic2" id="pic2" />
                                     <br />
-                                    (請上傳符合 <?php echo $product_pic_w; ?> x <?php echo $product_pic_h; ?> 尺寸的圖片)</p></td>
+                                    (請上傳符合比 <?php echo $product_pic_w; ?> x <?php echo $product_pic_h; ?> 大尺寸的圖片)</p></td>
                         </tr>
                         <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">圖片3</h4></td>
                             <td><p>
                                     <input type="file" name="pic3" id="pic3" />
                                     <br />
-                                    (請上傳符合 <?php echo $product_pic_w; ?> x <?php echo $product_pic_h; ?> 尺寸的圖片)</p></td>
+                                    (請上傳符合比 <?php echo $product_pic_w; ?> x <?php echo $product_pic_h; ?> 大尺寸的圖片)</p></td>
                         </tr>
                         <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">圖片4</h4></td>
                             <td><p>
                                     <input type="file" name="pic4" id="pic4" />
                                     <br />
-                                    (請上傳符合 <?php echo $product_pic_w; ?> x <?php echo $product_pic_h; ?> 尺寸的圖片)</p></td>
+                                    (請上傳符合比 <?php echo $product_pic_w; ?> x <?php echo $product_pic_h; ?> 大尺寸的圖片)</p></td>
                         </tr>
                         <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">說明</h4></td>
