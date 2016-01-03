@@ -114,8 +114,10 @@ function prodShow() {
 		proInd = $(this).index();
 		//console.log(proInd);
 		$('.proImg img').attr("src", $(this).find('img').attr('src'));
+		$('.proImg a').attr("href", $(this).find('img').attr('bigImg'));
 		$(".prol-item").removeClass('active');
 		$(this).addClass('active');
+		$('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
 	});
 	$(".arrow-right").click(function(){
 		proInd++;
@@ -124,8 +126,10 @@ function prodShow() {
 			proInd = 0;
 		}
 		$('.proImg img').attr("src", $('.prol-item:eq('+proInd+')').find('img').attr('src'));
+		$('.proImg a').attr("href", $('.prol-item:eq('+proInd+')').find('img').attr('bigImg'));
 		$(".prol-item").removeClass('active');
 		$('.prol-item:eq('+proInd+')').addClass('active');
+		$('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
 	});
 	$(".arrow-left").click(function(){
 		proInd--;
@@ -134,8 +138,10 @@ function prodShow() {
 			proInd = proLength;
 		}
 		$('.proImg img').attr("src", $('.prol-item:eq('+proInd+')').find('img').attr('src'));
+		$('.proImg a').attr("href", $('.prol-item:eq('+proInd+')').find('img').attr('bigImg'));
 		$(".prol-item").removeClass('active');
 		$('.prol-item:eq('+proInd+')').addClass('active');
+		$('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
 	});
         //console.log(proLength);
 }

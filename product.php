@@ -38,6 +38,7 @@ $rows_hot = Product::getHotPro();
 <meta name="copyright" content="<?php echo $copyright; ?>">
 <title><?php echo $web_name; ?></title>
 <link href="assets/stylesheets/screen.css" media="screen, projection" rel="stylesheet" />
+<link href="assets/stylesheets/cloud-zoom.css" rel="stylesheet" type="text/css" />
 <link rel="shortcut icon" href="assets/images/favicon.ico">
 <script src="assets/scripts/jquery-2.1.1.min.js"></script>
 <script src="assets/scripts/demo.js"></script>
@@ -45,6 +46,8 @@ $rows_hot = Product::getHotPro();
 <script src="scripts/cookie.js"></script>
 <script src="assets/scripts/product.js"></script>
 <script src="scripts/shoppingcar.js"></script>
+<script src="scripts/jquery.js"></script>
+<script src="scripts/cloud-zoom.1.0.2.min.js"></script>
 <script>
 var pic_path = "<?php echo $web_path_product; ?>"+"m";
 $(document).ready(function(){ 
@@ -100,23 +103,26 @@ $(document).ready(function(){
     <div class="productImg">
         <div class="arrow-left"></div>
         <div class="arrow-right"></div>
-        <div class="proImg"><img src="<?php echo $web_path_product."m".$row["product_pic1"]; ?>" width="450" height="600" alt="" /></div>
+        <div class="proImg">
+            <a href='<?php echo $web_path_product.$row["product_pic1"]; ?>' class='cloud-zoom' id='zoom1' rel="adjustX:10, adjustY:-4"><img src="<?php echo $web_path_product."m".$row["product_pic1"]; ?>" alt='' title="放大鏡顯示" /></a>
+            <!--<img src="<?php echo $web_path_product."m".$row["product_pic1"]; ?>" width="450" height="600" alt="" />-->
+        </div>
         <ul class="proImg-ist">
-            <li class="prol-item active"><img src="<?php echo $web_path_product."m".$row["product_pic1"]; ?>" alt="" width="90" height="120" /></li>
+            <li class="prol-item active"><img bigImg="<?php echo $web_path_product.$row["product_pic1"]; ?>" src="<?php echo $web_path_product."m".$row["product_pic1"]; ?>" alt="" width="90" height="120" /></li>
             <?php
 				if($row["product_pic2"] != ""){
 			?>
-            <li class="prol-item"><img src="<?php echo $web_path_product."m".$row["product_pic2"]; ?>" width="90" height="120" alt="" /></li>
+            <li class="prol-item"><img bigImg="<?php echo $web_path_product.$row["product_pic2"]; ?>" src="<?php echo $web_path_product."m".$row["product_pic2"]; ?>" width="90" height="120" alt="" /></li>
             <?php
 				}
 				if($row["product_pic3"] != ""){
 			?>
-            <li class="prol-item"><img src="<?php echo $web_path_product."m".$row["product_pic3"]; ?>" alt="" width="90" height="120"/></li>
+            <li class="prol-item"><img bigImg="<?php echo $web_path_product.$row["product_pic3"]; ?>" src="<?php echo $web_path_product."m".$row["product_pic3"]; ?>" alt="" width="90" height="120"/></li>
             <?php
 				}
 				if($row["product_pic4"] != ""){
 			?>
-            <li class="prol-item"><img src="<?php echo $web_path_product."m".$row["product_pic4"]; ?>" alt="" width="90" height="120"/></li>
+            <li class="prol-item"><img bigImg="<?php echo $web_path_product.$row["product_pic4"]; ?>" src="<?php echo $web_path_product."m".$row["product_pic4"]; ?>" alt="" width="90" height="120"/></li>
             <?php
 				}
 			?>
