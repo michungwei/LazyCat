@@ -141,6 +141,11 @@ class CoderMember{
 		global $db;
 		return $db -> query_first("SELECT * FROM ".CoderMember::$table_dis." WHERE discharge_id = '$discharge_id' AND discharge_enable = 1 AND ((discharge_start_time <= NOW() AND discharge_end_time >= NOW()) OR discharge_forever = 1)");
 	}
+	//取得抵用金(列表用)
+	public static function getDischargeList($discharge_id){
+		global $db;
+		return $db -> query_first("SELECT * FROM ".CoderMember::$table_dis." WHERE discharge_id = '$discharge_id' AND discharge_enable = 1");	
+	}
 
 	//扣除抵用金
 	public static function resetDischarge($mid, $dischargeStr){

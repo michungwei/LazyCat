@@ -26,7 +26,7 @@ $(document).ready(function(e) {
         <li href="memberCenter_<?php echo $_SESSION["session_id"]; ?>.html"> 會員中心 </li>
         <li href="wishlist.html"> wishlist </li>
         <li href="order-list.php?member_id=<?php echo $_SESSION["session_id"]; ?>"> 訂單查詢 </li>
-        <!--<li> 購物抵用金查詢 </li>-->
+        <li href="discharge-list.php"> 購物抵用金查詢 </li>
     </ul>
 </div>
 <div id="nav">
