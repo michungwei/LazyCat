@@ -184,7 +184,7 @@ $(document).ready(function(e) {
                         <th align="center"><?php echo $row["product_sno"]; ?></th>
                         <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $ary_product_type[$row["product_type_id"]]; ?></td>
                         <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $row["productserial_name"]; ?></td>
-                        <td align="center" style="word-wrap: break-word; word-break: break-all;"><img src="<?php echo $file_path.'m'.$row["product_pic1"]; ?>" width="100" onerror="javascript:this.src='../images/nopic.jpg'"></td>
+                        <td align="center" style="word-wrap: break-word; word-break: break-all;"><img src="<?php echo $file_path.$row["product_pic1"]; ?>" width="100" onerror="javascript:this.src='../images/nopic.jpg'"></td>
                         <td align="left" style="word-wrap: break-word; word-break: break-all;"><?php echo $row["product_name_tw"]." / ".$row["product_name_en"]; ?></td>
                         <td align="center"><?php echo $row["product_stock"]; ?></td>
                         <th align="center"><a class="items fancybox.iframe" href="log_list.php?product_id=<?php echo $row["product_id"]; ?>" style="width:50px;" caption="<?php echo $row["product_name_tw"]."/".$row["product_name_en"].")"; ?>"><?php echo $row["amount"]; ?></a></th>

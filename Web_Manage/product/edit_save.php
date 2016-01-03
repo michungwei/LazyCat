@@ -41,8 +41,8 @@ if($file -> file_name != ""){
 	$file -> set("overwrite", "3"); 
 	$file -> set("fstyle", "image"); 
 	if($file -> upload() && $file -> file_name != ""){
-		// $file -> file_sname = "m";
-		// $file -> createSmailImg($product_pic_w, $product_pic_h, 6);	
+		$file -> file_sname = "m";
+		$file -> createSmailImg($product_pic_w, $product_pic_h, 6);	
 		$data["product_pic1"] = $file -> file_name;
 	}	
 }
@@ -55,8 +55,8 @@ if($file -> file_name != ""){
 	$file -> set("overwrite", "3"); 
 	$file -> set("fstyle", "image"); 
 	if($file -> upload() && $file -> file_name != ""){
-		// $file -> file_sname = "m";
-		// $file -> createSmailImg($product_pic_w, $product_pic_h, 6);	
+		$file -> file_sname = "m";
+		$file -> createSmailImg($product_pic_w, $product_pic_h, 6);	
 		$data["product_pic2"] = $file -> file_name;
 	}	
 }
@@ -72,8 +72,8 @@ if($file -> file_name != ""){
 	$file -> set("overwrite", "3"); 
 	$file -> set("fstyle", "image"); 
 	if($file -> upload() && $file -> file_name != ""){
-		// $file -> file_sname = "m";
-		// $file -> createSmailImg($product_pic_w, $product_pic_h, 6);	
+		$file -> file_sname = "m";
+		$file -> createSmailImg($product_pic_w, $product_pic_h, 6);	
 		$data["product_pic3"] = $file -> file_name;
 	}	
 }
@@ -89,8 +89,8 @@ if($file -> file_name != ""){
 	$file -> set("overwrite", "3"); 
 	$file -> set("fstyle", "image"); 
 	if($file -> upload() && $file -> file_name != ""){
-		// $file -> file_sname = "m";
-		// $file -> createSmailImg($product_pic_w, $product_pic_h, 6);	
+		$file -> file_sname = "m";
+		$file -> createSmailImg($product_pic_w, $product_pic_h, 6);	
 		$data["product_pic4"] = $file -> file_name;
 	}	
 }
