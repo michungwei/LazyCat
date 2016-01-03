@@ -17,6 +17,7 @@ class CoderMemberItem{
 
 class CoderMember{
 	static $table = "lc_member";
+	static $table_dis = "lc_discharge";
 
 	public function __construct(){
 	}
@@ -134,6 +135,20 @@ class CoderMember{
 		global $db;
 		return $db -> query_first("SELECT * FROM ".CoderMember::$table." WHERE member_id = '$member_id'");
 	}
+
+	//取得抵用金名稱
+	public static function getDischarge($discharge_id){
+		global $db;
+		return $db -> query_first("SELECT * FROM ".CoderMember::$table_dis." WHERE discharge_id = '$discharge_id' AND discharge_enable = 1 AND ((discharge_start_time <= NOW() AND discharge_end_time >= NOW()) OR discharge_forever = 1)");
+	}
+
+	//扣除抵用金
+	public static function resetDischarge($mid, $dischargeStr){
+		global $db;
+		$data["member_discharge_amount"] = $dischargeStr;
+		$db -> query_update(CoderMember::$table, $data, "member_id = ".$mid);
+	}
+
 	
 	public function chkCode(coderMemberObj $member){
 		if($this->isChkCode($member->code)){

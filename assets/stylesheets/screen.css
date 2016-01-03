@@ -2988,3 +2988,21 @@ body .ui-tooltip {
 	margin-bottom: 15px;
 	line-height: 30px;
 }
+
+/*-----------------抵用金------------------*/
+#disContain{
+	width: 100%;
+}
+#disName{
+	float: left;
+	width:30%;
+	line-height: 35px;
+}
+#disAmount input{
+	float: left;
+	width:30%;
+	height:20px;
+}
+#disAmount font{
+	height:35px;
+}

@@ -20,8 +20,9 @@ $(document).ready(function(e) {
 	var freightLimit = 1000;
 	var freight = 0;
 	var promo_code = "";
+	var disSum = $('input[name="discharge_amount"]').val();
 	//console.log(totalPrice + "   " + freightLimit + "    " +wayOption);
-	if(wayOption < 3 && totalPrice > 1000 )
+	if(wayOption < 3 && totalPrice >= 1000 )
 	{
 		freight = 0;
 	}
@@ -39,7 +40,7 @@ $(document).ready(function(e) {
 		freight = 610;
 	totalPrice = parseInt(totalPrice) + freight;
 	$('.freight').replaceWith("<td class='freight'>"+freight+"</td>");
-	$('.total').replaceWith("<td class='total'>"+totalPrice+"</td>");
+	//$('.total').replaceWith("<td class='total'>"+totalPrice+"</td>");
 
 	$(".cart_del_btn").click(function(e) {
 		var cart_id = $(this).attr("cart_id");
@@ -191,6 +192,9 @@ $(document).ready(function(e) {
 				ezship_choose: {
 					isChooseStore: true,
 					isFamily: '#ezship_cate'
+				},
+				discharge: {
+					required: false,
 				}
 			},
 			messages: {
@@ -250,6 +254,7 @@ $(document).ready(function(e) {
 						}else{
 							//alert(response.result);
 							alert(response.message);
+							$('#order_pay_btn').show();
 						}
 					},
 					error : function(xhr, ajaxOptions, thrownError){
@@ -307,6 +312,7 @@ $(document).ready(function(e) {
 		var totalPrice = $('input[name="totalPrice"]').val();
 		var freightLimit = 1000;
 		var freight = 0;
+		var disSum = $('input[name="discharge_amount"]').val();
 		if(this.value == 1)
 		{
 			$('#ezship_choose').show();
@@ -324,7 +330,7 @@ $(document).ready(function(e) {
 			$('input[name="ezship_code"]').val("0");*/
 		}
 		//console.log(totalPrice + "   " + freightLimit);
-		if(this.value < 3 && totalPrice > 1000 )
+		if(this.value < 3 && totalPrice >= 1000 )
 		{
 			freight = 0;
 		}
@@ -344,12 +350,16 @@ $(document).ready(function(e) {
 		$('.freight').replaceWith("<td class='freight'>"+freight+"</td>");
 		$('.total').replaceWith("<td class='total'>"+totalPrice+"</td>");
 		chkPromoCode(totalPrice, promo_code);
+		calTotalPrice(totalPrice, promo_code, disSum);
 	});
 	$('#promo_money').hide();
 	$('#promo_discount').hide();
 
 	$('input[name="recipient_promoCode"]').change(function() {
+		var totalPrice = $('input[name="totalPrice"]').val();
+		var disSum = $('input[name="discharge_amount"]').val();
 		chkPromoCode(totalPrice, this.value);
 		promo_code = this.value;
+		calTotalPrice(totalPrice, promo_code, disSum);
 	});
 });

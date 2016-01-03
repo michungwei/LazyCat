@@ -15,10 +15,12 @@ $db = new Database($HS, $ID, $PW, $DB);
 $db -> connect();
 
 $car = new shoppingCar();
-$car -> calculate();
+$car -> calculate(1, true);
 $total = $car -> total;
 $carItem = $car -> getCarFromDB();
 $u = count($carItem);
+$disNameAry = array();
+$disIdStr = '';
 
 if(!isLogin()){
 	script("請先登入會員!", "sign.html");
@@ -28,6 +30,19 @@ if(!isLogin()){
 	}
 	$memberid = $_SESSION["session_id"];
 	$row_member = CoderMember::getList($memberid);
+
+    $disIdAry = explode(',', $row_member['member_discharge_id']);
+    $disAmtAry = explode(',', $row_member['member_discharge_amount']);
+    $cnt = 0;
+    for($i = 0; $i < sizeof($disIdAry) - 1; $i++)
+    {
+        if(CoderMember::getDischarge($disIdAry[$i]))
+        {
+            $disNameAry[$cnt] = CoderMember::getDischarge($disIdAry[$i]);
+            $disIdStr .= $disIdAry[$i].',';
+            $cnt ++;
+        }
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -53,6 +68,65 @@ if(!isLogin()){
 <script src="scripts/shoppingcar.js"></script>
 <script src="scripts/cookie.js"></script>
 <script src="scripts/alertify.min.js"></script>
+<script>
+$(document).ready(function(){
+
+    var disCnt = <?php echo sizeof($disNameAry); ?>;
+    var disSum = 0;
+    var totalPrice = $('input[name="totalPrice"]').val();
+    var promo_code = $('input[name="recipient_promoCode"]').val();
+    var disAmtStr = '';
+    for(var i = 0; i < disCnt; i++)
+    {
+        $("#disRange"+i).on('input',{index:""+i}, changeDisAmtTxt);
+        $("#disRange"+i).on('change', function(){
+            calTotalPrice($('input[name="totalPrice"]').val(), $('input[name="recipient_promoCode"]').val(), $('input[name="discharge_amount"]').val());
+        });
+        disSum += parseInt($("#disRange"+i).val());
+        disAmtStr += $("#disRange"+i).val() + ',';
+    }
+    if(disSum > 0)
+    {
+        $('#discharge').show();
+        $('.discharge').replaceWith("<td class='discharge'>- " + disSum +"</td>");
+        $('input[name="discharge_amount"]').val(disSum);
+        $('input[name="dischargeStr"]').val(disAmtStr);
+    }
+    else
+        $('#discharge').hide();
+    calTotalPrice(totalPrice, promo_code, disSum);
+
+    function changeDisAmtTxt(event)
+    {
+        var index = event.data.index;
+        var res = document.getElementById("disFont"+index);
+        var p = document.getElementById("disRange"+index);
+        //console.log("range slider!! " + $("#disRange"+index).val());
+        res.innerHTML = "TWD $" + p.value;
+        disChargeHandler();
+    }
+    function disChargeHandler()
+    {
+        var disSum = 0;
+        var disAmtStr = '';
+        for(var i = 0; i < disCnt; i++)
+        {
+            //$("#disRange"+i).on('input',{index:""+i}, changeDisAmtTxt);
+            disSum += parseInt($("#disRange"+i).val());
+            disAmtStr += $("#disRange"+i).val() + ',';
+        }
+        if(disSum > 0)
+        {
+            $('#discharge').show();
+            $('.discharge').replaceWith("<td class='discharge'>- " + disSum +"</td>");
+            $('input[name="discharge_amount"]').val(disSum);
+            $('input[name="dischargeStr"]').val(disAmtStr);
+        }
+        else
+            $('#discharge').hide();
+    }
+});
+</script>
 </head>
 <body>
 <?php include_once($inc_path."page/_menu.php"); ?>
@@ -123,10 +197,43 @@ if(!isLogin()){
             <lable for="recipient_promoCode" class="field-grop">
                     <p class="fieldTitle"> 折扣碼 </p>
                     <input name="recipient_promoCode" type="text" id="recipient_promoCode" value="" />
-                </lable>
+            </lable>
+            <label for="recipient_discharge" class="field-grop">
+                <?php 
+                if(sizeof($disNameAry) > 0) 
+                {
+                ?>
+                <p class="fieldTitle"> 使用抵用金 </p>
+                <?php
+                }
+                ?>
+                <br>
+                <?php 
+                for($i = 0; $i < sizeof($disNameAry); $i++)
+                {
+                    if($disAmtAry[$i] > 0)
+                    {
+                ?>
+                    <div id="disContain">
+                        <div id="disName">
+                            <font>&nbsp;&nbsp;<?php echo $disNameAry[$i]['discharge_name'];?></font>
+                        </div>
+                        <div id="disAmount">
+                            <input id="disRange<?php echo $i;?>" name="discharge" type="range" data-orig-type="range" min="0" max="<?php echo $disAmtAry[$i];?>" value="0" >&nbsp;&nbsp;<font id="disFont<?php echo $i;?>" color="gray" style="line-height:35px;">TWD $0</font>
+                        </div>
+                    </div>
+                <?php
+                    }
+                }
+                ?>
+            </lable>
             <input type="button" onclick="history.back()" class="btn-white" style="cursor: pointer;" value="back">
             <input name="haveBag" type="hidden" value="<?php echo $car -> chkHaveBag(); ?>" />
             <input name="totalPrice" type="hidden" value="<?php echo $total; ?>" />
+            <input id="discharge_amount" name="discharge_amount" type="hidden" value="0" />
+            <input id="dischargeStr" name="dischargeStr" type="hidden" value="" />
+            <input id="dischargeIdStr" name="dischargeIdStr" type="hidden" value="<?php echo $disIdStr; ?>" />
+            <input id="oriDischargeStr" name="oriDischargeStr" type="hidden" value="<?php echo $row_member['member_discharge_amount']; ?>" />
             <!--<div href="javascript: history.go(-1)">back</div>-->
         </div>
         <div class="order-list">
@@ -171,6 +278,10 @@ if(!isLogin()){
                         <tr id="promo_discount">
                             <td width="190" style="word-wrap: break-word; word-break: break-all; font-color: 'red'">折扣%數</td>
                             <td class="promo_discount">x 1</td>
+                        </tr>
+                        <tr id="discharge">
+                            <td width="190" style="word-wrap: break-word; word-break: break-all; font-color: 'red'">抵用金</td>
+                            <td class="discharge">- 0</td>
                         </tr>
                     </tbody>
                     <tfoot>

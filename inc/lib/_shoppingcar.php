@@ -304,7 +304,7 @@ class shoppingCar
 	 *重新計算購物中的總數和金額
 	 *儲存到變數num和total中
 	 */		
-	function calculate($transportType = 0, $checkFreight = false, $promo_money = 0, $promo_discount = 1)
+	function calculate($transportType = 0, $checkFreight = false, $promo_money = 0, $promo_discount = 1, $discharge = 0)
 	{
 		$car=$this->car;
 		$this->num=0;
@@ -319,7 +319,7 @@ class shoppingCar
 
 		if($checkFreight)
 		{
-			if($transportType < 3 && $total > $this->freightlimit)
+			if($transportType < 3 && $total >= $this->freightlimit)
 			{
 				$this->freightprice = 0;
 			}
@@ -337,7 +337,7 @@ class shoppingCar
 				$this->freightprice = 610;
 		}
 		//$this->freightprice = 500;
-		$this->total = ceil(($total + $this->freightprice - $promo_money) * $promo_discount);
+		$this->total = ceil(($total + $this->freightprice - $promo_money) * $promo_discount) - $discharge;
 
 		return $this->freightprice;
 		//取得運費
