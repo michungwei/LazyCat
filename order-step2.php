@@ -80,12 +80,13 @@ $(document).ready(function(){
     for(var i = 0; i < disCnt; i++)
     {
         $("#disRange"+i).on('input',{index:""+i}, changeDisAmtTxt);
-        $("#disRange"+i).on('change', function(){
+        /*$("#disRange"+i).on('change', function(){
             calTotalPrice(
-                parseInt($('input[name="totalPrice"]').val()) + parseInt($('input[name="freight"]').val()),
+                parseInt($('input[name="totalPrice"]').val()),
                 $('input[name="recipient_promoCode"]').val(),
-                $('input[name="discharge_amount"]').val());
-        });
+                $('input[name="discharge_amount"]').val(),
+                parseInt($('input[name="freight"]').val()));
+        });*/
         disSum += parseInt($("#disRange"+i).val());
         disAmtStr += $("#disRange"+i).val() + ',';
     }
@@ -98,7 +99,7 @@ $(document).ready(function(){
     }
     else
         $('#discharge').hide();
-    calTotalPrice(parseInt(totalPrice) + parseInt($('input[name="freight"]').val()), promo_code, disSum);
+    calTotalPrice(parseInt(totalPrice), promo_code, disSum, parseInt($('input[name="freight"]').val()));
 
     function changeDisAmtTxt(event)
     {
@@ -116,6 +117,8 @@ $(document).ready(function(){
         for(var i = 0; i < disCnt; i++)
         {
             //$("#disRange"+i).on('input',{index:""+i}, changeDisAmtTxt);
+            if($("#disRange"+i).val() == '')
+                $("#disRange"+i).val(0);
             disSum += parseInt($("#disRange"+i).val());
             disAmtStr += $("#disRange"+i).val() + ',';
         }
@@ -131,6 +134,11 @@ $(document).ready(function(){
             $('#discharge').hide();
             $('input[name="discharge_amount"]').val(disSum);
         }
+        calTotalPrice(
+                parseInt($('input[name="totalPrice"]').val()),
+                $('input[name="recipient_promoCode"]').val(),
+                $('input[name="discharge_amount"]').val(),
+                parseInt($('input[name="freight"]').val()));
     }
 });
 </script>
@@ -226,7 +234,7 @@ $(document).ready(function(){
                             <font>&nbsp;&nbsp;<?php echo $disNameAry[$i]['discharge_name'];?></font>
                         </div>
                         <div id="disAmount">
-                            <input id="disRange<?php echo $i;?>" name="discharge" type="number" min="0" max="<?php echo $disAmtAry[$i];?>" value="0" >&nbsp;&nbsp;<font id="disFont<?php echo $i;?>" color="gray" style="line-height:50px;">(有TWD $<?php echo $disAmtAry[$i];?>可使用)</font>
+                            <input id="disRange<?php echo $i;?>" name="discharge" type="number"  min="0" max="<?php echo $disAmtAry[$i];?>" value="0" >&nbsp;&nbsp;<font id="disFont<?php echo $i;?>" color="gray" style="line-height:50px;">(有TWD $<?php echo $disAmtAry[$i];?>可使用)</font>
                         </div>
                     </div>
                 <?php
@@ -275,10 +283,6 @@ $(document).ready(function(){
                             $sum += $subtotal;
 						}
 						?>
-                        <tr>
-                            <td width="190" style="word-wrap: break-word; word-break: break-all;">運費</td>
-                            <td class="freight">0</td>
-                        </tr>
                         <tr id="promo_money">
                             <td width="190" style="word-wrap: break-word; word-break: break-all; font-color: 'red'">折扣金額</td>
                             <td class="promo_money">- 0</td>
@@ -290,6 +294,10 @@ $(document).ready(function(){
                         <tr id="discharge">
                             <td width="190" style="word-wrap: break-word; word-break: break-all; font-color: 'red'">抵用金</td>
                             <td class="discharge">- 0</td>
+                        </tr>
+                        <tr>
+                            <td width="190" style="word-wrap: break-word; word-break: break-all;">運費</td>
+                            <td class="freight">+ 0</td>
                         </tr>
                     </tbody>
                     <tfoot>

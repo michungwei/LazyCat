@@ -337,7 +337,7 @@ class shoppingCar
 				$this->freightprice = 610;
 		}
 		//$this->freightprice = 500;
-		$this->total = ceil(($total + $this->freightprice - $promo_money) * $promo_discount) - $discharge;
+		$this->total = ceil(($total - $promo_money) * $promo_discount) - $discharge + $this->freightprice;
 
 		return $this->freightprice;
 		//取得運費

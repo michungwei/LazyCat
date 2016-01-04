@@ -16,6 +16,7 @@ function chkStock(){
 $(document).ready(function(e) {
 	var isHaveBag = $('input[name="haveBag"]').val();
 	var totalPrice = $('input[name="totalPrice"]').val();
+	var price = $('input[name="totalPrice"]').val();
 	var wayOption = $('input[name="recipient_wayOption"]').val();
 	var freightLimit = 1000;
 	var freight = 0;
@@ -25,7 +26,7 @@ $(document).ready(function(e) {
 
 	freight = getFreight(wayOption, totalPrice, isHaveBag);
 	totalPrice = parseInt(totalPrice) + freight;
-	$('.freight').replaceWith("<td class='freight'>"+freight+"</td>");
+	$('.freight').replaceWith("<td class='freight'>+ "+freight+"</td>");
 	$('input[name="freight"]').val(freight);
 	$('.total').replaceWith("<td class='total'>"+totalPrice+"</td>");
 
@@ -301,6 +302,7 @@ $(document).ready(function(e) {
 	$('input[name="recipient_wayOption"]').change(function() {
 		var isHaveBag = $('input[name="haveBag"]').val();
 		var totalPrice = $('input[name="totalPrice"]').val();
+		var price = $('input[name="totalPrice"]').val();
 		var freightLimit = 1000;
 		var freight = 0;
 		var disSum = $('input[name="discharge_amount"]').val();
@@ -322,23 +324,25 @@ $(document).ready(function(e) {
 			$('input[name="ezship_code"]').val("0");*/
 		}
 		//console.log(totalPrice + "   " + freightLimit);
-		freight = getFreight(this.value, totalPrice, isHaveBag);
-		totalPrice = parseInt(totalPrice) + freight;
-		$('.freight').replaceWith("<td class='freight'>"+freight+"</td>");
+		freight = getFreight(this.value, price, isHaveBag);
+
+		totalPrice = parseInt(price) + freight;
+		$('.freight').replaceWith("<td class='freight'>+ "+freight+"</td>");
 		$('input[name="freight"]').val(freight);
 		$('.total').replaceWith("<td class='total'>"+totalPrice+"</td>");
-		chkPromoCode(totalPrice, promo_code);
-		calTotalPrice(totalPrice, promo_code, disSum);
+		chkPromoCode(price, promo_code, freight);
+		calTotalPrice(price, promo_code, disSum, freight);
 	});
 	$('#promo_money').hide();
 	$('#promo_discount').hide();
 
 	$('input[name="recipient_promoCode"]').change(function() {
-		var totalPrice = parseInt($('input[name="totalPrice"]').val()) + parseInt($('input[name="freight"]').val()) ;
+		var price = parseInt($('input[name="totalPrice"]').val()) ;
+		var freight = parseInt($('input[name="freight"]').val());
 		var disSum = $('input[name="discharge_amount"]').val();
-		chkPromoCode(totalPrice, this.value);
+		chkPromoCode(price, this.value, freight);
 		promo_code = $('input[name="recipient_promoCode"]').val();
-		calTotalPrice(totalPrice, promo_code, disSum);
+		calTotalPrice(price, promo_code, disSum, freight);
 	});
 
 });

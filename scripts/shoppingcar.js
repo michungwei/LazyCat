@@ -164,7 +164,7 @@ function chkProductStock(product_id, num, color){
 	}
 }
 
-function chkPromoCode(totalPrice, promoCode){ 
+function chkPromoCode(totalPrice, promoCode, freight){ 
 	if(promoCode != ""){
 		var res = false;
 		$.ajax({
@@ -195,7 +195,7 @@ function chkPromoCode(totalPrice, promoCode){
 						$('#promo_discount').hide();
 					}
 
-					var total = Math.ceil((totalPrice - data.promo_money) * data.promo_discount);
+					var total = Math.ceil((totalPrice - data.promo_money) * data.promo_discount) + freight;
 					if(total > 0)
 						$('.total').replaceWith("<td class='total'>"+total+"</td>");
 					else
@@ -224,7 +224,7 @@ function chkPromoCode(totalPrice, promoCode){
 	}
 }
 
-function calTotalPrice(totalPrice, promoCode, discharge){ 
+function calTotalPrice(totalPrice, promoCode, discharge, freight){ 
 
 		var res = false;
 		$.ajax({
@@ -238,12 +238,12 @@ function calTotalPrice(totalPrice, promoCode, discharge){
 			success:function(data){
 				if(data.result){
 					res = true;
-					var total = Math.ceil((totalPrice - data.promo_money) * data.promo_discount) - discharge;
+					var total = Math.ceil((totalPrice - data.promo_money) * data.promo_discount) - discharge + freight;
 				}else{
 					$('#promo_discount').hide();
 					$('#promo_money').hide();
 					$('input[name="recipient_promoCode"]').val("");
-					var total = totalPrice - discharge;
+					var total = totalPrice - discharge + freight;
 				}
 				if(total > 0)
 					$('.total').replaceWith("<td class='total'>"+total+"</td>");
