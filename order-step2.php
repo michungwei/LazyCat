@@ -79,7 +79,7 @@ $(document).ready(function(){
     var disAmtStr = '';
     for(var i = 0; i < disCnt; i++)
     {
-        $("#disRange"+i).on('input',{index:""+i}, changeDisAmtTxt);
+        $("#disRange"+i).on('change',{index:""+i}, changeDisAmtTxt);
         /*$("#disRange"+i).on('change', function(){
             calTotalPrice(
                 parseInt($('input[name="totalPrice"]').val()),
@@ -117,8 +117,8 @@ $(document).ready(function(){
         for(var i = 0; i < disCnt; i++)
         {
             //$("#disRange"+i).on('input',{index:""+i}, changeDisAmtTxt);
-            if($("#disRange"+i).val() == '')
-                $("#disRange"+i).val(0);
+            // if($("#disRange"+i).val() == '')
+            //     $("#disRange"+i).val(0);
             disSum += parseInt($("#disRange"+i).val());
             disAmtStr += $("#disRange"+i).val() + ',';
         }

@@ -247,6 +247,10 @@ function calTotalPrice(totalPrice, promoCode, discharge, freight){
 				}
 				if(total > 0)
 					$('.total').replaceWith("<td class='total'>"+total+"</td>");
+				else if(discharge == "NaN")
+				{
+					alert("請設定抵用金金額，不得為空");
+				}
 				else
 				{
 					$('.total').replaceWith("<td class='total'>"+total+"</td>");
