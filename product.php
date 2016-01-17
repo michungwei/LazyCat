@@ -131,13 +131,20 @@ $(document).ready(function(){
     <div class="productInfo">
         <h2><?php echo $row["product_name_en"]; ?></h2>
         <h3><?php echo $row["product_name_tw"]; ?></h3>
-        <h1 class="price">TWD.<?php echo $row["product_sell_price"]; ?></h1>
+        <h1 class="price"><a <?php if($type_id == 4) echo 'style="text-decoration:line-through;"' ?>>TWD.<?php echo $row["product_sell_price"]; ?></a></h1>
+        <?php if($type_id == 4)
+        {
+        ?>
+            <h1 class="price"><font color="red">TWD.<?php echo $row["product_special_price"]; ?></font></h1>
+        <?php
+        }
+        ?>
         <?php if($row["product_color"]!=NULL){?>
         <div id="colorSelect"><a>顏色：</a></div>
         <?php }?>
         <br>
         <div id="curStock"><a>目前庫存：</a></div>
-        <button class="btn-white-add" id="buy_btn" pro_color="0" pro_id="<?php echo $pro_id; ?>" pro_sno="<?php echo $row["product_sno"]; ?>" member_id="<?php echo $member_id; ?>" page="detail" type_id="<?php echo $type_id; ?>" name_en="<?php echo $row["product_name_en"]; ?>" name_tw="<?php echo $row["product_name_tw"]; ?>" sell_price="<?php echo $row["product_sell_price"]; ?>" pic="<?php echo $row["product_pic1"]; ?>"><img src="assets/images/ui-s/bag.png" height="15" alt="" />&nbsp;&nbsp;ADD TO CAR</button>
+        <button class="btn-white-add" id="buy_btn" pro_color="0" pro_id="<?php echo $pro_id; ?>" pro_sno="<?php echo $row["product_sno"]; ?>" member_id="<?php echo $member_id; ?>" page="detail" type_id="<?php echo $type_id; ?>" name_en="<?php echo $row["product_name_en"]; ?>" name_tw="<?php echo $row["product_name_tw"]; ?>" sell_price="<?php if($type_id == 4) echo $row["product_special_price"]; else echo $row["product_sell_price"]; ?>" pic="<?php echo $row["product_pic1"]; ?>"><img src="assets/images/ui-s/bag.png" height="15" alt="" />&nbsp;&nbsp;ADD TO CAR</button>
 
         <button id="wish_btn" class="btn-white" pro_color="0" pro_id="<?php echo $pro_id; ?>" member_id="<?php echo $member_id; ?>" page="detail" type_id="<?php echo $type_id; ?>" style="cursor: pointer;">WISH LIST</button>
         <p class="proC-en"><?php echo $row["product_comment"]; ?></p>

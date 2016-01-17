@@ -40,7 +40,10 @@ if($sResult){
     if($row)
     {
     	$promo_money = $row["promo_money"];
-    	$promo_discount = $row["promo_discount"] / 100;
+    	if($row['promo_discount'] <= 0)
+				$promo_discount = 1;
+			else
+				$promo_discount = $row['promo_discount'] / 100;
     }
     else
     {

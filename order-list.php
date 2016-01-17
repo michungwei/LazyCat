@@ -104,14 +104,14 @@ $u = count($carItem);
                 <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $ary_transport_type[$row["order_recipient_wayOption"]]; ?></td>
                 <td align="center" style="word-wrap: break-word; word-break: break-all;">
                     <?php echo $ary_payment_state[$row["order_payment_state"]];
-                        /*if($row["order_payment_state"] == 0)  
-                        {*/
+                        if($row["order_payment_state"] == 0)  
+                        {
                     ?>
-                    <!--<a color="red" href=<?php echo "goPay.php?sno=".$row['order_sno']."&member_id=".$member_id."&payType=".$row["order_payment_type"]; ?>>
+                    <a color="red" href=<?php echo "goPay.php?sno=".$row['order_sno']."&member_id=".$member_id."&payType=".$row["order_payment_type"]; ?>>
                         (前往付款)
-                    </a>-->
+                    </a>
                     <?        
-                        //}
+                        }
                     ?>
                 </td>
                 <td align="center" style="word-wrap: break-word; word-break: break-all;"><?php echo $ary_order_state[$row["order_state"]]; ?></td>
