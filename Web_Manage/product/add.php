@@ -76,7 +76,7 @@ $(document).ready(function(){
 		}
 		return true;
 	});
-	
+	$("#OriPrice").hide();
 	$("#type").change(function(e) {
         var val = $(this).val();
 		if(val != ""){
@@ -89,6 +89,8 @@ $(document).ready(function(){
 				success : function(data){
 					if(data.result){
 						$("#serial").html(data.list);
+                        if(val == "4")
+                            $("#OriPrice").show();
 					}else{
 						alert(data.list);
 					}
@@ -237,9 +239,9 @@ $(document).ready(function(){
                             <td width="150" valign="top"><h4 class="input-text-title">售價</h4></td>
                             <td><input type="text" name="price" id="price" size="50" value=""/></td>
                         </tr>
-                        <tr>
-                            <td width="150" valign="top"><h4 class="input-text-title">特價</h4></td>
-                            <td><input type="text" name="sprice" id="sprice" size="50" value=""/></td>
+                        <tr id="OriPrice">
+                            <td width='150' valign='top'><h4 class='input-text-title'>原價</h4></td>
+                            <td><input type='text' name='sprice' id='sprice' size='50' value=''/></td>
                         </tr>
                         <tr>
                             <td width="150" valign="top"><h4 class="input-text-title">顏色</h4></td>

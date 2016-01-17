@@ -203,11 +203,18 @@ $(document).ready(function(e) {
                 <p class="proi-en"><?php echo $row_product["product_name_en"]; ?></p>
                 <p class="proi-zh"><?php echo $row_product["product_name_tw"]; ?></p>
 
-                <p class="price"><a <?php if($type_id == 4) echo 'style="text-decoration:line-through;"' ?>>TWD.<?php echo $row_product["product_sell_price"]; ?></a></p>
-                <?php if($type_id == 4)
+                <?php 
+                if($type_id == 4)
                 {
                 ?>
-                    <p class="price"><font color="red">TWD.<?php echo $row_product["product_special_price"]; ?></font></p>
+                    <p class="price"><a style="text-decoration:line-through;">TWD.<?php echo $row_product["product_special_price"]; ?></a></p>
+                    <p class="price"><font color="red">TWD.<?php echo $row_product["product_sell_price"]; ?></font></p>
+                <?php
+                }
+                else
+                {
+                ?>
+                    <p class="price"><a>TWD.<?php echo $row_product["product_sell_price"]; ?></a></p>
                 <?php
                 }
                 ?>
