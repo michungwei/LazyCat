@@ -26,6 +26,7 @@ $row = $db -> query_first($sql);
 $_SESSION["order_sno"] = $row["order_sno"];
 $_SESSION["total_price"] = $row["order_total_price"];
 $_SESSION["isGoPay"] = true;
+$_SESSION["regetOrder"] = true;
 
 if($payType == 1)
 	header("location:do/payment.html");

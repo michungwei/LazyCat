@@ -25,10 +25,12 @@ if(!isLogin()){
 
 $order_sno = $_SESSION["order_sno"];
 $total_price = $_SESSION["total_price"];
+$regetOrder = $_SESSION["regetOrder"];
 
 
 //金流資料
 $act_url = "https://aquarius.neweb.com.tw/CashSystemFrontEnd/Payment";
+$query_url = "https://aquarius.neweb.com.tw/CashSystemFrontEnd/Query";
 $code = "dufu7iz4";
 $merchantnumber = "460060"; //商店編號
 $ordernumber = $order_sno;
@@ -67,6 +69,28 @@ $(document).ready(function(e) {
 </script>
 </head>
 <body>
+	<?php
+	if($regetOrder)
+	{
+	?>
+	<form action="<?php echo $query_url; ?>" method="post" id="pay_form_MMK" name="pay_form_MMK">
+    <input name="merchantnumber" type="hidden" id="merchantnumber" value="<?php print $merchantnumber; ?>">
+	<input name="ordernumber" type="hidden" id="ordernumber"       value="<?php print $ordernumber; ?>">
+	<input name="amount" type="hidden" id="amount"                 value="<?php print $amount; ?>">
+	<input name="paymenttype" type="hidden" id="paymenttype"       value="<?php print $paymenttype; ?>">
+	<input name="bankid" type="hidden" id="bankid"                 value="<?php print $bankid; ?>">
+    <input name="nexturl" type="hidden" id="nexturl"               value="<?php print $nexturl; ?>">
+    <input name="hash" type="hidden" id="hash"              	   value="<?php print $hash; ?>">
+    <input name="operation" type="hidden" id="operation"           value="regetorder">
+    
+    <!--<input type="submit">-->
+	</form>
+	<?php
+		$_SESSION["regetOrder"] = false;
+	}
+	else
+	{
+	?>
 <form action="<?php echo $act_url; ?>" method="post" id="pay_form_MMK" name="pay_form_MMK">
     <input name="merchantnumber" type="hidden" id="merchantnumber" value="<?php print $merchantnumber; ?>">
 	<input name="ordernumber" type="hidden" id="ordernumber"       value="<?php print $ordernumber; ?>">
@@ -85,6 +109,8 @@ $(document).ready(function(e) {
     
     <!--<input type="submit">-->
 </form>
-
+	<?php
+	}
+	?>
 </body>
 </html>
