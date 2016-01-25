@@ -143,6 +143,9 @@ $(function(){
         </div>
         <div class="clear"></div>
     </ul>
+    <?php if(isAuth(1))
+    {
+    ?>
     <ul>
         <div class="menu-close">
             <div class="menu-top ">
@@ -154,6 +157,9 @@ $(function(){
         </div>
         <div class="clear"></div>
     </ul>
+    <?php
+    }
+    ?>
 </div>
 </body>
 </html>
