@@ -21,6 +21,9 @@ $(document).ready(function(e) {
 });
 
 </script>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=0.4" />
+</head>
 <div class="memberMenu">
     <ul class="memberSelectItem">
         <li href="memberCenter_<?php echo $_SESSION["session_id"]; ?>.html"> 會員中心 </li>
