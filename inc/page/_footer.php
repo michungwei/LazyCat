@@ -14,6 +14,6 @@
                 <li class="com-item"><a href="blog.html">BLOG</a></li>
                 <li class="com-item"><a href="contact.html">CONTACT</a></li>
             </ul>
-            <span class="copy">Copyright 2014 &copy; LazyCat. Powered by Coder</span> </div>
+            <span class="copy">Copyright 2016 &copy; LazyCat. Powered by Coder</span> </div>
     </div>
 </div>

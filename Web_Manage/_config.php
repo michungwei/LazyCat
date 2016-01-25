@@ -61,5 +61,13 @@ function getMaxInd($table, $field, $where){
 	return $maxind;
 }
 
+function isAuth($key){
+	if($key==$_SESSION["mauth"]){
+		return true;
+	}
+	return false;
+}
+
+
 
 /*END PHP*/

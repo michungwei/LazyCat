@@ -16,6 +16,7 @@ if($account != "" && $password != ""){
 	if($row){
 		$_SESSION["madmin"] = $row["admin_account"];
 		$_SESSION["userid"] = $row["admin_id"];
+		$_SESSION["mauth"] = $row["admin_level"];
 		redirect("index.php");
 	}else{
 		script("登入失敗,帳號或密碼不正確!");

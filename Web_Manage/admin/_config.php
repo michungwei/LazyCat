@@ -11,4 +11,6 @@ $keyword = get("keyword", 1);
 $page = request_pag("page");
 $query_str = "keyword=".$keyword."&page=".$page;
 $mtitle = "<a href='index.php?".$query_str."'> 管理者管理 </a>";
+
+$aryAdminAuth = array(0 => "一般", 1 =>"最高");
 /*END PHP*/
