@@ -143,23 +143,23 @@ $(function(){
         </div>
         <div class="clear"></div>
     </ul>
-    <?php if(isAuth(1))
-    {
-    ?>
     <ul>
         <div class="menu-close">
             <div class="menu-top ">
                 <div class="mg-menu-toggle"><br />
                 </div>
                 <span>管理者管理</span></div>
+            <?php if(isAuth(1))
+            {
+            ?>
             <li><a href="admin/index.php" target="main" onFocus="this.blur()"><span>管理者列表</span></a></li>
+            <?php
+            }
+            ?>
             <li><a href="logout.php" target="main" onFocus="this.blur()"><span>退出系統</span></a></li>
         </div>
         <div class="clear"></div>
     </ul>
-    <?php
-    }
-    ?>
 </div>
 </body>
 </html>
